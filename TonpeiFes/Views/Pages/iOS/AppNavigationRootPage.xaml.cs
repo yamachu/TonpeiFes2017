@@ -1,8 +1,8 @@
 ﻿using Xamarin.Forms;
 
-namespace TonpeiFes.Views.Android
+namespace TonpeiFes.Views.Pages.iOS
 {
-    public partial class AppNavigationRootPage : MasterDetailPage
+    public partial class AppNavigationRootPage : TabbedPage
     {
         public AppNavigationRootPage()
         {

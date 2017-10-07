@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace TonpeiFes.Views
+namespace TonpeiFes.Views.Pages
 {
     public partial class PlanningListRootPage : ContentPage
     {

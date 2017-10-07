@@ -29,25 +29,28 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="Views\iOS\AppNavigationRootPage.xaml">
+    <EmbeddedResource Include="Views\Pages\AppNavigationRootPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Android\AppNavigationRootPage.xaml">
+    <EmbeddedResource Include="Views\Pages\FestaMapRootPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\AppNavigationRootPage.xaml">
+    <EmbeddedResource Include="Views\Pages\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FestaMapRootPage.xaml">
+    <EmbeddedResource Include="Views\Pages\PlanningDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\StageEventListRootPage.xaml">
+    <EmbeddedResource Include="Views\Pages\PlanningListRootPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\PlanningListRootPage.xaml">
+    <EmbeddedResource Include="Views\Pages\StageEventListRootPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\HomePage.xaml">
+    <EmbeddedResource Include="Views\Pages\Android\AppNavigationRootPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Pages\iOS\AppNavigationRootPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -56,33 +59,36 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\iOS\AppNavigationRootPage.xaml.cs">
-      <DependentUpon>AppNavigationRootPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Android\AppNavigationRootPage.xaml.cs">
-      <DependentUpon>AppNavigationRootPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AppNavigationRootPage.xaml.cs">
-      <DependentUpon>AppNavigationRootPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\AppNavigationRootPageViewModel.cs" />
-    <Compile Include="Views\FestaMapRootPage.xaml.cs">
-      <DependentUpon>FestaMapRootPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\StageEventListRootPage.xaml.cs">
-      <DependentUpon>StageEventListRootPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PlanningListRootPage.xaml.cs">
-      <DependentUpon>PlanningListRootPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\FestaMapRootPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\PlanningListRootPageViewModel.cs" />
     <Compile Include="ViewModels\StageEventListRootPageViewModel.cs" />
+    <Compile Include="Views\Pages\AppNavigationRootPage.xaml.cs">
+      <DependentUpon>AppNavigationRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\FestaMapRootPage.xaml.cs">
+      <DependentUpon>FestaMapRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\PlanningDetailPage.xaml.cs">
+      <DependentUpon>PlanningDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\PlanningListRootPage.xaml.cs">
+      <DependentUpon>PlanningListRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\StageEventListRootPage.xaml.cs">
+      <DependentUpon>StageEventListRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Android\AppNavigationRootPage.xaml.cs">
+      <DependentUpon>..\..\Android\AppNavigationRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\iOS\AppNavigationRootPage.xaml.cs">
+      <DependentUpon>..\..\iOS\AppNavigationRootPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -116,8 +122,9 @@
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\iOS\" />
-    <Folder Include="Views\Android\" />
+    <Folder Include="Views\Pages\" />
+    <Folder Include="Views\Pages\Android\" />
+    <Folder Include="Views\Pages\iOS\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

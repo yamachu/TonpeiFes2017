@@ -1,5 +1,5 @@
 ﻿using Prism.Unity;
-using TonpeiFes.Views;
+using TonpeiFes.Views.Pages;
 using Xamarin.Forms;
 
 namespace TonpeiFes
@@ -21,8 +21,8 @@ namespace TonpeiFes
 
             Container.RegisterTypeForNavigationOnPlatform<AppNavigationRootPage, ViewModels.AppNavigationRootPageViewModel>(
                 name:"AppNavigationRootPage",
-                androidView:typeof(Views.Android.AppNavigationRootPage),
-                iOSView:typeof(Views.iOS.AppNavigationRootPage));
+                androidView:typeof(Views.Pages.Android.AppNavigationRootPage),
+                iOSView:typeof(Views.Pages.iOS.AppNavigationRootPage));
             Container.RegisterTypeForNavigation<HomePage>();
             Container.RegisterTypeForNavigation<PlanningListRootPage>();
             Container.RegisterTypeForNavigation<StageEventListRootPage>();
