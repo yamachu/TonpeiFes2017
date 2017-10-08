@@ -1,3 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Views.Pages.PlanningDetailPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Views.Pages.PlanningDetailPage"
+    xmlns:c="clr-namespace:TonpeiFes.Views.Controls"
+    xmlns:v="clr-namespace:TonpeiFes.Views.Components">
+    <ScrollView>
+        <StackLayout>
+            <!--  Header  -->
+            <StackLayout>
+                <!--  Planning main-info  -->
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="0,0,0,0">
+                    <!--  Icon  -->
+                    <Image WidthRequest="50" HeightRequest="50" />
+                    <StackLayout>
+                        <Label Text="Title" FontAttributes="Bold" />
+                        <Label Text="Circle Name" FontAttributes="Bold" />
+                    </StackLayout>
+                </StackLayout>
+
+                <!--  Planning sub-info  -->
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="2">
+                        <!--  Keywords show only Planning  -->
+                        <Label Text="Some keywords" FontSize="12" IsVisible="true" />
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                            <!--  Fontawesome's map icon  -->
+                            <Label Text="Place" FontSize="12" />
+                        </StackLayout>
+                        <!--  Show only stage event  -->
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsVisible="true">
+                            <!--  Fontawesome's time icon  -->
+                            <Label Text="Opening time" FontSize="12" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <!--  SNS info  -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <StackLayout>
+                        <!--  Fontawesome's Home icon  -->
+                        <Label Text="ホームページ" FontSize="8" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <!--  Fontawesome's Twitter icon  -->
+                        <Label Text="Twitter" FontSize="8" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <!--  Fontawesome's Facebook icon  -->
+                        <Label Text="Facebook" FontSize="8" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <!--  Fontawesome's Youtube icon  -->
+                        <Label Text="Youtube" FontSize="8" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <!--  Fontawesome's Instagram icon  -->
+                        <Label Text="Instagram" FontSize="8" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Detail  -->
+            <StackLayout>
+                <c:ItemsControl ItemsSource="">
+                    <c:ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <v:DetailWithHeadingView />
+                        </DataTemplate>
+                    </c:ItemsControl.ItemTemplate>
+                </c:ItemsControl>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

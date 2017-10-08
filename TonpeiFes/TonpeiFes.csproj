@@ -53,6 +53,9 @@
     <EmbeddedResource Include="Views\Pages\iOS\AppNavigationRootPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Components\DetailWithHeadingView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -88,6 +91,11 @@
     </Compile>
     <Compile Include="Views\Pages\iOS\AppNavigationRootPage.xaml.cs">
       <DependentUpon>..\..\iOS\AppNavigationRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ItemsControl.cs" />
+    <Compile Include="Views\Controls\DataTemplateSelector.cs" />
+    <Compile Include="Views\Components\DetailWithHeadingView.xaml.cs">
+      <DependentUpon>DetailWithHeadingView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +133,8 @@
     <Folder Include="Views\Pages\" />
     <Folder Include="Views\Pages\Android\" />
     <Folder Include="Views\Pages\iOS\" />
+    <Folder Include="Views\Controls\" />
+    <Folder Include="Views\Components\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
