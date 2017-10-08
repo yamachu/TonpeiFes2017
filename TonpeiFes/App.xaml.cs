@@ -8,11 +8,8 @@ namespace TonpeiFes
     {
         public App(IPlatformInitializer initializer = null) : base(initializer) { }
 
-        public App()
-        {
-            // To enable XAML Preview, need parameterless constructor
-            this.InitializeComponent();
-        }
+        // To enable XAML Preview, need parameterless constructor
+        public App() => this.InitializeComponent();
 
         protected override void OnInitialized()
         {
