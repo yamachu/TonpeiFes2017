@@ -6,6 +6,7 @@ using Foundation;
 using Microsoft.Practices.Unity;
 using Prism.Unity;
 using UIKit;
+using SegmentedControl.FormsPlugin.iOS;
 
 namespace TonpeiFes.iOS
 {
@@ -15,6 +16,8 @@ namespace TonpeiFes.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            SegmentedControlRenderer.Init();
 
             LoadApplication(new App(new iOSInitializer()));
 

@@ -9,6 +9,7 @@ using Android.Widget;
 using Android.OS;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
+using SegmentedControl.FormsPlugin.Android;
 
 namespace TonpeiFes.Droid
 {
@@ -23,6 +24,8 @@ namespace TonpeiFes.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            SegmentedControlRenderer.Init();
 
             LoadApplication(new App(new AndroidInitializer()));
         }
