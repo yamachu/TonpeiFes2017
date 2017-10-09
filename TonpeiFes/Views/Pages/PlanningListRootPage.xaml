@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Views.Pages.PlanningListRootPage">
-    <Label Text="Show Planning List"></Label>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Views.Pages.PlanningListRootPage"
+    xmlns:controls="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions" Title="{Binding Title}" x:Name="root">
+    <ContentPage.NavigationPage.HasNavigationBar>
+        <OnPlatform x:TypeArguments="x:Boolean" iOS="False" />
+    </ContentPage.NavigationPage.HasNavigationBar>
+              
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" WidthRequest="1" />
+        </StackLayout>
+        <controls:SegmentedControl x:Name="SegControl" SelectedSegment="{Binding SelectedSegment.Value, Mode=TwoWay}">
+            <controls:SegmentedControl.Children>
+                <controls:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.OutdoorSegment}" />
+                <controls:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.IndoorSegment}" />
+            </controls:SegmentedControl.Children>
+        </controls:SegmentedControl>
+        <ListView HasUnevenRows="true" IsGroupingEnabled="true">
+        </ListView>
+    </StackLayout>
 </ContentPage>

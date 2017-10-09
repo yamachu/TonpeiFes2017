@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TonpeiFes.ViewModels
+namespace TonpeiFes.ViewModels.Pages
 {
-    public class FestaMapRootPageViewModel : ViewModelBase
+    public class HomePageViewModel : ViewModelBase
     {
-        public FestaMapRootPageViewModel()
+        public HomePageViewModel()
         {
 
         }

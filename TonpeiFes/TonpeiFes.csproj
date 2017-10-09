@@ -60,12 +60,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AppNavigationRootPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="ViewModels\FestaMapRootPageViewModel.cs" />
-    <Compile Include="ViewModels\HomePageViewModel.cs" />
-    <Compile Include="ViewModels\PlanningListRootPageViewModel.cs" />
-    <Compile Include="ViewModels\StageEventListRootPageViewModel.cs" />
     <Compile Include="Views\Pages\AppNavigationRootPage.xaml.cs">
       <DependentUpon>AppNavigationRootPage.xaml</DependentUpon>
     </Compile>
@@ -95,6 +90,11 @@
     <Compile Include="Views\Components\DetailWithHeadingView.xaml.cs">
       <DependentUpon>DetailWithHeadingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Pages\PlanningListRootPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AppNavigationRootPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\FestaMapRootPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\StageEventListRootPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
@@ -107,6 +107,7 @@
     <Folder Include="Views\Pages\iOS\" />
     <Folder Include="Views\Controls\" />
     <Folder Include="Views\Components\" />
+    <Folder Include="ViewModels\Pages\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
