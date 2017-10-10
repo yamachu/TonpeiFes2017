@@ -2,7 +2,7 @@
   "dependencies": {
     "CommonServiceLocator": "1.3",
     "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
-    "NETStandard.Library": "2.0.0",
+    "NETStandard.Library": "2.0.1",
     "Prism.Core": "6.3.0",
     "Prism.Forms": "6.3.0",
     "Prism.Unity.Forms": "6.3.0",
