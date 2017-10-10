@@ -45,6 +45,6 @@ namespace TonpeiFes.ViewModels
             });
         }
 
-        private async Task PlatformDependPageNavigation(string pageName) => _navigationService.NavigateAsync($@"{(Device.OS == TargetPlatform.Android ? "NavigationPage/" : "")}{pageName}");
+        private async Task PlatformDependPageNavigation(string pageName) => _navigationService.NavigateAsync($@"{(Device.RuntimePlatform == Device.Android ? "NavigationPage/" : "")}{pageName}");
     }
 }
