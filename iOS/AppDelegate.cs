@@ -18,6 +18,7 @@ namespace TonpeiFes.iOS
             global::Xamarin.Forms.Forms.Init();
 
             SegmentedControlRenderer.Init();
+            FFImageLoading.Forms.Touch.CachedImageRenderer.Init();
 
             LoadApplication(new App(new iOSInitializer()));
 

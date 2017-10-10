@@ -26,6 +26,7 @@ namespace TonpeiFes.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             SegmentedControlRenderer.Init();
+            FFImageLoading.Forms.Droid.CachedImageRenderer.Init();
 
             LoadApplication(new App(new AndroidInitializer()));
         }
