@@ -25,8 +25,11 @@ namespace TonpeiFes.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.IoniconsModule());
+
             SegmentedControlRenderer.Init();
             FFImageLoading.Forms.Droid.CachedImageRenderer.Init();
+            FormsPlugin.Iconize.Droid.IconControls.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
 
             LoadApplication(new App(new AndroidInitializer()));
         }

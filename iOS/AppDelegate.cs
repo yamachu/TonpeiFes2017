@@ -17,8 +17,11 @@ namespace TonpeiFes.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.IoniconsModule());
+
             SegmentedControlRenderer.Init();
             FFImageLoading.Forms.Touch.CachedImageRenderer.Init();
+            FormsPlugin.Iconize.iOS.IconControls.Init();
 
             LoadApplication(new App(new iOSInitializer()));
 

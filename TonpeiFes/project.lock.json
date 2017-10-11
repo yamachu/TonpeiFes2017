@@ -797,6 +797,28 @@
           "lib/portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10/Microsoft.Practices.Unity.dll": {}
         }
       },
+      "Xam.FormsPlugin.Iconize/1.0.10": {
+        "type": "package",
+        "dependencies": {
+          "Xam.Plugin.Iconize": "1.0.10",
+          "Xamarin.Forms": "2.2.0.31"
+        },
+        "compile": {
+          "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/FormsPlugin.Iconize.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/FormsPlugin.Iconize.dll": {}
+        }
+      },
+      "Xam.Plugin.Iconize/1.0.10": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Plugin.Iconize.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Plugin.Iconize.dll": {}
+        }
+      },
       "Xamarin.FFImageLoading/2.2.20": {
         "type": "package",
         "compile": {
@@ -3911,6 +3933,64 @@
         "unity.nuspec"
       ]
     },
+    "Xam.FormsPlugin.Iconize/1.0.10": {
+      "sha512": "xAhxJjRSjSI/xe1ourNFs/mQBL/5Urtg7LIyUhqCe/gd4gP2ehC3GsY20wzPgPmxwJMF9fjRuj/XRSfOKWN/yQ==",
+      "type": "package",
+      "path": "xam.formsplugin.iconize/1.0.10",
+      "files": [
+        "lib/MonoAndroid10/FormsPlugin.Iconize.Droid.dll",
+        "lib/MonoAndroid10/FormsPlugin.Iconize.Droid.pdb",
+        "lib/MonoAndroid10/FormsPlugin.Iconize.Droid.xml",
+        "lib/MonoAndroid10/FormsPlugin.Iconize.dll",
+        "lib/MonoAndroid10/FormsPlugin.Iconize.pdb",
+        "lib/MonoAndroid10/FormsPlugin.Iconize.xml",
+        "lib/UAP10/FormsPlugin.Iconize.UWP.dll",
+        "lib/UAP10/FormsPlugin.Iconize.UWP.pdb",
+        "lib/UAP10/FormsPlugin.Iconize.UWP.pri",
+        "lib/UAP10/FormsPlugin.Iconize.UWP.xml",
+        "lib/UAP10/FormsPlugin.Iconize.dll",
+        "lib/UAP10/FormsPlugin.Iconize.pdb",
+        "lib/UAP10/FormsPlugin.Iconize.xml",
+        "lib/Xamarin.iOS10/FormsPlugin.Iconize.dll",
+        "lib/Xamarin.iOS10/FormsPlugin.Iconize.iOS.dll",
+        "lib/Xamarin.iOS10/FormsPlugin.Iconize.iOS.xml",
+        "lib/Xamarin.iOS10/FormsPlugin.Iconize.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/FormsPlugin.Iconize.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/FormsPlugin.Iconize.pdb",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/FormsPlugin.Iconize.xml",
+        "xam.formsplugin.iconize.1.0.10.nupkg.sha512",
+        "xam.formsplugin.iconize.nuspec"
+      ]
+    },
+    "Xam.Plugin.Iconize/1.0.10": {
+      "sha512": "grUbNmardTylqhILe3LuaOv5Vv7IEwFbmcYh8jrqSE3+SXDZM9OHjlNis/3G/zlhasZvNPDAODaI5wnHugo9zQ==",
+      "type": "package",
+      "path": "xam.plugin.iconize/1.0.10",
+      "files": [
+        "lib/MonoAndroid10/Plugin.Iconize.Droid.dll",
+        "lib/MonoAndroid10/Plugin.Iconize.Droid.pdb",
+        "lib/MonoAndroid10/Plugin.Iconize.Droid.xml",
+        "lib/MonoAndroid10/Plugin.Iconize.dll",
+        "lib/MonoAndroid10/Plugin.Iconize.pdb",
+        "lib/MonoAndroid10/Plugin.Iconize.xml",
+        "lib/UAP10/Plugin.Iconize.UWP.dll",
+        "lib/UAP10/Plugin.Iconize.UWP.pdb",
+        "lib/UAP10/Plugin.Iconize.UWP.pri",
+        "lib/UAP10/Plugin.Iconize.UWP.xml",
+        "lib/UAP10/Plugin.Iconize.dll",
+        "lib/UAP10/Plugin.Iconize.pdb",
+        "lib/UAP10/Plugin.Iconize.xml",
+        "lib/Xamarin.iOS10/Plugin.Iconize.dll",
+        "lib/Xamarin.iOS10/Plugin.Iconize.iOS.dll",
+        "lib/Xamarin.iOS10/Plugin.Iconize.iOS.xml",
+        "lib/Xamarin.iOS10/Plugin.Iconize.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Plugin.Iconize.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Plugin.Iconize.pdb",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Plugin.Iconize.xml",
+        "xam.plugin.iconize.1.0.10.nupkg.sha512",
+        "xam.plugin.iconize.nuspec"
+      ]
+    },
     "Xamarin.FFImageLoading/2.2.20": {
       "sha512": "QAi+p0jwL7m1uWFnsNqpcc262FR3p5IqiMes2v16ozX9Ca0hqU7VRM+17jYn/VpXcQGK81qUsgJJt9gBdkxtzQ==",
       "type": "package",
@@ -4225,6 +4305,8 @@
       "SegmentedControl.FormsPlugin >= 1.3.4",
       "System.Reactive.Linq >= 3.1.1",
       "Unity >= 4.0.1",
+      "Xam.FormsPlugin.Iconize >= 1.0.10",
+      "Xam.Plugin.Iconize >= 1.0.10",
       "Xamarin.FFImageLoading.Forms >= 2.2.20",
       "Xamarin.FFImageLoading.Transformations >= 2.2.20",
       "Xamarin.Forms >= 2.4.0.282"
@@ -4261,6 +4343,8 @@
       "SegmentedControl.FormsPlugin": "1.3.4",
       "System.Reactive.Linq": "3.1.1",
       "Unity": "4.0.1",
+      "Xam.FormsPlugin.Iconize": "1.0.10",
+      "Xam.Plugin.Iconize": "1.0.10",
       "Xamarin.FFImageLoading.Forms": "2.2.20",
       "Xamarin.FFImageLoading.Transformations": "2.2.20",
       "Xamarin.Forms": "2.4.0.282"
