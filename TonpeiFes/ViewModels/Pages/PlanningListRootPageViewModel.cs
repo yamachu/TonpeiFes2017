@@ -13,7 +13,7 @@ namespace TonpeiFes.ViewModels.Pages
         // ToDo: 文字列リソースはどこかにまとめる
         public string Title => "模擬店/企画";
         public string OutdoorSegment { get; } = "屋外";
-        public string IndoorSegment { get; } = "屋外";
+        public string IndoorSegment { get; } = "屋内";
 
         public ReactiveProperty<int> SelectedSegment { get; } = new ReactiveProperty<int>(0);
         public ReactiveProperty<string> SearchQuery { get; } = new ReactiveProperty<string>();
