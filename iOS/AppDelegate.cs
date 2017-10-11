@@ -7,6 +7,8 @@ using Microsoft.Practices.Unity;
 using Prism.Unity;
 using UIKit;
 using SegmentedControl.FormsPlugin.iOS;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 namespace TonpeiFes.iOS
 {
@@ -16,6 +18,7 @@ namespace TonpeiFes.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            app.StatusBarStyle = UIStatusBarStyle.LightContent;
 
             Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.IoniconsModule());
 
@@ -24,6 +27,8 @@ namespace TonpeiFes.iOS
             FormsPlugin.Iconize.iOS.IconControls.Init();
 
             LoadApplication(new App(new iOSInitializer()));
+
+            UITabBar.Appearance.SelectedImageTintColor = ((Color)App.Current.Resources["Primary"]).ToUIColor();
 
             return base.FinishedLaunching(app, options);
         }

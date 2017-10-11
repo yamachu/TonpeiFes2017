@@ -1,3 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms" x:Class="TonpeiFes.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--  Color  -->
+            <Color x:Key="Primary">#3F51B5</Color>
+            <Color x:Key="DarkPrimary">#303F9F</Color>
+            <Color x:Key="LightPrimary">#303F9F</Color>
+            <Color x:Key="Text">#FFFFFF</Color>
+            <Color x:Key="Accent">#FFC107</Color>
+            <Color x:Key="PrimaryText">#212121</Color>
+            <Color x:Key="SecondaryText">#757575</Color>
+            <Color x:Key="Separator">#BDBDBD</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
+            <!--  Padding  -->
+            <OnPlatform x:Key="NonNavPagePadding" x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,20,0,0" />
+        </ResourceDictionary>
+    </Application.Resources>
 </prism:PrismApplication>
