@@ -8,6 +8,7 @@ namespace TonpeiFes.ViewModels.Pages
 {
     public class HomePageViewModel : ViewModelBase
     {
+        public string Title => "東北大学祭'69";
         public HomePageViewModel()
         {
 

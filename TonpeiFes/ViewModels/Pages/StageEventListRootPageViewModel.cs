@@ -8,6 +8,7 @@ namespace TonpeiFes.ViewModels.Pages
 {
     public class StageEventListRootPageViewModel : ViewModelBase
     {
+        public string Title => "ステージイベント";
         public StageEventListRootPageViewModel()
         {
 
