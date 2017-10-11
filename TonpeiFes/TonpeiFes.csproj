@@ -95,6 +95,8 @@
     <Compile Include="ViewModels\Pages\FestaMapRootPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\HomePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\StageEventListRootPageViewModel.cs" />
+    <Compile Include="Views\Controls\MyIconTabbedPage.cs" />
+    <Compile Include="Views\Controls\TabInfoEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
