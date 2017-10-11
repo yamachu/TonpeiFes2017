@@ -1,8 +1,9 @@
 ﻿using Xamarin.Forms;
+using FormsPlugin.Iconize;
 
 namespace TonpeiFes.Views.Pages.iOS
 {
-    public partial class AppNavigationRootPage : TabbedPage
+    public partial class AppNavigationRootPage : IconTabbedPage
     {
         public AppNavigationRootPage()
         {
