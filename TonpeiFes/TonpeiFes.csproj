@@ -99,6 +99,7 @@
     <Compile Include="Views\Controls\TabInfoEventArgs.cs" />
     <Compile Include="Views\Controls\OutlinedNonSelectedIconTabbedPage.cs" />
     <Compile Include="Views\Controls\SeparatorControl.cs" />
+    <Compile Include="Behaviors\SelectedItemBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
@@ -112,6 +113,7 @@
     <Folder Include="Views\Controls\" />
     <Folder Include="Views\Components\" />
     <Folder Include="ViewModels\Pages\" />
+    <Folder Include="Behaviors\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
