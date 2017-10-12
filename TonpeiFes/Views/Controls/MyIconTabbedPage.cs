@@ -1,10 +1,8 @@
 ﻿using System;
 
-using Xamarin.Forms;
-
 namespace TonpeiFes.Views.Controls
 {
-    public class MyIconTabbedPage : FormsPlugin.Iconize.IconTabbedPage
+    public class MyIconTabbedPage : OutlinedNonSelectedIconTabbedPage
     {
         public event TabPageChangedHandler TabChanged;
         public delegate void TabPageChangedHandler(TabInfoEventArgs e);

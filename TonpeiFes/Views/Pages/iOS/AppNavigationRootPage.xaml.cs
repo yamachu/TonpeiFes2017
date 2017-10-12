@@ -7,7 +7,6 @@ namespace TonpeiFes.Views.Pages.iOS
         public AppNavigationRootPage()
         {
             InitializeComponent();
-            TabChanged += (BindingContext as ViewModels.AppNavigationRootPageViewModel).SelectedPageChanged;
         }
     }
 }

@@ -97,6 +97,7 @@
     <Compile Include="ViewModels\Pages\StageEventListRootPageViewModel.cs" />
     <Compile Include="Views\Controls\MyIconTabbedPage.cs" />
     <Compile Include="Views\Controls\TabInfoEventArgs.cs" />
+    <Compile Include="Views\Controls\OutlinedNonSelectedIconTabbedPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

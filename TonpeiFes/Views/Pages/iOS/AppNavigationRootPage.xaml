@@ -6,22 +6,22 @@
     BarBackgroundColor="White">
 
     <mycomponent:MyIconTabbedPage.Children>
-    <NavigationPage Title="ホーム" Icon="{Binding ReactiveiOSIconHome.Value}">
+    <NavigationPage Title="ホーム" Icon="{Binding iOSIconHome}" x:Name="Home">
         <x:Arguments>
             <local:HomePage />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="模擬店/企画" Icon="{Binding ReactiveiOSIconList.Value}">
+    <NavigationPage Title="模擬店/企画" Icon="{Binding iOSIconList}" x:Name="List">
         <x:Arguments>
             <local:PlanningListRootPage />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="ステージ" Icon="{Binding ReactiveiOSIconStage.Value}">
+    <NavigationPage Title="ステージ" Icon="{Binding iOSIconStage}" x:Name="Stage">
         <x:Arguments>
             <local:StageEventListRootPage />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="マップ" Icon="{Binding ReactiveiOSIconMap.Value}">
+    <NavigationPage Title="マップ" Icon="{Binding iOSIconMap}" x:Name="Map">
         <x:Arguments>
             <local:FestaMapRootPage />
         </x:Arguments>
