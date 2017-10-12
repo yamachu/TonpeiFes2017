@@ -17,7 +17,7 @@
     "Xamarin.Forms": "2.4.0.282"
   },
   "frameworks": {
-    "netstandard1.2": {
+    "netstandard1.5": {
       "imports": "portable-uap+net45"
     }
   }
