@@ -13,11 +13,11 @@ namespace TonpeiFes
         // To enable XAML Preview, need parameterless constructor
         public App() => this.InitializeComponent();
 
-        protected override void OnInitialized()
+        protected async override void OnInitialized()
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("/AppNavigationRootPage/NavigationPage/HomePage");
+            await NavigationService.NavigateAsync("/AppNavigationRootPage/NavigationPage/HomePage");
         }
 
         protected override void RegisterTypes()
