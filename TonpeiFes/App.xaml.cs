@@ -1,7 +1,9 @@
 ﻿using Prism.Unity;
 using TonpeiFes.Views.Pages;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TonpeiFes
 {
     public partial class App : PrismApplication
