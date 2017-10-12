@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Views.Pages.PlanningListRootPage"
-    xmlns:controls="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions" Title="{Binding Title}" x:Name="root">
+    xmlns:segments="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions"
+    xmlns:controls="clr-namespace:TonpeiFes.Views.Controls"
+    xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    x:Name="root" Title="{Binding Title}" >
     <ContentPage.NavigationPage.HasNavigationBar>
         <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True" />
     </ContentPage.NavigationPage.HasNavigationBar>
 
     <StackLayout Spacing="0">
-        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}" Padding="{StaticResource NonNavPagePadding}">
+        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}" Padding="{StaticResource NonNavPagePadding}" Spacing="0">
+            <ContentView Padding="16,0,0,0" IsVisible="{Binding !IsAndroid}">
+                <iconize:IconButton FontSize="22" WidthRequest="22" HeightRequest="22" HorizontalOptions="Center"
+                    Text="{Binding IconSource.Value}" TextColor="{StaticResource Accent}" Command="{Binding FavButtonClickCommand}"/>
+            </ContentView>
             <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" WidthRequest="1" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White"/>
         </StackLayout>
         <StackLayout Padding="{StaticResource SegmentedControlPadding}">
-            <controls:SegmentedControl SelectedSegment="{Binding SelectedSegment.Value, Mode=OneWayToSource}" TintColor="{StaticResource Primary}" SelectedTextColor="{StaticResource Text}">
-                <controls:SegmentedControl.Children>
-                    <controls:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.OutdoorSegment}" />
-                    <controls:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.IndoorSegment}" />
-                </controls:SegmentedControl.Children>
-            </controls:SegmentedControl>
+            <segments:SegmentedControl SelectedSegment="{Binding SelectedSegment.Value, Mode=OneWayToSource}" TintColor="{StaticResource Primary}" SelectedTextColor="{StaticResource Text}">
+                <segments:SegmentedControl.Children>
+                    <segments:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.OutdoorSegment}" />
+                    <segments:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.IndoorSegment}" />
+                </segments:SegmentedControl.Children>
+            </segments:SegmentedControl>
         </StackLayout>
+        <controls:SeparatorControl Color="{StaticResource Separator}" />
+
         <ListView HasUnevenRows="true" IsGroupingEnabled="true">
         </ListView>
     </StackLayout>
