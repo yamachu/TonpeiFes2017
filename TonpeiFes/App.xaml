@@ -12,7 +12,6 @@
             <Color x:Key="SecondaryText">#757575</Color>
             <Color x:Key="Separator">#BDBDBD</Color>
             <Style TargetType="NavigationPage">
-                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="BarTextColor" Value="White" />
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
             </Style>

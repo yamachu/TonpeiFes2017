@@ -8,7 +8,6 @@ namespace TonpeiFes.Views.Controls
     {
         public SeparatorControl()
         {
-            VerticalOptions = LayoutOptions.FillAndExpand;
             HeightRequest = 1;
         }
     }
