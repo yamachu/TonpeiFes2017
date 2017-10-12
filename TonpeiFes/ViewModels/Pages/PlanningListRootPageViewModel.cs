@@ -24,6 +24,7 @@ namespace TonpeiFes.ViewModels.Pages
         public ICommand FavButtonClickCommand { get; }
         private ReactiveProperty<bool> FavStateObservable = new ReactiveProperty<bool>(false);
         public bool IsAndroid => Device.RuntimePlatform == Device.Android;
+        public bool IsiOS => Device.RuntimePlatform == Device.iOS;
 
         public PlanningListRootPageViewModel()
         {
