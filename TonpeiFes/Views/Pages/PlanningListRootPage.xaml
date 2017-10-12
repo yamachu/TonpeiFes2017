@@ -7,6 +7,9 @@
     <ContentPage.NavigationPage.HasNavigationBar>
         <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True" />
     </ContentPage.NavigationPage.HasNavigationBar>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding IconSource.Value}" Command="{Binding FavButtonClickCommand}" />
+    </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="0">
         <!--  iOSは横画面にすると20のパティングいらない  -->
@@ -14,7 +17,7 @@
         <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}" Spacing="0" Padding="{StaticResource NonNavPagePadding}">
             <ContentView Padding="16,0,0,0" IsVisible="{Binding IsiOS}">
                 <iconize:IconButton FontSize="22" WidthRequest="22" HeightRequest="22" HorizontalOptions="Center"
-                    Text="{Binding IconSource.Value}" TextColor="{StaticResource Accent}" Command="{Binding FavButtonClickCommand}"/>
+                    Text="{Binding IconSource.Value}" TextColor="{StaticResource Text}" Command="{Binding FavButtonClickCommand}"/>
             </ContentView>
             <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White">
                 <SearchBar.WidthRequest>
