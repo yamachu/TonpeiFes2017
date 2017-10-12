@@ -98,6 +98,7 @@
     <Compile Include="Views\Controls\MyIconTabbedPage.cs" />
     <Compile Include="Views\Controls\TabInfoEventArgs.cs" />
     <Compile Include="Views\Controls\OutlinedNonSelectedIconTabbedPage.cs" />
+    <Compile Include="Views\Controls\SeparatorControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
