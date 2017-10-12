@@ -4,17 +4,19 @@
     <ContentPage.NavigationPage.HasNavigationBar>
         <OnPlatform x:TypeArguments="x:Boolean" iOS="False" Android="True" />
     </ContentPage.NavigationPage.HasNavigationBar>
-              
-    <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" WidthRequest="1" />
+
+    <StackLayout Spacing="0">
+        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}" Padding="{StaticResource NonNavPagePadding}">
+            <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" WidthRequest="1" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White"/>
         </StackLayout>
-        <controls:SegmentedControl x:Name="SegControl" SelectedSegment="{Binding SelectedSegment.Value, Mode=TwoWay}">
-            <controls:SegmentedControl.Children>
-                <controls:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.OutdoorSegment}" />
-                <controls:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.IndoorSegment}" />
-            </controls:SegmentedControl.Children>
-        </controls:SegmentedControl>
+        <StackLayout Padding="{StaticResource SegmentedControlPadding}">
+            <controls:SegmentedControl SelectedSegment="{Binding SelectedSegment.Value, Mode=OneWayToSource}" TintColor="{StaticResource Primary}" SelectedTextColor="{StaticResource Text}">
+                <controls:SegmentedControl.Children>
+                    <controls:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.OutdoorSegment}" />
+                    <controls:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.IndoorSegment}" />
+                </controls:SegmentedControl.Children>
+            </controls:SegmentedControl>
+        </StackLayout>
         <ListView HasUnevenRows="true" IsGroupingEnabled="true">
         </ListView>
     </StackLayout>
