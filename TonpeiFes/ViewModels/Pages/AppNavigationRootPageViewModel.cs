@@ -16,10 +16,8 @@ namespace TonpeiFes.ViewModels
         private readonly INavigationService _navigationService;
 
         // Use only Android MasterDetail Page
-        public ICommand NavigationHomeCommand { get; }
-        public ICommand NavigationPlanningRootCommand { get; }
-        public ICommand NavigationStageEventRootCommand { get; }
-        public ICommand NavigationMapRootCommand { get; }
+        public List<MasterPageListItem> MasterPageItems { get; }
+        public ICommand SelectedItemCommand { get; }
 
         // Use only iOS TabbedPage
         public string iOSIconHome => "ion-ios-home";
@@ -33,24 +31,16 @@ namespace TonpeiFes.ViewModels
         {
             _navigationService = navigationService;
 
-            NavigationHomeCommand = new DelegateCommand(() =>
-            {
-                PlatformDependPageNavigation("HomePage");
-            });
+            MasterPageItems = new List<MasterPageListItem>{
+                new MasterPageListItem{ Title = "ホーム", Icon = iOSIconHome, PageName = nameof(Views.Pages.HomePage)},
+                new MasterPageListItem{ Title = "模擬店／展示", Icon = iOSIconList, PageName = nameof(Views.Pages.PlanningListRootPage)},
+                new MasterPageListItem{ Title = "ステージイベント", Icon = iOSIconStage, PageName = nameof(Views.Pages.StageEventListRootPage)},
+                new MasterPageListItem{ Title = "マップ", Icon = iOSIconMap, PageName = nameof(Views.Pages.FestaMapRootPage)},
+            };
 
-            NavigationPlanningRootCommand = new DelegateCommand(() =>
+            SelectedItemCommand = new DelegateCommand<MasterPageListItem>((item) =>
             {
-                PlatformDependPageNavigation("PlanningListRootPage");
-            });
-
-            NavigationStageEventRootCommand = new DelegateCommand(() =>
-            {
-                PlatformDependPageNavigation("StageEventListRootPage");
-            });
-
-            NavigationMapRootCommand = new DelegateCommand(() =>
-            {
-                PlatformDependPageNavigation("FestaMapRootPage");
+                PlatformDependPageNavigation(item.PageName);
             });
 
             /*
@@ -61,5 +51,12 @@ namespace TonpeiFes.ViewModels
         }
 
         private async Task PlatformDependPageNavigation(string pageName) => _navigationService.NavigateAsync($@"{(Device.RuntimePlatform == Device.Android ? "NavigationPage/" : "")}{pageName}");
+    }
+
+    public class MasterPageListItem
+    {
+        public string Title { get; set; }
+        public string Icon { get; set; }
+        public string PageName { get; set; }
     }
 }
