@@ -206,6 +206,8 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\ion_ios_heart.png" />
+    <AndroidResource Include="Resources\drawable\ion_ios_heart_outline.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />
