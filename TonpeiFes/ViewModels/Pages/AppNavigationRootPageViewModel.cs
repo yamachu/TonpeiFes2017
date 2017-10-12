@@ -27,6 +27,8 @@ namespace TonpeiFes.ViewModels
         public string iOSIconStage => "ion-ios-calendar";
         public string iOSIconMap => "ion-ios-location";
 
+        public ReactiveProperty<int> ReactiveCurrentTabIndex { get; } = new ReactiveProperty<int>();
+
         public AppNavigationRootPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -50,6 +52,12 @@ namespace TonpeiFes.ViewModels
             {
                 PlatformDependPageNavigation("FestaMapRootPage");
             });
+
+            /*
+            ReactiveCurrentTabIndex.Subscribe((value) => {
+                // Handle Current Tab Index
+            });
+            */
         }
 
         private async Task PlatformDependPageNavigation(string pageName) => _navigationService.NavigateAsync($@"{(Device.RuntimePlatform == Device.Android ? "NavigationPage/" : "")}{pageName}");

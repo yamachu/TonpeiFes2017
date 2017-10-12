@@ -3,7 +3,8 @@
     xmlns:local="clr-namespace:TonpeiFes.Views.Pages"
     xmlns:mycomponent="clr-namespace:TonpeiFes.Views.Controls"
     xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
-    BarBackgroundColor="White">
+    BarBackgroundColor="White"
+    CurrentTabIndex="{Binding ReactiveCurrentTabIndex.Value ,Mode=OneWayToSource}">
 
     <mycomponent:MyIconTabbedPage.Children>
     <NavigationPage Title="ホーム" Icon="{Binding iOSIconHome}" x:Name="Home">
