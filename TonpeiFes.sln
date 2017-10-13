@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TonpeiFes.iOS", "iOS\Tonpei
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TonpeiFes.Droid", "Droid\TonpeiFes.Droid.csproj", "{9E23C706-B716-474D-8C43-CE6AC96FB619}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TonpeiFes.Forms", "TonpeiFes.Forms\TonpeiFes.Forms.csproj", "{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,5 +55,17 @@ Global
 		{9E23C706-B716-474D-8C43-CE6AC96FB619}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{9E23C706-B716-474D-8C43-CE6AC96FB619}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{9E23C706-B716-474D-8C43-CE6AC96FB619}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Release|iPhone.Build.0 = Release|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

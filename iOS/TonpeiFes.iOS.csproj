@@ -170,9 +170,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TonpeiFes\TonpeiFes.csproj">
-      <Project>{9A93B1CE-1CB1-42E0-95A5-1DE2A157C685}</Project>
-      <Name>TonpeiFes</Name>
+    <ProjectReference Include="..\TonpeiFes.Forms\TonpeiFes.Forms.csproj">
+      <Project>{D52A2A7B-DADC-42FF-90A0-B7E191ADCB59}</Project>
+      <Name>TonpeiFes.Forms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mycomponent:MyIconTabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.iOS.AppNavigationRootPage"
+    xmlns:local="clr-namespace:TonpeiFes.Forms.Views.Pages"
+    xmlns:mycomponent="clr-namespace:TonpeiFes.Forms.Views.Controls"
+    xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    BarBackgroundColor="White"
+    CurrentTabIndex="{Binding ReactiveCurrentTabIndex.Value ,Mode=OneWayToSource}">
+
+    <mycomponent:MyIconTabbedPage.Children>
+    <NavigationPage Title="ホーム" Icon="{Binding iOSIconHome}" x:Name="Home">
+        <x:Arguments>
+            <local:HomePage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="模擬店/企画" Icon="{Binding iOSIconList}" x:Name="List">
+        <x:Arguments>
+            <local:PlanningListRootPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="ステージ" Icon="{Binding iOSIconStage}" x:Name="Stage">
+        <x:Arguments>
+            <local:StageEventListRootPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="マップ" Icon="{Binding iOSIconMap}" x:Name="Map">
+        <x:Arguments>
+            <local:FestaMapRootPage />
+        </x:Arguments>
+    </NavigationPage>
+    </mycomponent:MyIconTabbedPage.Children>
+</mycomponent:MyIconTabbedPage>

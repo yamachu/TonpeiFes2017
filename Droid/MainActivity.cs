@@ -10,6 +10,7 @@ using Android.OS;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
 using SegmentedControl.FormsPlugin.Android;
+using TonpeiFes.Forms;
 
 namespace TonpeiFes.Droid
 {

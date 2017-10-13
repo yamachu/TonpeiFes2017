@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.PlanningDetailPage"
+    xmlns:c="clr-namespace:TonpeiFes.Forms.Views.Controls"
+    xmlns:v="clr-namespace:TonpeiFes.Forms.Views.Components"
+    xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize">
+    <ScrollView>
+        <StackLayout>
+            <!--  Header  -->
+            <StackLayout>
+                <!--  Planning main-info  -->
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="0,0,0,0">
+                    <!--  Icon  -->
+                    <Image WidthRequest="50" HeightRequest="50" />
+                    <StackLayout>
+                        <Label Text="Title" FontAttributes="Bold" />
+                        <Label Text="Circle Name" FontAttributes="Bold" />
+                    </StackLayout>
+                </StackLayout>
+
+                <!--  Planning sub-info  -->
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="2">
+                        <!--  Keywords show only Planning  -->
+                        <Label Text="Some keywords" FontSize="12" IsVisible="true" />
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                            <!--  Fontawesome's map icon  -->
+                            <Label Text="Place" FontSize="12" />
+                        </StackLayout>
+                        <!--  Show only stage event  -->
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsVisible="true">
+                            <!--  Fontawesome's time icon  -->
+                            <Label Text="Opening time" FontSize="12" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <!--  SNS info  -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <StackLayout>
+                        <iconize:IconButton Text="ion-home" TextColor="Gray" FontSize="28" HorizontalOptions="Center" WidthRequest="28" HeightRequest="28"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        BorderRadius="0"
+                        BorderWidth="0"  />
+                        <Label Text="ホームページ" FontSize="8" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <iconize:IconButton Text="ion-social-twitter" TextColor="Gray" FontSize="28" HorizontalOptions="Center" WidthRequest="28" HeightRequest="28"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        BorderRadius="0"
+                        BorderWidth="0"  />
+                        <Label Text="Twitter" FontSize="8" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <iconize:IconButton Text="ion-social-facebook" TextColor="Gray" FontSize="28" HorizontalOptions="Center" WidthRequest="28" HeightRequest="28"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        BorderRadius="0"
+                        BorderWidth="0"  />
+                        <Label Text="Facebook" FontSize="8" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <iconize:IconButton Text="ion-social-youtube" TextColor="Gray" FontSize="28" HorizontalOptions="Center" WidthRequest="28" HeightRequest="28"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        BorderRadius="0"
+                        BorderWidth="0"  />
+                        <Label Text="Youtube" FontSize="8" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <iconize:IconButton Text="ion-social-instagram" TextColor="Gray" FontSize="28" HorizontalOptions="Center" WidthRequest="28" HeightRequest="28"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        BorderRadius="0"
+                        BorderWidth="0"  />
+                        <Label Text="Instagram" FontSize="8" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Detail  -->
+            <StackLayout>
+                <c:ItemsControl ItemsSource="">
+                    <c:ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <v:DetailWithHeadingView />
+                        </DataTemplate>
+                    </c:ItemsControl.ItemTemplate>
+                </c:ItemsControl>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

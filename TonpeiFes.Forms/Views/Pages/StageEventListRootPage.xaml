@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.StageEventListRootPage"
+    xmlns:segments="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions" Title="{Binding Title}" x:Name="root"
+    xmlns:controls="clr-namespace:TonpeiFes.Forms.Views.Controls">
+    <StackLayout Spacing="0">
+        <StackLayout Padding="{StaticResource SegmentedControlPadding}">
+            <segments:SegmentedControl x:Name="SegControl" SelectedSegment="{Binding SelectedSegment.Value, Mode=TwoWay}" TintColor="{StaticResource Primary}" SelectedTextColor="{StaticResource Text}">
+                <segments:SegmentedControl.Children>
+                    <segments:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.Day1Segment}" />
+                    <segments:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.Day2Segment}" />
+                    <segments:SegmentedControlOption Text="{Binding Source={x:Reference root}, Path=BindingContext.Day3Segment}" />
+                </segments:SegmentedControl.Children>
+            </segments:SegmentedControl>
+        </StackLayout>
+        <controls:SeparatorControl Color="{StaticResource Separator}" />
+
+        <ListView HasUnevenRows="true" IsGroupingEnabled="true">
+        </ListView>
+    </StackLayout>
+</ContentPage>

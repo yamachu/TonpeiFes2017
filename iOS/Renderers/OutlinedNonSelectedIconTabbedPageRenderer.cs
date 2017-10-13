@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Plugin.Iconize.iOS;
 using TonpeiFes.iOS.Renderers;
-using TonpeiFes.Views.Controls;
+using TonpeiFes.Forms.Views.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 

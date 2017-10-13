@@ -9,6 +9,7 @@ using UIKit;
 using SegmentedControl.FormsPlugin.iOS;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using TonpeiFes.Forms;
 
 namespace TonpeiFes.iOS
 {
