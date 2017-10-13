@@ -1,4 +1,5 @@
-﻿using Prism.Unity;
+﻿using Prism.Mvvm;
+using Prism.Unity;
 using TonpeiFes.Forms.Views.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,7 +25,7 @@ namespace TonpeiFes.Forms
         {
             Container.RegisterTypeForNavigation<NavigationPage>();
 
-            Container.RegisterTypeForNavigationOnPlatform<AppNavigationRootPage, ViewModels.AppNavigationRootPageViewModel>(
+            Container.RegisterTypeForNavigationOnPlatform<AppNavigationRootPage, MobileCore.ViewModels.Pages.AppNavigationRootPageViewModel>(
                 name:"AppNavigationRootPage",
                 androidView:typeof(Views.Pages.Android.AppNavigationRootPage),
                 iOSView:typeof(Views.Pages.iOS.AppNavigationRootPage));
@@ -32,6 +33,13 @@ namespace TonpeiFes.Forms
             Container.RegisterTypeForNavigation<PlanningListRootPage>();
             Container.RegisterTypeForNavigation<StageEventListRootPage>();
             Container.RegisterTypeForNavigation<FestaMapRootPage>();
+        }
+
+        // https://github.com/amay077/XamarinFormsGachiSample2016Winter/blob/master/XamarinFormsGachiSample2016Winter/App.cs
+        protected override void ConfigureViewModelLocator()
+        {
+            base.ConfigureViewModelLocator();
+            ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver(MobileCore.ViewModelTypeResolver.Resolve);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Prism.Navigation;
 
-namespace TonpeiFes.Forms.ViewModels
+namespace TonpeiFes.MobileCore.ViewModels
 {
     public class ViewModelBase : BindableBase, INavigationAware
     {

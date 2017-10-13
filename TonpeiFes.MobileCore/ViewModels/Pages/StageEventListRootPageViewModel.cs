@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Reactive.Bindings;
 
-namespace TonpeiFes.Forms.ViewModels.Pages
+namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
     public class StageEventListRootPageViewModel : ViewModelBase
     {

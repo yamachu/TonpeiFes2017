@@ -1,5 +1,5 @@
 ﻿using System;
-namespace TonpeiFes.Forms.Extensions
+namespace TonpeiFes.MobileCore.Extensions
 {
     public static class ViewModelNameExtensions
     {

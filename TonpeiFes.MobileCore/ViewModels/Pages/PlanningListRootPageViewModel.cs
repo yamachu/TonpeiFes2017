@@ -7,7 +7,7 @@ using Reactive.Bindings;
 using System.Reactive.Linq;
 using System.Windows.Input;
 
-namespace TonpeiFes.Forms.ViewModels.Pages
+namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
     public class PlanningListRootPageViewModel : ViewModelBase
     {

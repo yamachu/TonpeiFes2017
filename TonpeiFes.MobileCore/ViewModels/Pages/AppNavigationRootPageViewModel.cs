@@ -7,9 +7,9 @@ using Prism.Navigation;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using Reactive.Bindings;
-using TonpeiFes.Forms.Extensions;
+using TonpeiFes.MobileCore.Extensions;
 
-namespace TonpeiFes.Forms.ViewModels
+namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
     public class AppNavigationRootPageViewModel : ViewModelBase
     {
