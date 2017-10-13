@@ -3,18 +3,24 @@
     xmlns:segments="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions"
     xmlns:controls="clr-namespace:TonpeiFes.Forms.Views.Controls"
     xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    xmlns:cv="clr-namespace:TonpeiFes.Forms.Converters;assembly=TonpeiFes.Forms"
     x:Name="root" Title="{Binding Title}" >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cv:PlatformDependIconSourceConverter x:Key="IconConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="{Binding IconSource.Value}" Command="{Binding FavButtonClickCommand}" />
+        <ToolbarItem Icon="{Binding IconSource.Value, Converter={StaticResource IconConverter}}" Command="{Binding FavButtonClickCommand}" />
     </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="0">
         <!--  iOSは横画面にすると20のパティングいらない  -->
         <!--  ToDo: RotationHandlingしてPaddingを動的に変更してレンダリングし直す  -->
         <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}" Spacing="0" Padding="{StaticResource NonNavPagePadding}">
-            <ContentView Padding="16,0,0,0" IsVisible="{Binding IsiOS}">
+            <ContentView Padding="16,0,0,0" x:Name="iOSFavIcon">
                 <iconize:IconButton FontSize="22" WidthRequest="22" HeightRequest="22" HorizontalOptions="Center"
-                    Text="{Binding IconSource.Value}" TextColor="{StaticResource Text}" Command="{Binding FavButtonClickCommand}"/>
+                    Text="{Binding IconSource.Value, Converter={StaticResource IconConverter}}" TextColor="{StaticResource Text}" Command="{Binding FavButtonClickCommand}"/>
             </ContentView>
             <SearchBar x:Name="SearchBar" Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White">
                 <SearchBar.PlaceholderColor>

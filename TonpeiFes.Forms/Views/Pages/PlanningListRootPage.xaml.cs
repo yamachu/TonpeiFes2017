@@ -9,8 +9,9 @@ namespace TonpeiFes.Forms.Views.Pages
         {
             InitializeComponent();
 
-            SearchBar.WidthRequest = (BindingContext as ViewModels.ViewModelBase).IsiOS ? 1 : -1;
-            NavigationPage.SetHasNavigationBar(this, !(BindingContext as ViewModels.ViewModelBase).IsiOS);
+            iOSFavIcon.IsVisible = Device.RuntimePlatform == Device.iOS;
+            SearchBar.WidthRequest = Device.RuntimePlatform == Device.iOS ? 1 : -1;
+            NavigationPage.SetHasNavigationBar(this, Device.RuntimePlatform == Device.Android);
         }
     }
 }
