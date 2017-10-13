@@ -20,6 +20,5 @@
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Behaviors\" />
   </ItemGroup>
 </Project>

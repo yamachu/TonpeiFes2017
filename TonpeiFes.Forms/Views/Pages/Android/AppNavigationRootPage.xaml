@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.Android.AppNavigationRootPage"
     xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
     xmlns:b="clr-namespace:TonpeiFes.Forms.Behaviors">
     <MasterDetailPage.Master>
         <ContentPage Title="MasterMenuPage">
             <StackLayout>
                 <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding MasterPageItems}">
                     <ListView.Behaviors>
-                        <b:SelectedItemBehavior Command="{Binding SelectedItemCommand}" />
+                        <behaviorsPack:SelectedItemBehavior Command="{Binding SelectedItemCommand}"/>
                     </ListView.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>

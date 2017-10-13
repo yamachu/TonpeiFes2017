@@ -17,7 +17,7 @@ namespace TonpeiFes.Forms.ViewModels
 
         // Use only Android MasterDetail Page
         public List<MasterPageListItem> MasterPageItems { get; }
-        public ICommand SelectedItemCommand { get; }
+        public AsyncReactiveCommand<MasterPageListItem> SelectedItemCommand { get; }
 
         // Use only iOS TabbedPage
         public string iOSIconHome => "ion-ios-home";
@@ -38,9 +38,10 @@ namespace TonpeiFes.Forms.ViewModels
                 new MasterPageListItem{ Title = "マップ", Icon = iOSIconMap, PageName = nameof(Views.Pages.FestaMapRootPage)},
             };
 
-            SelectedItemCommand = new DelegateCommand<MasterPageListItem>((item) =>
+            SelectedItemCommand = new AsyncReactiveCommand<MasterPageListItem>();
+            SelectedItemCommand.Subscribe(async (item) =>
             {
-                PlatformDependPageNavigation(item.PageName);
+                await PlatformDependPageNavigation(item.PageName);
             });
 
             /*
