@@ -16,4 +16,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TonpeiFes.Core\TonpeiFes.Core.csproj" />
+  </ItemGroup>
 </Project>
