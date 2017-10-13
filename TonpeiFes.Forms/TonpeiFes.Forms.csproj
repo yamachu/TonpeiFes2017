@@ -20,6 +20,9 @@
     <Folder Include="Views\" />
     <Folder Include="Converters\" />
   </ItemGroup>
+
+  <!--  If you add xaml to this project, must remove EmbeddedResource tag  -->
+
   <ItemGroup>
     <ProjectReference Include="..\TonpeiFes.MobileCore\TonpeiFes.MobileCore.csproj" />
   </ItemGroup>
