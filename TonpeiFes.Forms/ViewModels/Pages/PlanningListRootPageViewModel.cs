@@ -6,7 +6,6 @@ using System.Linq;
 using Reactive.Bindings;
 using System.Reactive.Linq;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace TonpeiFes.Forms.ViewModels.Pages
 {
@@ -44,8 +43,8 @@ namespace TonpeiFes.Forms.ViewModels.Pages
 
             IconSource = FavStateObservable.Select((isFavActive) =>
             {
-                return $@"ion-ios-heart{(isFavActive ? "" : "-outline")}".Replace("-", $@"{(IsAndroid ? "_" : "-")}");
-            }).ToReadOnlyReactiveProperty("ion-ios-heart".Replace("-", $@"{(IsAndroid ? "_" : "-")}"));
+                return $@"ion-ios-heart{(isFavActive ? "" : "-outline")}";
+            }).ToReadOnlyReactiveProperty("ion-ios-heart");
         }
     }
 }

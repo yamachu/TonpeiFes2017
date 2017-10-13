@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Prism.Navigation;
-using Xamarin.Forms;
 
 namespace TonpeiFes.Forms.ViewModels
 {
@@ -24,8 +23,5 @@ namespace TonpeiFes.Forms.ViewModels
         {
 
         }
-
-        public bool IsAndroid => Device.RuntimePlatform == Device.Android;
-        public bool IsiOS => Device.RuntimePlatform == Device.iOS;
     }
 }

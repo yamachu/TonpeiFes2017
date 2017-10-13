@@ -20,5 +20,7 @@
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>

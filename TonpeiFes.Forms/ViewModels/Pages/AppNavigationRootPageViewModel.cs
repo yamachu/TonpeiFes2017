@@ -6,8 +6,8 @@ using System.Linq;
 using Prism.Navigation;
 using System.Windows.Input;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 using Reactive.Bindings;
+using TonpeiFes.Forms.Extensions;
 
 namespace TonpeiFes.Forms.ViewModels
 {
@@ -32,16 +32,16 @@ namespace TonpeiFes.Forms.ViewModels
             _navigationService = navigationService;
 
             MasterPageItems = new List<MasterPageListItem>{
-                new MasterPageListItem{ Title = "ホーム", Icon = iOSIconHome, PageName = nameof(Views.Pages.HomePage)},
-                new MasterPageListItem{ Title = "模擬店／展示", Icon = iOSIconList, PageName = nameof(Views.Pages.PlanningListRootPage)},
-                new MasterPageListItem{ Title = "ステージイベント", Icon = iOSIconStage, PageName = nameof(Views.Pages.StageEventListRootPage)},
-                new MasterPageListItem{ Title = "マップ", Icon = iOSIconMap, PageName = nameof(Views.Pages.FestaMapRootPage)},
+                new MasterPageListItem{ Title = "ホーム", Icon = iOSIconHome, PageName = nameof(Pages.HomePageViewModel).GetViewNameFromRule() },
+                new MasterPageListItem{ Title = "模擬店／展示", Icon = iOSIconList, PageName = nameof(Pages.PlanningListRootPageViewModel).GetViewNameFromRule() },
+                new MasterPageListItem{ Title = "ステージイベント", Icon = iOSIconStage, PageName = nameof(Pages.StageEventListRootPageViewModel).GetViewNameFromRule() },
+                new MasterPageListItem{ Title = "マップ", Icon = iOSIconMap, PageName = nameof(Pages.FestaMapRootPageViewModel).GetViewNameFromRule() },
             };
 
             SelectedItemCommand = new AsyncReactiveCommand<MasterPageListItem>();
             SelectedItemCommand.Subscribe(async (item) =>
             {
-                await PlatformDependPageNavigation(item.PageName);
+                await NavigationPageWrappedNavigation(item.PageName);
             });
 
             /*
@@ -51,7 +51,10 @@ namespace TonpeiFes.Forms.ViewModels
             */
         }
 
-        private async Task PlatformDependPageNavigation(string pageName) => _navigationService.NavigateAsync($@"{(Device.RuntimePlatform == Device.Android ? "NavigationPage/" : "")}{pageName}");
+        private Task NavigationPageWrappedNavigation(string pageName)
+        {
+            return _navigationService.NavigateAsync($@"NavigationPage/{pageName}");
+        }
     }
 
     public class MasterPageListItem
