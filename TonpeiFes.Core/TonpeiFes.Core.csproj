@@ -7,4 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Realm" Version="1.6.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Models\DataObjects\" />
+    <Folder Include="Models\Consts\" />
+  </ItemGroup>
 </Project>
