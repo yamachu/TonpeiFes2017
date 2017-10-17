@@ -28,5 +28,6 @@
     <Folder Include="Usecases\" />
     <Folder Include="Repositories\Debug\" />
     <Folder Include="Models\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>
