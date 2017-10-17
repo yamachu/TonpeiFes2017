@@ -15,6 +15,11 @@
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Debug\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Usecases\" />
+    <Folder Include="Repositories\Debug\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TonpeiFes.Core\TonpeiFes.Core.csproj" />
