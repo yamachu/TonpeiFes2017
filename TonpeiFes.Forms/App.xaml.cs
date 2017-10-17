@@ -58,6 +58,8 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IRepository<Stall>, StallRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDatabaseService, RealmDatabaseService>(new ContainerControlledLifetimeManager());
 #endif
+
+            Container.RegisterType<IFilterGroupingPlanning, FilterGroupingPlanning>();
         }
 
         // https://github.com/amay077/XamarinFormsGachiSample2016Winter/blob/master/XamarinFormsGachiSample2016Winter/App.cs

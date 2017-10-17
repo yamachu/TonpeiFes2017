@@ -1,11 +1,11 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using Prism.Commands;
 using Reactive.Bindings;
 using System.Reactive.Linq;
 using System.Windows.Input;
+using TonpeiFes.MobileCore.Usecases;
+using TonpeiFes.MobileCore.Models.DataObjects;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
@@ -23,28 +23,37 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public ICommand FavButtonClickCommand { get; }
         private ReactiveProperty<bool> FavStateObservable = new ReactiveProperty<bool>(false);
 
-        public PlanningListRootPageViewModel()
+        public ReadOnlyReactiveCollection<ISearchableListPlanning> Plannings { get; }
+
+        private IFilterGroupingPlanning _planningUsecase;
+
+        public PlanningListRootPageViewModel(IFilterGroupingPlanning planningUsecase)
         {
+            _planningUsecase = planningUsecase;
+
             SelectedSegment.Subscribe(selectedSegment => 
             {
-                if (selectedSegment == 0) {}
-                else {}
+                _planningUsecase.UpdateFilterConditions(SearchQuery.Value, SelectedSegment.Value, FavStateObservable.Value);
             });
 
             SearchQuery.Throttle(TimeSpan.FromMilliseconds(400)).Subscribe(query =>
             {
                 System.Diagnostics.Debug.WriteLine($"Query Update: {query}");
+                _planningUsecase.UpdateFilterConditions(SearchQuery.Value, SelectedSegment.Value, FavStateObservable.Value);
             });
 
             FavButtonClickCommand = new DelegateCommand(() =>
             {
                 FavStateObservable.Value = !FavStateObservable.Value;
+                _planningUsecase.UpdateFilterConditions(SearchQuery.Value, SelectedSegment.Value, FavStateObservable.Value);
             });
 
             IconSource = FavStateObservable.Select((isFavActive) =>
             {
                 return $@"ion-ios-heart{(isFavActive ? "" : "-outline")}";
             }).ToReadOnlyReactiveProperty("ion-ios-heart");
+
+            Plannings = _planningUsecase.Plannings.ToReadOnlyReactiveCollection();
         }
     }
 }
