@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using TonpeiFes.MobileCore.Helpers;
 using TonpeiFes.MobileCore.Models.DataObjects;
 using TonpeiFes.MobileCore.Repositories;
 namespace TonpeiFes.MobileCore.Usecases
 {
     public class FilterGroupingPlanning : IFilterGroupingPlanning
     {
-        private readonly ObservableCollection<ISearchableListPlanning> _plannings = new ObservableCollection<ISearchableListPlanning>();
-        public ReadOnlyObservableCollection<ISearchableListPlanning> Plannings { get; }
+        private readonly ObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>> _plannings = new ObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>>();
+        public ReadOnlyObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>> Plannings { get; }
 
         private IRepository<Exhibition> _exhibitionRepository;
         private IRepository<Stall> _stallRepository;
@@ -28,7 +29,7 @@ namespace TonpeiFes.MobileCore.Usecases
             _stallRepository = stallRep;
             _favoritedRepository = favoritedRep;
 
-            Plannings = new ReadOnlyObservableCollection<ISearchableListPlanning>(_plannings);
+            Plannings = new ReadOnlyObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>>(_plannings);
         }
 
         public async Task UpdateFilterConditions(string query, int activeSegment, bool favorited)
@@ -40,13 +41,13 @@ namespace TonpeiFes.MobileCore.Usecases
             _plannings.Clear();
             switch(ActiveSegment){
                 case 0:
-                    foreach (var ex in _exhibitionRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository))
+                    foreach (var ex in _exhibitionRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository).GroupingPlannings())
                     {
                         _plannings.Add(ex);
                     }
                     break;
                 case 1:
-                    foreach (var ex in _stallRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedStall(IsFavorited, _favoritedRepository))
+                    foreach (var ex in _stallRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedStall(IsFavorited, _favoritedRepository).GroupingPlannings())
                     {
                         _plannings.Add(ex);
                     }
@@ -81,6 +82,13 @@ namespace TonpeiFes.MobileCore.Usecases
             if (!favorited) return list;
             var favoritedList = repository.GetAll().Where((item) => item.PlanningType == MobileCore.Models.Consts.PlanningTypeEnum.STALL);
             return favoritedList.Select((fav) => list.First((item) => item.Id == fav.Id));
+        }
+
+        public static IEnumerable<ObservableGroupCollection<string, ISearchableListPlanning>> GroupingPlannings(this IEnumerable<ISearchableListPlanning> list)
+        {
+            return list.GroupBy(item => item.GroupHeader)
+                       .Select(g => new ObservableGroupCollection<string, ISearchableListPlanning>(g))
+                       .OrderBy(g => g.Key);
         }
     }
 }

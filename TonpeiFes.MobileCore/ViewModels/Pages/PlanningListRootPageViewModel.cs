@@ -6,6 +6,7 @@ using System.Reactive.Linq;
 using System.Windows.Input;
 using TonpeiFes.MobileCore.Usecases;
 using TonpeiFes.MobileCore.Models.DataObjects;
+using TonpeiFes.MobileCore.Helpers;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
@@ -23,7 +24,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public ICommand FavButtonClickCommand { get; }
         private ReactiveProperty<bool> FavStateObservable = new ReactiveProperty<bool>(false);
 
-        public ReadOnlyReactiveCollection<ISearchableListPlanning> Plannings { get; }
+        public ReadOnlyReactiveCollection<ObservableGroupCollection<string, ISearchableListPlanning>> Plannings { get; }
 
         private IFilterGroupingPlanning _planningUsecase;
 
