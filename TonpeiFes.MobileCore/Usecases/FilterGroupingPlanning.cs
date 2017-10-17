@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Helpers;
 using TonpeiFes.MobileCore.Models.DataObjects;
 using TonpeiFes.MobileCore.Repositories;
+
 namespace TonpeiFes.MobileCore.Usecases
 {
     public class FilterGroupingPlanning : IFilterGroupingPlanning
@@ -82,13 +84,6 @@ namespace TonpeiFes.MobileCore.Usecases
             if (!favorited) return list;
             var favoritedList = repository.GetAll().Where((item) => item.PlanningType == MobileCore.Models.Consts.PlanningTypeEnum.STALL);
             return favoritedList.Select((fav) => list.First((item) => item.Id == fav.Id));
-        }
-
-        public static IEnumerable<ObservableGroupCollection<string, ISearchableListPlanning>> GroupingPlannings(this IEnumerable<ISearchableListPlanning> list)
-        {
-            return list.GroupBy(item => item.GroupHeader)
-                       .Select(g => new ObservableGroupCollection<string, ISearchableListPlanning>(g))
-                       .OrderBy(g => g.Key);
         }
     }
 }
