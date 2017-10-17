@@ -6,7 +6,7 @@ using TonpeiFes.MobileCore.Models.Consts;
 
 namespace TonpeiFes.MobileCore.Models.DataObjects
 {
-    public class StageEvent : RealmObject, IPlanning, IGroupable
+    public class StageEvent : RealmObject, ISearchableListPlanning
     {
         [PrimaryKey]
         public string Id { get; set; } = Guid.NewGuid().ToString();
@@ -71,6 +71,14 @@ namespace TonpeiFes.MobileCore.Models.DataObjects
         public void UpdateLocationDetail()
         {
             LocationDetail = MappedRegion;
+        }
+
+        // Dummy
+        public List<string> Keywords { get; }
+        public string SearchableKeywords { get; }
+        public void UpdateSearchableKeywords()
+        {
+            throw new NotImplementedException();
         }
     }
 }
