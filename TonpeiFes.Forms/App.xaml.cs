@@ -60,6 +60,7 @@ namespace TonpeiFes.Forms
 #endif
 
             Container.RegisterType<IFilterGroupingPlanning, FilterGroupingPlanning>();
+            Container.RegisterType<IFilterGroupingStageEvent, FilterGroupingStageEvent>();
         }
 
         // https://github.com/amay077/XamarinFormsGachiSample2016Winter/blob/master/XamarinFormsGachiSample2016Winter/App.cs
