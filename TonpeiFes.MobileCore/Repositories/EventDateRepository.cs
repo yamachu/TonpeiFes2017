@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using TonpeiFes.Core.Models.DataObjects;
+using TonpeiFes.MobileCore.Models.DataObjects;
 using TonpeiFes.MobileCore.Services;
 namespace TonpeiFes.MobileCore.Repositories
 {

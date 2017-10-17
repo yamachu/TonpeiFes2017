@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TonpeiFes.Core.Models.DataObjects;
+using TonpeiFes.MobileCore.Models.DataObjects;
 namespace TonpeiFes.MobileCore.Repositories.Debug
 {
     public class MockFavoritedPlanningRepository : IRepository<FavoritedPlanning>
