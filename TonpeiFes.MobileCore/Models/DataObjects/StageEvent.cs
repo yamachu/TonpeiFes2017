@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Realms;
-using TonpeiFes.Core.Models.Consts;
+using TonpeiFes.MobileCore.Models.Consts;
 
-namespace TonpeiFes.Core.Models.DataObjects
+namespace TonpeiFes.MobileCore.Models.DataObjects
 {
-    public class Exhibition : RealmObject, IPlanning, ISearchable, IGroupable
+    public class StageEvent : RealmObject, IPlanning, IGroupable
     {
         [PrimaryKey]
         public string Id { get; set; } = Guid.NewGuid().ToString();
@@ -24,10 +24,10 @@ namespace TonpeiFes.Core.Models.DataObjects
             }
         }
 
-        public IList<ExhibitionDescription> InnerDescriptions { get; }
+        public IList<StageEventDescription> InnerDescriptions { get; }
 
         // ToDo: Validate PlannningTypeNumber 1~3 or not
-        public int PlanningTypeNumber { get; set; } = (int)PlanningTypeEnum.EXHIBITION;
+        public int PlanningTypeNumber { get; set; } = (int)PlanningTypeEnum.STAGE;
 
         [Ignored]
         public PlanningTypeEnum PlanningType
@@ -50,42 +50,27 @@ namespace TonpeiFes.Core.Models.DataObjects
 
         public IList<EventDate> OpenDate { get; }
 
+        public DateTimeOffset StartAt { get; set; }
+
+        public DateTimeOffset EndAt { get; set; }
+
         // ToDo: Change class type string to ...
         public string MappedRegion { get; set; }
 
-        // ToDo: Change class type string to ...
-        public string HeaderGroupedRegion { get; set; }
-
         public string LocationDetail { get; set; }
-
-        [Indexed]
-        public string SearchableKeywords { get; set; }
-
-        public List<string> Keywords { get; }
 
         [Ignored]
         public string GroupHeader
         {
             get
             {
-                return HeaderGroupedRegion;
+                return StartAt.ToString("HH:mm");
             }
         }
 
         public void UpdateLocationDetail()
         {
-            LocationDetail = HeaderGroupedRegion;
-        }
-
-        public void UpdateSearchableKeywords()
-        {
-            SearchableKeywords = Title
-                + " $$$ " + Owner
-                + " $$$ " + (Descriptions?.Select(description => $"{description.Title} $$$ {description.Detail}").Aggregate((acc, next) => $"{acc} $$$ {next}") ?? "")
-                + " $$$ " + LocationDetail
-                + " $$$ " + string.Join(" $$$ ", Keywords ?? new List<string>())
-                + " $$$ " + $@"{(IsT1 ? "T1 $$$ T-1" : "")}"
-                + " $$$ " + $@"{(IsAcademic ? "学術" : "")}";
+            LocationDetail = MappedRegion;
         }
     }
 }

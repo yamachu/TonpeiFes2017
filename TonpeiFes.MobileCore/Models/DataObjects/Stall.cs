@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Realms;
-using TonpeiFes.Core.Models.Consts;
+using TonpeiFes.MobileCore.Models.Consts;
 
-namespace TonpeiFes.Core.Models.DataObjects
+namespace TonpeiFes.MobileCore.Models.DataObjects
 {
-    public class Stall : RealmObject, IPlanning, ISearchable, IGroupable
+    public class Stall : RealmObject, ISearchableListPlanning
     {
         [PrimaryKey]
         public string Id { get; set; } = Guid.NewGuid().ToString();

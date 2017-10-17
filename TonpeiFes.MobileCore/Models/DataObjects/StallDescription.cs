@@ -1,5 +1,5 @@
 ﻿using System;
-namespace TonpeiFes.Core.Models.DataObjects
+namespace TonpeiFes.MobileCore.Models.DataObjects
 {
     public class StallDescription : Realms.RealmObject, IDescription
     {

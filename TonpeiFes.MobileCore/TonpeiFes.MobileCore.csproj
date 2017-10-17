@@ -11,6 +11,7 @@
     <PackageReference Include="Prism.Forms" Version="6.3.0" />
     <PackageReference Include="Unity" Version="4.0.1" />
     <PackageReference Include="ReactiveProperty" Version="3.6.0" />
+    <PackageReference Include="Realm" Version="1.6.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -20,8 +21,6 @@
     <Folder Include="Repositories\" />
     <Folder Include="Usecases\" />
     <Folder Include="Repositories\Debug\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TonpeiFes.Core\TonpeiFes.Core.csproj" />
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using TonpeiFes.Core.Models.Consts;
+using TonpeiFes.MobileCore.Models.Consts;
 
-namespace TonpeiFes.Core.Models.DataObjects
+namespace TonpeiFes.MobileCore.Models.DataObjects
 {
     public interface IPlanning
     {

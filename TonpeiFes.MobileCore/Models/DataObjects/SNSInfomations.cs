@@ -1,7 +1,7 @@
 ﻿using System;
 using Realms;
 
-namespace TonpeiFes.Core.Models.DataObjects
+namespace TonpeiFes.MobileCore.Models.DataObjects
 {
     public class SNSInfomations : RealmObject
     {

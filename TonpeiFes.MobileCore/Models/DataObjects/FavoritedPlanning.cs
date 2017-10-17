@@ -1,8 +1,8 @@
 ﻿using System;
 using Realms;
-using TonpeiFes.Core.Models.Consts;
+using TonpeiFes.MobileCore.Models.Consts;
 
-namespace TonpeiFes.Core.Models.DataObjects
+namespace TonpeiFes.MobileCore.Models.DataObjects
 {
     public class FavoritedPlanning : Realms.RealmObject, IFavoritedPlanning
     {
