@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="{Binding IconSource.Value, Converter={StaticResource IconConverter}}" Command="{Binding FavButtonClickCommand}" />
+        <ToolbarItem Icon="{Binding IconSource.Value}" Command="{Binding FavButtonClickCommand}" />
     </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="0">
@@ -22,8 +22,11 @@
         <!--  ToDo: RotationHandlingしてPaddingを動的に変更してレンダリングし直す  -->
         <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}" Spacing="0" Padding="{StaticResource NonNavPagePadding}">
             <ContentView Padding="16,0,0,0" IsVisible="{StaticResource IsIOS}">
-                <iconize:IconButton FontSize="22" WidthRequest="22" HeightRequest="22" HorizontalOptions="Center"
-                    Text="{Binding IconSource.Value, Converter={StaticResource IconConverter}}" TextColor="{StaticResource Text}" Command="{Binding FavButtonClickCommand}"/>
+                <Image Source="{Binding IconSource.Value}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FavButtonClickCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
             </ContentView>
             <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White" WidthRequest="{StaticResource SearchBarWidthRequest}">
                 <SearchBar.PlaceholderColor>
