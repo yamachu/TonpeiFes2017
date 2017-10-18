@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Linq;
-using Prism.Commands;
-using Reactive.Bindings;
 using System.Reactive.Linq;
 using System.Windows.Input;
-using TonpeiFes.MobileCore.Usecases;
-using TonpeiFes.MobileCore.Models.DataObjects;
+using Prism.Commands;
+using Prism.Navigation;
+using Reactive.Bindings;
+using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Helpers;
+using TonpeiFes.MobileCore.Models.DataObjects;
+using TonpeiFes.MobileCore.Usecases;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
@@ -26,9 +28,11 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
         public ReadOnlyReactiveCollection<ObservableGroupCollection<string, ISearchableListPlanning>> Plannings { get; }
 
+        public AsyncReactiveCommand<IPlanning> SelectedItemCommand { get; }
+
         private IFilterGroupingPlanning _planningUsecase;
 
-        public PlanningListRootPageViewModel(IFilterGroupingPlanning planningUsecase)
+        public PlanningListRootPageViewModel(INavigationService navigationService, IFilterGroupingPlanning planningUsecase)
         {
             _planningUsecase = planningUsecase;
 
@@ -55,6 +59,14 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             }).ToReadOnlyReactiveProperty("ion_ios_heart");
 
             Plannings = _planningUsecase.Plannings.ToReadOnlyReactiveCollection();
+
+            SelectedItemCommand = new AsyncReactiveCommand<IPlanning>();
+            SelectedItemCommand.Subscribe(async (item) =>
+            {
+                await navigationService.NavigateAsync(
+                    nameof(PlanningDetailPageViewModel).GetViewNameFromRule(),
+                    PlanningDetailPageViewModel.GetNavigationParameter(item.Id, item.PlanningType));
+            });
         }
     }
 }

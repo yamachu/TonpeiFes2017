@@ -24,6 +24,9 @@
         <controls:SeparatorControl Color="{StaticResource Separator}" />
 
         <ListView HasUnevenRows="true" IsGroupingEnabled="true" ItemsSource="{Binding Plannings}" GroupDisplayBinding="{Binding Key}">
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectedItemCommand}" EventArgsParameterPath="Item" />
+            </ListView.Behaviors>
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell Height="{StaticResource HeaderCellHeight}">

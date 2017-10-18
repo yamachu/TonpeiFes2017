@@ -3,7 +3,9 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Input;
 using Prism.Commands;
+using Prism.Navigation;
 using Reactive.Bindings;
+using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Helpers;
 using TonpeiFes.MobileCore.Models.DataObjects;
 using TonpeiFes.MobileCore.Usecases;
@@ -22,10 +24,12 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public ICommand FavButtonClickCommand { get; }
         public ReadOnlyReactiveCollection<ObservableGroupCollection<string, ISearchableListPlanning>> Plannings { get; }
 
+        public AsyncReactiveCommand<IPlanning> SelectedItemCommand { get; }
+
         private ReactiveProperty<bool> FavStateObservable = new ReactiveProperty<bool>(false);
         private IFilterGroupingStageEvent _eventUsecase;
 
-        public StageEventListRootPageViewModel(IFilterGroupingStageEvent eventUsecase)
+        public StageEventListRootPageViewModel(INavigationService navigationService, IFilterGroupingStageEvent eventUsecase)
         {
             _eventUsecase = eventUsecase;
 
@@ -46,6 +50,14 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             }).ToReadOnlyReactiveProperty("ion_ios_heart");
 
             Plannings = _eventUsecase.Plannings.ToReadOnlyReactiveCollection();
+
+            SelectedItemCommand = new AsyncReactiveCommand<IPlanning>();
+            SelectedItemCommand.Subscribe(async (item) =>
+            {
+                await navigationService.NavigateAsync(
+                    nameof(PlanningDetailPageViewModel).GetViewNameFromRule(),
+                    PlanningDetailPageViewModel.GetNavigationParameter(item.Id, item.PlanningType));
+            });
         }
     }
 }
