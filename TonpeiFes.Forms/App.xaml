@@ -15,6 +15,7 @@
                 <Setter Property="BarTextColor" Value="White" />
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
             </Style>
+            <OnPlatform x:Key="ListHeader" x:TypeArguments="Color" Android="#EDEDED" />
 
             <!--  Padding  -->
             <OnPlatform x:Key="NonNavPagePadding" x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,20,0,0" />

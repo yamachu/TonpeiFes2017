@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TonpeiFes.Forms.Views.Cells.SimpleListHeaderViewCell"
+    xmlns:local="clr-namespace:TonpeiFes.Forms.Views.Pages.Cells">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:Key="HeaderPadding" x:TypeArguments="Thickness" iOS="16,0" Android="16,8" />
+            <OnPlatform x:Key="LabelFontSize" x:TypeArguments="x:Double" iOS="16" Android="18" />
+            <OnPlatform x:Key="LabelFontType" x:TypeArguments="FontAttributes" iOS="Bold" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout VerticalOptions="Center" BackgroundColor="{StaticResource ListHeader}" Padding="{StaticResource HeaderPadding}">
+            <Label Text="{Binding Key}" VerticalOptions="Center" VerticalTextAlignment="Center"
+                FontSize="{StaticResource LabelFontSize}" FontAttributes="{StaticResource LabelFontType}" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

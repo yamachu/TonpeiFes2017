@@ -25,6 +25,7 @@
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="Converters\" />
+    <Folder Include="Views\Cells\" />
   </ItemGroup>
 
   <!--  If you add xaml to this project, must remove EmbeddedResource tag  -->
