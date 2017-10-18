@@ -53,7 +53,8 @@ namespace TonpeiFes.MobileCore.Usecases
     {
         public static IEnumerable<StageEvent> FilterByOpeningDay(this IEnumerable<StageEvent> list, EventDate openDay)
         {
-            return list.Where(item => item.OpenDate.Contains(openDay));
+            // 実運用では Contains でも問題はないが，Mockデータで行う場合Object Equalのoverrideをしていないのでこうせざるを得ない
+            return list.Where(item => item.OpenDate.Any((day) => day.Id == openDay.Id));
         }
 
         public static IEnumerable<StageEvent> FilterByFavoritedExhibition(this IEnumerable<StageEvent> list, bool favorited, IRepository<FavoritedPlanning> repository)
