@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.StageEventListRootPage"
     xmlns:segments="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions" Title="{Binding Title}" x:Name="root"
-    xmlns:controls="clr-namespace:TonpeiFes.Forms.Views.Controls">
+    xmlns:controls="clr-namespace:TonpeiFes.Forms.Views.Controls"
+    xmlns:cells="clr-namespace:TonpeiFes.Forms.Views.Cells">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:Key="HeaderCellHeight" x:TypeArguments="x:Double" iOS="28" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="{Binding IconSource.Value}" Command="{Binding FavButtonClickCommand}" Priority="-1"/>
     </ContentPage.ToolbarItems>
@@ -17,7 +23,19 @@
         </StackLayout>
         <controls:SeparatorControl Color="{StaticResource Separator}" />
 
-        <ListView HasUnevenRows="true" IsGroupingEnabled="true">
+        <ListView HasUnevenRows="true" IsGroupingEnabled="true" ItemsSource="{Binding Plannings}" GroupDisplayBinding="{Binding Key}">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell Height="{StaticResource HeaderCellHeight}">
+                        <cells:SimpleListHeaderViewCell />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <cells:PlanningViewCell />
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
 </ContentPage>
