@@ -51,8 +51,8 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
             IconSource = FavStateObservable.Select((isFavActive) =>
             {
-                return $@"ion-ios-heart{(isFavActive ? "" : "-outline")}";
-            }).ToReadOnlyReactiveProperty("ion-ios-heart");
+                return $@"ion_ios_heart{(isFavActive ? "" : "_outline")}";
+            }).ToReadOnlyReactiveProperty("ion_ios_heart");
 
             Plannings = _planningUsecase.Plannings.ToReadOnlyReactiveCollection();
         }
