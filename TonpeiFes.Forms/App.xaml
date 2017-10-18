@@ -20,6 +20,10 @@
             <!--  Padding  -->
             <OnPlatform x:Key="NonNavPagePadding" x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,20,0,0" />
             <Thickness x:Key="SegmentedControlPadding">16,8,16,8</Thickness>
+
+            <!--  Platform  -->
+            <OnPlatform x:Key="IsIOS" x:TypeArguments="x:Boolean" iOS="true" Android="false" />
+            <OnPlatform x:Key="IsAndroid" x:TypeArguments="x:Boolean" iOS="false" Android="true" />
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>
