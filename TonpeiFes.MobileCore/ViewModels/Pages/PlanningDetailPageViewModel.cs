@@ -1,6 +1,9 @@
 ﻿using System;
 using Prism.Navigation;
+using Reactive.Bindings;
 using TonpeiFes.MobileCore.Models.Consts;
+using TonpeiFes.MobileCore.Models.DataObjects;
+using TonpeiFes.MobileCore.Usecases;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
@@ -9,15 +12,30 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public static readonly string ParameterID = "ParameterID";
         public static readonly string ParameterPlanningType = "ParameterPlanningType";
 
-        public PlanningDetailPageViewModel()
+        public ReadOnlyReactiveProperty<bool> IsFavorited { get; }
+        public AsyncReactiveCommand ToggleFavorited { get; }
+        public ReactiveProperty<IPlanning> DetailModel { get; } = new ReactiveProperty<IPlanning>();
+        private IShowPlanningDetail _showDetail;
+
+        public PlanningDetailPageViewModel(IShowPlanningDetail showDetail)
         {
+            _showDetail = showDetail;
+
+            IsFavorited = showDetail.IsFavorited;
+
+            ToggleFavorited = new AsyncReactiveCommand();
+            ToggleFavorited.Subscribe(async(_) =>
+            {
+                await _showDetail.TogglePlanningFavoritedState(!IsFavorited.Value);
+            });
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
             base.OnNavigatingTo(parameters);
 
-            // Get planning
+            _showDetail.Initialize(parameters[ParameterID] as string, (PlanningTypeEnum)parameters[ParameterPlanningType]);
+            DetailModel.Value = _showDetail.GetPlanning();
         }
 
         public static NavigationParameters GetNavigationParameter(string id, PlanningTypeEnum planningType)
