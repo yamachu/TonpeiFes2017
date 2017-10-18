@@ -10,8 +10,12 @@ namespace TonpeiFes.MobileCore.Repositories.Debug
 
         public MockEventDateRepository()
         {
-            // ToDo: Set dummy data
-            Source = new List<EventDate>();
+            Source = new List<EventDate>()
+            {
+                new EventDate(){ Id = 0, Date = new DateTimeOffset(2017, 11, 3, 0, 0, 0, new TimeSpan(9, 0, 0))},
+                new EventDate(){ Id = 0, Date = new DateTimeOffset(2017, 11, 4, 0, 0, 0, new TimeSpan(9, 0, 0))},
+                new EventDate(){ Id = 0, Date = new DateTimeOffset(2017, 11, 5, 0, 0, 0, new TimeSpan(9, 0, 0))},
+            };
         }
 
         public void Add(EventDate item)
