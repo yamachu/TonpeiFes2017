@@ -4,6 +4,7 @@
     xmlns:controls="clr-namespace:TonpeiFes.Forms.Views.Controls"
     xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
     xmlns:cv="clr-namespace:TonpeiFes.Forms.Converters;assembly=TonpeiFes.Forms"
+    xmlns:cells="clr-namespace:TonpeiFes.Forms.Views.Cells"
     x:Name="root" Title="{Binding Title}" NavigationPage.HasNavigationBar="{StaticResource IsAndroid}" >
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -44,7 +45,19 @@
         </StackLayout>
         <controls:SeparatorControl Color="{StaticResource Separator}" />
 
-        <ListView HasUnevenRows="true" IsGroupingEnabled="true">
+        <ListView HasUnevenRows="true" IsGroupingEnabled="true" ItemsSource="{Binding Plannings}" GroupDisplayBinding="{Binding Key}">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell Height="{StaticResource HeaderCellHeight}">
+                        <cells:SimpleListHeaderViewCell />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <cells:PlanningViewCell />
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
 </ContentPage>
