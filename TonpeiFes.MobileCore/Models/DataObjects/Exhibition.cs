@@ -43,7 +43,7 @@ namespace TonpeiFes.MobileCore.Models.DataObjects
             }
         }
 
-        public SNSInfomations SNS { get; set; }
+        public SNSInformations SNS { get; set; }
 
         public bool IsT1 { get; set; } = false;
 

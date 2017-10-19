@@ -1,11 +1,9 @@
 ﻿using System;
-using Realms;
 
-namespace TonpeiFes.MobileCore.Models.DataObjects
+namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 {
-    public class SNSInfomations : RealmObject
+    public class SNSInformations
     {
-        [PrimaryKey]
         public string Id { get; set; }
 
         public string HomePage { get; set; }

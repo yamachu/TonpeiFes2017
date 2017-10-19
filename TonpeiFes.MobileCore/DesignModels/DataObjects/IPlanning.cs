@@ -14,7 +14,7 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
         PlanningTypeEnum PlanningType { get; }
         // Icon
 
-        SNSInfomations SNS { get; }
+        SNSInformations SNS { get; }
 
         bool IsT1 { get; }
         bool IsAcademic { get; }
