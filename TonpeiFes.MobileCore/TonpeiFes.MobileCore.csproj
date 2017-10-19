@@ -28,13 +28,13 @@
     <Folder Include="Extensions\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Services\" />
-    <Folder Include="Services\Debug\" />
+    <Folder Include="Services\Debug\" Condition=" '$(Configuration)|$(Platform)' == 'DebugLocal|AnyCPU' "/>
     <Folder Include="Repositories\" />
     <Folder Include="Usecases\" />
-    <Folder Include="Repositories\Debug\" />
+    <Folder Include="Repositories\Debug\" Condition=" '$(Configuration)|$(Platform)' == 'DebugLocal|AnyCPU' "/>
     <Folder Include="Models\" />
     <Folder Include="Helpers\" />
-    <Folder Include="DesignViewModels\" />
-    <Folder Include="DesignModels\" />
+    <Folder Include="DesignViewModels\" Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' "/>
+    <Folder Include="DesignModels\" Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' "/>
   </ItemGroup>
 </Project>
