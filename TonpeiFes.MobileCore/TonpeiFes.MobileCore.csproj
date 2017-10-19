@@ -10,6 +10,12 @@
     <Optimize>false</Optimize>
     <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' ">
+    <IntermediateOutputPath>obj\Debug\netstandard2.0\netstandard2.0</IntermediateOutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;DEBUGLOCAL;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Prism.Unity.Forms" Version="6.3.0" />
     <PackageReference Include="Prism.Core" Version="6.3.0" />
@@ -28,5 +34,7 @@
     <Folder Include="Repositories\Debug\" />
     <Folder Include="Models\" />
     <Folder Include="Helpers\" />
+    <Folder Include="DesignViewModels\" />
+    <Folder Include="DesignModels\" />
   </ItemGroup>
 </Project>

@@ -8,7 +8,13 @@
     <IntermediateOutputPath>obj\Debug\netstandard2.0</IntermediateOutputPath>
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;LOCAL</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;LOCAL;DEBUGLOCAL;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' ">
+    <IntermediateOutputPath>obj\Debug\netstandard2.0\netstandard2.0</IntermediateOutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;DEBUGLOCAL;NETSTANDARD2_0;DESIGN;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Prism.Forms" Version="6.3.0" />

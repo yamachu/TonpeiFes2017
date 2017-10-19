@@ -6,9 +6,12 @@ using TonpeiFes.MobileCore.Repositories;
 using TonpeiFes.MobileCore.Services;
 using TonpeiFes.MobileCore.Usecases;
 using TonpeiFes.MobileCore.Models.DataObjects;
-#if LOCAL
+#if LOCAL || DESIGN
 using TonpeiFes.MobileCore.Repositories.Debug;
 using TonpeiFes.MobileCore.Services.Debug;
+#endif
+#if DESIGN
+using TonpeiFes.MobileCore.DesignViewModels.Pages;
 #endif
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -51,6 +54,7 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IRepository<StageEvent>, MockStageEventRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<Stall>, MockStallRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDatabaseService, MockDatabaseService>(new ContainerControlledLifetimeManager());
+#elif DESIGN
 #else
             Container.RegisterType<IRepository<EventDate>, EventDateRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<Exhibition>, ExhibitionRepository>(new ContainerControlledLifetimeManager());
@@ -69,7 +73,11 @@ namespace TonpeiFes.Forms
         protected override void ConfigureViewModelLocator()
         {
             base.ConfigureViewModelLocator();
+#if !DESIGN
             ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver(MobileCore.ViewModelTypeResolver.Resolve);
+#else
+            ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver(MobileCore.DesignViewModelTypeResolver.Resolve);
+#endif
         }
     }
 }
