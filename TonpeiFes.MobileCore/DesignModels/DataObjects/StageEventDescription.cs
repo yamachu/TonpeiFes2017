@@ -1,7 +1,7 @@
 ﻿using System;
 namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 {
-    public class StageEventDescription : Realms.RealmObject, IDescription
+    public class StageEventDescription : IDescription
     {
         public string Title { get; set; }
 

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Realms;
+
 using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.DesignModels.Consts;
 
 namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 {
-    public class StageEvent : RealmObject, ISearchableListPlanning
+    public class StageEvent : ISearchableListPlanning
     {
-        [PrimaryKey]
+        
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         public string Title { get; set; }
@@ -18,7 +18,7 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 
         public IList<StageEventDescription> Descriptions_ { get; } = new List<StageEventDescription>();
 
-        [Ignored]
+        
         public IList<IDescription> Descriptions
         {
             get
@@ -29,7 +29,7 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 
         private int PlanningType_ { get; set; } = (int)PlanningTypeEnum.STAGE;
 
-        [Ignored]
+        
         public PlanningTypeEnum PlanningType
         {
             get
@@ -50,7 +50,7 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 
         private int OpenDate_ { get; set; } = (int)(EventDateEnum.DAY1 | EventDateEnum.DAY2 | EventDateEnum.DAY3);
 
-        [Ignored]
+        
         public EventDateEnum OpenDate
         {
             get
@@ -74,7 +74,7 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
         public string SearchableKeywords { get; }
         public List<string> Keywords { get; }
 
-        [Ignored]
+        
         public string GroupHeader
         {
             get
@@ -85,7 +85,7 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 
         public string OpenDateDetail_ { get; set; }
 
-        [Ignored]
+        
         public string OpenDateDetail
         {
             get
