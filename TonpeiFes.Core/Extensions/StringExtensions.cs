@@ -1,7 +1,7 @@
 ﻿using System;
 namespace TonpeiFes.Core.Extensions
 {
-    public static class StringExtensions
+    internal static class StringExtensions
     {
         public static bool IsNullOrEmptyOrWhitespace(this string value)
         {
