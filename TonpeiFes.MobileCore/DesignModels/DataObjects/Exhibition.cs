@@ -1,41 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Realms;
+using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.DesignModels.Consts;
-using TonpeiFes.MobileCore.DesignModels.DataObjects;
 
 namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 {
-    public class Exhibition : ISearchableListPlanning
+    public class Exhibition : RealmObject, ISearchableListPlanning
     {
+        [PrimaryKey]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         public string Title { get; set; }
 
         public string Owner { get; set; }
 
+        private IList<ExhibitionDescription> Descriptions_ { get; }
+
+        [Ignored]
         public IList<IDescription> Descriptions
         {
             get
             {
-                return InnerDescriptions.Select((description) => description as IDescription).ToList();
+                return Descriptions_.Select((description) => description as IDescription).ToList();
             }
         }
 
-        public IList<ExhibitionDescription> InnerDescriptions { get; }
+        private int PlanningType_ { get; set; } = (int)PlanningTypeEnum.EXHIBITION;
 
-        // ToDo: Validate PlannningTypeNumber 1~3 or not
-        public int PlanningTypeNumber { get; set; } = (int)PlanningTypeEnum.EXHIBITION;
-
+        [Ignored]
         public PlanningTypeEnum PlanningType
         {
             get
             {
-                return (PlanningTypeEnum)Enum.ToObject(typeof(PlanningTypeEnum), PlanningTypeNumber);
+                return (PlanningTypeEnum)Enum.ToObject(typeof(PlanningTypeEnum), PlanningType_);
             }
             set
             {
-                PlanningTypeNumber = (int)value;
+                PlanningType_ = (int)value;
             }
         }
 
@@ -45,7 +48,20 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 
         public bool IsAcademic { get; set; } = false;
 
-        public IList<EventDate> OpenDate { get; }
+        private int OpenDate_ { get; set; } = (int)(EventDateEnum.DAY1 | EventDateEnum.DAY2 | EventDateEnum.DAY3);
+
+        [Ignored]
+        public EventDateEnum OpenDate
+        {
+            get
+            {
+                return (EventDateEnum)Enum.ToObject(typeof(EventDateEnum), OpenDate_);
+            }
+            set
+            {
+                OpenDate_ = (int)value;
+            }
+        }
 
         // ToDo: Change class type string to ...
         public string MappedRegion { get; set; }
@@ -55,15 +71,30 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 
         public string LocationDetail { get; set; }
 
+        [Indexed]
         public string SearchableKeywords { get; set; }
 
         public List<string> Keywords { get; }
 
+        [Ignored]
         public string GroupHeader
         {
             get
             {
                 return HeaderGroupedRegion;
+            }
+        }
+
+        public string OpenDateDetail_ { get; set; }
+
+        [Ignored]
+        public string OpenDateDetail
+        {
+            get
+            {
+                if (OpenDateDetail_.IsNullOrEmptyOrWhitespace() && OpenDate.IsAll()) return "";
+                if (OpenDateDetail_.IsNullOrEmptyOrWhitespace()) return OpenDate.GetFormattedString();
+                return OpenDateDetail_;
             }
         }
 

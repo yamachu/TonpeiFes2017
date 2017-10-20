@@ -19,8 +19,8 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
         bool IsT1 { get; }
         bool IsAcademic { get; }
 
-        // always open, this field must empty
-        IList<EventDate> OpenDate { get; }
+        EventDateEnum OpenDate { get; }
+        string OpenDateDetail { get; }
 
         // Location => 大域(Google Mapに載せるやつ)
         // Headerに載せるやつの中域

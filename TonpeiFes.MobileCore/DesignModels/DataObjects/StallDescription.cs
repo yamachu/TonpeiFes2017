@@ -1,7 +1,7 @@
 ﻿using System;
 namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 {
-    public class StallDescription : IDescription
+    public class StallDescription : Realms.RealmObject, IDescription
     {
         public string Title { get; set; }
 
