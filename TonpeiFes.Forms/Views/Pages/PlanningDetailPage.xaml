@@ -2,86 +2,107 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.PlanningDetailPage"
     xmlns:c="clr-namespace:TonpeiFes.Forms.Views.Controls"
     xmlns:v="clr-namespace:TonpeiFes.Forms.Views.Components"
-    xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize">
+    xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    xmlns:cv="clr-namespace:TonpeiFes.Forms.Converters;assembly=TonpeiFes.Forms"
+    Title="{Binding DetailModel.Value.Title}" >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cv:ChainConverter x:Key="IgnoreEmptyList">
+                <cv:ListEmptyCheckConverter />
+                <cv:BooleanInverseConverter />
+            </cv:ChainConverter>
+            <cv:ChainConverter x:Key="IgnoreEmptyString">
+                <cv:IsNullOrEmptyOrWhitespaceConverter />
+                <cv:BooleanInverseConverter />
+            </cv:ChainConverter>
+            <cv:KeywordListJoinConverter x:Key="KeywordJoin" />
+            <OnPlatform x:Key="SNSIconWidthRequest" x:TypeArguments="x:Double" iOS="28" Android="50" />
+            <OnPlatform x:Key="SNSIconHeightRequest" x:TypeArguments="x:Double" iOS="28" Android="50" />
+            <Color x:Key="Color.Twitter">#00ACED</Color>
+            <Color x:Key="Color.Facebook">#3B5998</Color>
+            <Color x:Key="Color.Youtube">#E52D27</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_map" Command="{Binding OpenMapCommand}" CommandParameter="{Binding DetailModel.Value.MappedRegion}" Priority="1" />
+        <ToolbarItem Icon="{Binding IconSource.Value}" Command="{Binding ToggleFavorited}" Priority="2" />
+    </ContentPage.ToolbarItems>
+    
     <ScrollView>
         <StackLayout>
             <!--  Header  -->
-            <StackLayout>
+            <StackLayout BackgroundColor="{StaticResource Primary}" Spacing="2" Padding="8">
                 <!--  Planning main-info  -->
-                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="0,0,0,0">
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="0,0,0,4">
                     <!--  Icon  -->
                     <Image WidthRequest="50" HeightRequest="50" />
                     <StackLayout>
-                        <Label Text="Title" FontAttributes="Bold" />
-                        <Label Text="Circle Name" FontAttributes="Bold" />
+                        <Label Text="{Binding DetailModel.Value.Title}" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource WhiteGray}" />
+                        <Label Text="{Binding DetailModel.Value.Owner}" FontAttributes="Bold" FontSize="14" TextColor="{StaticResource WhiteGray}" />
                     </StackLayout>
                 </StackLayout>
 
                 <!--  Planning sub-info  -->
                 <StackLayout Orientation="Horizontal">
                     <StackLayout HorizontalOptions="FillAndExpand" Spacing="2">
-                        <!--  Keywords show only Planning  -->
-                        <Label Text="Some keywords" FontSize="12" IsVisible="true" />
+
+                        <Label Text="{Binding DetailModel.Value.Keywords, Converter={StaticResource KeywordJoin}}" FontSize="12" IsVisible="{Binding DetailModel.Value.Keywords, Converter={StaticResource IgnoreEmptyList}}" />
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                            <!--  Fontawesome's map icon  -->
-                            <Label Text="Place" FontSize="12" />
+                            <iconize:IconImage Icon="ion-ios-location" IconColor="{StaticResource WhiteGray}" IconSize="12" />
+                            <Label Text="{Binding DetailModel.Value.LocationDetail}" TextColor="{StaticResource WhiteGray}" FontSize="12" />
                         </StackLayout>
-                        <!--  Show only stage event  -->
-                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsVisible="true">
-                            <!--  Fontawesome's time icon  -->
-                            <Label Text="Opening time" FontSize="12" />
+                        
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsVisible="{Binding DetailModel.Value.OpenDateDetail, Converter={StaticResource IgnoreEmptyString}}">
+                            <iconize:IconImage Icon="ion-ios-calendar" IconColor="{StaticResource WhiteGray}" IconSize="12" />
+                            <Label Text="{Binding DetailModel.Value.OpenDateDetail}" TextColor="{StaticResource WhiteGray}" FontSize="12" />
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
 
-                <!--  SNS info  -->
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <StackLayout>
-                        <iconize:IconButton Text="ion-home" TextColor="Gray" FontSize="28" HorizontalOptions="Center" WidthRequest="28" HeightRequest="28"
-                        BackgroundColor="Transparent"
-                        BorderColor="Transparent"
-                        BorderRadius="0"
-                        BorderWidth="0"  />
-                        <Label Text="ホームページ" FontSize="8" HorizontalTextAlignment="Center" />
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="8">
+                        <Label Text="T-1グランプリ参加企画" TextColor="{StaticResource Accent}" FontSize="12" IsVisible="{Binding DetailModel.Value.IsT1}"/>
+                        <Label Text="学術企画" TextColor="{StaticResource Accent}" FontSize="12" IsVisible="{Binding DetailModel.Value.IsAcademic}"/>
                     </StackLayout>
-                    <StackLayout>
-                        <iconize:IconButton Text="ion-social-twitter" TextColor="Gray" FontSize="28" HorizontalOptions="Center" WidthRequest="28" HeightRequest="28"
-                        BackgroundColor="Transparent"
-                        BorderColor="Transparent"
-                        BorderRadius="0"
-                        BorderWidth="0"  />
-                        <Label Text="Twitter" FontSize="8" HorizontalTextAlignment="Center" />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End" IsVisible="{StaticResource IsIOS}" Spacing="8" Padding="0,0,8,0">
+                        <Button Image="{Binding IconSource.Value}" Command="{Binding ToggleFavorited}" WidthRequest="22" HeightRequest="22" />
+                        <Button Image="ic_map" Command="{Binding OpenMapCommand}" CommandParameter="{Binding DetailModel.Value.MappedRegion}" WidthRequest="22" HeightRequest="22" />
                     </StackLayout>
-                    <StackLayout>
-                        <iconize:IconButton Text="ion-social-facebook" TextColor="Gray" FontSize="28" HorizontalOptions="Center" WidthRequest="28" HeightRequest="28"
-                        BackgroundColor="Transparent"
-                        BorderColor="Transparent"
-                        BorderRadius="0"
-                        BorderWidth="0"  />
-                        <Label Text="Facebook" FontSize="8" HorizontalTextAlignment="Center" />
-                    </StackLayout>
-                    <StackLayout>
-                        <iconize:IconButton Text="ion-social-youtube" TextColor="Gray" FontSize="28" HorizontalOptions="Center" WidthRequest="28" HeightRequest="28"
-                        BackgroundColor="Transparent"
-                        BorderColor="Transparent"
-                        BorderRadius="0"
-                        BorderWidth="0"  />
-                        <Label Text="Youtube" FontSize="8" HorizontalTextAlignment="Center" />
-                    </StackLayout>
-                    <StackLayout>
-                        <iconize:IconButton Text="ion-social-instagram" TextColor="Gray" FontSize="28" HorizontalOptions="Center" WidthRequest="28" HeightRequest="28"
-                        BackgroundColor="Transparent"
-                        BorderColor="Transparent"
-                        BorderRadius="0"
-                        BorderWidth="0"  />
-                        <Label Text="Instagram" FontSize="8" HorizontalTextAlignment="Center" />
-                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <!--  SNS info  -->
+            <!--  ToDo: Check SNS button enable  -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="24">
+                <StackLayout>
+                    <iconize:IconButton Text="ion-home" TextColor="{StaticResource Accent}" FontSize="28" HorizontalOptions="Center"
+                        WidthRequest="{StaticResource SNSIconWidthRequest}" HeightRequest="{StaticResource SNSIconHeightRequest}"
+                        BackgroundColor="Transparent" />
+                    <Label Text="ホームページ" FontSize="8" HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGray}"/>
+                </StackLayout>
+                <StackLayout>
+                    <iconize:IconButton Text="ion-social-twitter" TextColor="{StaticResource Color.Twitter}" FontSize="28" HorizontalOptions="Center"
+                        WidthRequest="{StaticResource SNSIconWidthRequest}" HeightRequest="{StaticResource SNSIconHeightRequest}"
+                        BackgroundColor="Transparent" />
+                    <Label Text="Twitter" FontSize="8" HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGray}" />
+                </StackLayout>
+                <StackLayout>
+                    <iconize:IconButton Text="ion-social-facebook" TextColor="{StaticResource Color.Facebook}" FontSize="28" HorizontalOptions="Center"
+                        WidthRequest="{StaticResource SNSIconWidthRequest}" HeightRequest="{StaticResource SNSIconHeightRequest}"
+                        BackgroundColor="Transparent" />
+                    <Label Text="Facebook" FontSize="8" HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGray}" />
+                </StackLayout>
+                <StackLayout>
+                    <iconize:IconButton Text="ion-social-youtube" TextColor="{StaticResource Color.Youtube}" FontSize="28" HorizontalOptions="Center"
+                        WidthRequest="{StaticResource SNSIconWidthRequest}" HeightRequest="{StaticResource SNSIconHeightRequest}"
+                        BackgroundColor="Transparent" />
+                    <Label Text="Youtube" FontSize="8" HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGray}" />
                 </StackLayout>
             </StackLayout>
 
             <!-- Detail  -->
             <StackLayout>
-                <c:ItemsControl ItemsSource="">
+                <c:ItemsControl ItemsSource="{Binding DetailModel.Value.Descriptions}">
                     <c:ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <v:DetailWithHeadingView />

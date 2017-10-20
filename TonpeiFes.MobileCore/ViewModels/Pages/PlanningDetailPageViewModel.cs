@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reactive.Linq;
 using Prism.Navigation;
 using Reactive.Bindings;
 using TonpeiFes.Core.Models.Consts;
@@ -16,6 +18,8 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public AsyncReactiveCommand ToggleFavorited { get; }
         public ReactiveProperty<IPlanning> DetailModel { get; } = new ReactiveProperty<IPlanning>();
         private IShowPlanningDetail _showDetail;
+        public AsyncReactiveCommand<string> OpenMapCommand { get; }
+        public ReadOnlyReactiveProperty<string> IconSource { get; }
 
         public PlanningDetailPageViewModel(IShowPlanningDetail showDetail)
         {
@@ -27,6 +31,16 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             ToggleFavorited.Subscribe(async(_) =>
             {
                 await _showDetail.TogglePlanningFavoritedState(!IsFavorited.Value);
+            });
+
+            IconSource = IsFavorited
+                .Select((isFav) => $@"ion_ios_heart{(isFav ? "" : "_outline")}")
+                .ToReadOnlyReactiveProperty($@"ion_ios_heart{(IsFavorited.Value ? "" : "_outline")}");
+
+            OpenMapCommand = new AsyncReactiveCommand<string>();
+            OpenMapCommand.Subscribe(async (locationId) =>
+            {
+                System.Diagnostics.Debug.WriteLine(locationId);
             });
         }
 

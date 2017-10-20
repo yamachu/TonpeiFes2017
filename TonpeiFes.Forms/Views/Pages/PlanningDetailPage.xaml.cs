@@ -7,6 +7,12 @@ namespace TonpeiFes.Forms.Views.Pages
         public PlanningDetailPage()
         {
             InitializeComponent();
+
+            // ToolbarItemにするとスペースがすごい
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                ToolbarItems.Clear();
+            }
         }
     }
 }

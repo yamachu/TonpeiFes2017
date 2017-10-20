@@ -7,6 +7,8 @@
             <Color x:Key="DarkPrimary">#303F9F</Color>
             <Color x:Key="LightPrimary">#303F9F</Color>
             <Color x:Key="Text">#FFFFFF</Color>
+            <Color x:Key="WhiteGray">#F0F0F0</Color>
+            <Color x:Key="DarkGray">#999999</Color>
             <Color x:Key="Accent">#FFC107</Color>
             <Color x:Key="PrimaryText">#212121</Color>
             <Color x:Key="SecondaryText">#757575</Color>
