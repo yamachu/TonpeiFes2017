@@ -16,7 +16,7 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 
         public string Owner { get; set; }
 
-        private IList<StageEventDescription> Descriptions_ { get; }
+        public IList<StageEventDescription> Descriptions_ { get; } = new List<StageEventDescription>();
 
         [Ignored]
         public IList<IDescription> Descriptions

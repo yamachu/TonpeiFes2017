@@ -16,7 +16,7 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
 
         public string Owner { get; set; }
 
-        private IList<ExhibitionDescription> Descriptions_ { get; }
+        public IList<ExhibitionDescription> Descriptions_ { get; } = new List<ExhibitionDescription>();
 
         [Ignored]
         public IList<IDescription> Descriptions
@@ -74,7 +74,7 @@ namespace TonpeiFes.MobileCore.DesignModels.DataObjects
         [Indexed]
         public string SearchableKeywords { get; set; }
 
-        public List<string> Keywords { get; }
+        public List<string> Keywords { get; } = new List<string>();
 
         [Ignored]
         public string GroupHeader
