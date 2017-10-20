@@ -246,6 +246,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable\ion_ios_heart.png" />
     <AndroidResource Include="Resources\drawable\ion_ios_heart_outline.png" />
+    <AndroidResource Include="Resources\drawable\ic_map.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />
