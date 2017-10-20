@@ -16,7 +16,7 @@ namespace TonpeiFes.Core.Models.DataObjects
 
         public string Owner { get; set; }
 
-        private IList<StageEvent> Descriptions_ { get; }
+        private IList<StageEventDescription> Descriptions_ { get; }
 
         [Ignored]
         public IList<IDescription> Descriptions
