@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TonpeiFes.MobileCore.Helpers;
-using TonpeiFes.MobileCore.Models.DataObjects;
+using TonpeiFes.Core.Models.DataObjects;
 
 namespace TonpeiFes.MobileCore.Extensions
 {

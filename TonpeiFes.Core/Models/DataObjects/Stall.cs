@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Realms;
-using TonpeiFes.MobileCore.Models.Consts;
+using TonpeiFes.Core.Models.Consts;
 
-namespace TonpeiFes.MobileCore.Models.DataObjects
+namespace TonpeiFes.Core.Models.DataObjects
 {
     public class Stall : RealmObject, ISearchableListPlanning
     {

@@ -1,6 +1,6 @@
 ﻿using System;
-using TonpeiFes.MobileCore.Models.Consts;
-namespace TonpeiFes.MobileCore.Models.DataObjects
+using TonpeiFes.Core.Models.Consts;
+namespace TonpeiFes.Core.Models.DataObjects
 {
     public interface IFavoritedPlanning
     {

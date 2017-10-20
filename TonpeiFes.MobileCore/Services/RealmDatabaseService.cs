@@ -35,7 +35,7 @@ namespace TonpeiFes.MobileCore.Services
                 MasterDataConnectionConfiguration = new SyncConfiguration(user, new Uri($"realm://serverAddress/~/realmtasks"));
                 await Realm.GetInstanceAsync(MasterDataConnectionConfiguration);
                 LocalDataConnectionConfiguration = new RealmConfiguration();
-                LocalDataConnectionConfiguration.ObjectClasses = new[] { typeof(MobileCore.Models.DataObjects.FavoritedPlanning) };
+                LocalDataConnectionConfiguration.ObjectClasses = new[] { typeof(Core.Models.DataObjects.FavoritedPlanning) };
             }
             catch (Exception e)
             {

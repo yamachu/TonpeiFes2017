@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TonpeiFes.MobileCore.Models.DataObjects
+namespace TonpeiFes.Core.Models.DataObjects
 {
     public interface ISearchable
     {

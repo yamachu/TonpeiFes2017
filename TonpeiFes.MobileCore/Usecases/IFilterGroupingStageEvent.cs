@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Helpers;
-using TonpeiFes.MobileCore.Models.DataObjects;
 
 namespace TonpeiFes.MobileCore.Usecases
 {

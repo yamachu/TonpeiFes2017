@@ -1,11 +1,7 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Prism.Navigation;
-using System.Windows.Input;
 using System.Threading.Tasks;
+using Prism.Navigation;
 using Reactive.Bindings;
 using TonpeiFes.MobileCore.Extensions;
 

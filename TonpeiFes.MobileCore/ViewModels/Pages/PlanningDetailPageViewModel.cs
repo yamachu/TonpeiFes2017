@@ -1,8 +1,8 @@
 ﻿using System;
 using Prism.Navigation;
 using Reactive.Bindings;
-using TonpeiFes.MobileCore.Models.Consts;
-using TonpeiFes.MobileCore.Models.DataObjects;
+using TonpeiFes.Core.Models.Consts;
+using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Usecases;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages

@@ -5,9 +5,9 @@ using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Reactive.Bindings;
+using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Helpers;
-using TonpeiFes.MobileCore.Models.DataObjects;
 using TonpeiFes.MobileCore.Usecases;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages

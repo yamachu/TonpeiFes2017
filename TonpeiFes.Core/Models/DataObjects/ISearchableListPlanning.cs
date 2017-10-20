@@ -1,5 +1,5 @@
 ﻿using System;
-namespace TonpeiFes.MobileCore.Models.DataObjects
+namespace TonpeiFes.Core.Models.DataObjects
 {
     public interface ISearchableListPlanning : IGroupable, IPlanning, ISearchable
     {

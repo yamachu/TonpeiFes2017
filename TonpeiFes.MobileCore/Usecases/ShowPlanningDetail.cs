@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Reactive.Bindings;
-using TonpeiFes.MobileCore.Models.Consts;
-using TonpeiFes.MobileCore.Models.DataObjects;
+using TonpeiFes.Core.Models.Consts;
+using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Repositories;
 
 namespace TonpeiFes.MobileCore.Usecases
@@ -44,11 +44,11 @@ namespace TonpeiFes.MobileCore.Usecases
             switch(_planningType)
             {
                 case PlanningTypeEnum.EXHIBITION:
-                    return _exhibitionRepository.GetOne(_id);
+                    return ((dynamic)_exhibitionRepository.GetOne(_id)) as ISearchableListPlanning;
                 case PlanningTypeEnum.STAGE:
-                    return _stageRepository.GetOne(_id);
+                    return ((dynamic)_stageRepository.GetOne(_id)) as ISearchableListPlanning;
                 case PlanningTypeEnum.STALL:
-                    return _stallRepository.GetOne(_id);
+                    return ((dynamic)_stallRepository.GetOne(_id)) as ISearchableListPlanning;
                 default:
                     throw new ArgumentException();
             }

@@ -5,7 +5,7 @@ using TonpeiFes.Forms.Views.Pages;
 using TonpeiFes.MobileCore.Repositories;
 using TonpeiFes.MobileCore.Services;
 using TonpeiFes.MobileCore.Usecases;
-using TonpeiFes.MobileCore.Models.DataObjects;
+using TonpeiFes.Core.Models.DataObjects;
 #if LOCAL || DESIGN
 using TonpeiFes.MobileCore.Repositories.Debug;
 using TonpeiFes.MobileCore.Services.Debug;

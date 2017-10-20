@@ -28,13 +28,15 @@
     <Folder Include="Extensions\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Services\" />
-    <Folder Include="Services\Debug\" Condition=" '$(Configuration)|$(Platform)' == 'DebugLocal|AnyCPU' "/>
+    <Folder Include="Services\Debug\" Condition=" '$(Configuration)|$(Platform)' == 'DebugLocal|AnyCPU' " />
     <Folder Include="Repositories\" />
     <Folder Include="Usecases\" />
-    <Folder Include="Repositories\Debug\" Condition=" '$(Configuration)|$(Platform)' == 'DebugLocal|AnyCPU' "/>
-    <Folder Include="Models\" />
+    <Folder Include="Repositories\Debug\" Condition=" '$(Configuration)|$(Platform)' == 'DebugLocal|AnyCPU' " />
     <Folder Include="Helpers\" />
-    <Folder Include="DesignViewModels\" Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' "/>
-    <Folder Include="DesignModels\" Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' "/>
+    <Folder Include="DesignViewModels\" Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' " />
+    <Folder Include="DesignModels\" Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' " />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TonpeiFes.Core\TonpeiFes.Core.csproj" />
   </ItemGroup>
 </Project>

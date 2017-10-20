@@ -41,5 +41,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TonpeiFes.MobileCore\TonpeiFes.MobileCore.csproj" />
+    <ProjectReference Include="..\TonpeiFes.Core\TonpeiFes.Core.csproj" />
   </ItemGroup>
 </Project>

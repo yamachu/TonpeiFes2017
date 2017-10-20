@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Reactive.Bindings;
-using TonpeiFes.MobileCore.Models.Consts;
-using TonpeiFes.MobileCore.Models.DataObjects;
+using TonpeiFes.Core.Models.Consts;
+using TonpeiFes.Core.Models.DataObjects;
 
 namespace TonpeiFes.MobileCore.Usecases
 {

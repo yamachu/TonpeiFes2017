@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using TonpeiFes.MobileCore.Helpers;
-using TonpeiFes.MobileCore.Models.DataObjects;
-using TonpeiFes.MobileCore.Repositories;
+using TonpeiFes.Core.Models.Consts;
+using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Extensions;
+using TonpeiFes.MobileCore.Helpers;
+using TonpeiFes.MobileCore.Repositories;
 
 namespace TonpeiFes.MobileCore.Usecases
 {
@@ -42,7 +43,7 @@ namespace TonpeiFes.MobileCore.Usecases
 
             var openDay = _eventDateRepository.GetOne(ActiveSegment);
 
-            foreach (var ex in _stageEventRepository.GetAll().FilterByOpeningDay(openDay).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository).GroupingPlannings())
+            foreach (var ex in _stageEventRepository.GetAll().FilterByOpeningDay(openDay).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).GroupingPlannings())
             {
                 _plannings.Add(ex);
             }
@@ -60,7 +61,7 @@ namespace TonpeiFes.MobileCore.Usecases
         public static IEnumerable<StageEvent> FilterByFavoritedExhibition(this IEnumerable<StageEvent> list, bool favorited, IRepository<FavoritedPlanning> repository)
         {
             if (!favorited) return list;
-            var favoritedList = repository.GetAll().Where((item) => item.PlanningType == Models.Consts.PlanningTypeEnum.STAGE);
+            var favoritedList = repository.GetAll().Where((item) => item.PlanningType == PlanningTypeEnum.STAGE);
             return favoritedList.Select((fav) => list.First((item) => item.Id == fav.Id));
         }
     }

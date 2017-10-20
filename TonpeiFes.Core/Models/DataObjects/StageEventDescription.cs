@@ -1,5 +1,5 @@
 ﻿using System;
-namespace TonpeiFes.MobileCore.Models.DataObjects
+namespace TonpeiFes.Core.Models.DataObjects
 {
     public class StageEventDescription : Realms.RealmObject, IDescription
     {

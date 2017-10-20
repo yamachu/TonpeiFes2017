@@ -1,5 +1,5 @@
 ﻿using System;
-namespace TonpeiFes.MobileCore.Models.Consts
+namespace TonpeiFes.Core.Models.Consts
 {
     public enum PlanningTypeEnum
     {
