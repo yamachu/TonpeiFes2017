@@ -31,6 +31,10 @@ namespace TonpeiFes.iOS
 
             UITabBar.Appearance.SelectedImageTintColor = ((Color)App.Current.Resources["Primary"]).ToUIColor();
 
+            // NavigationBarのボーダーラインを消す
+            UINavigationBar.Appearance.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
+            UINavigationBar.Appearance.ShadowImage = new UIImage();
+
             return base.FinishedLaunching(app, options);
         }
     }
