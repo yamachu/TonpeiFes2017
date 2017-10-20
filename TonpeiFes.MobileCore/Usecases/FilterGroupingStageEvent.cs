@@ -18,18 +18,15 @@ namespace TonpeiFes.MobileCore.Usecases
 
         private IRepository<StageEvent> _stageEventRepository;
         private IRepository<FavoritedPlanning> _favoritedRepository;
-        private IRepository<EventDate> _eventDateRepository;
 
         private int ActiveSegment = 0;
         private bool IsFavorited = false;
 
         public FilterGroupingStageEvent(IRepository<StageEvent> stageRep,
-                                        IRepository<FavoritedPlanning> favoritedRep,
-                                        IRepository<EventDate> dateRep)
+                                        IRepository<FavoritedPlanning> favoritedRep)
         {
             _stageEventRepository = stageRep;
             _favoritedRepository = favoritedRep;
-            _eventDateRepository = dateRep;
 
             Plannings = new ReadOnlyObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>>(_plannings);
         }
@@ -41,7 +38,7 @@ namespace TonpeiFes.MobileCore.Usecases
 
             _plannings.Clear();
 
-            var openDay = _eventDateRepository.GetOne(ActiveSegment);
+            var openDay = (EventDateEnum)Enum.ToObject(typeof(EventDateEnum), (1 << activeSegment));
 
             foreach (var ex in _stageEventRepository.GetAll().FilterByOpeningDay(openDay).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).GroupingPlannings())
             {
@@ -52,10 +49,9 @@ namespace TonpeiFes.MobileCore.Usecases
 
     public static class FilterGroupStageEventExtension
     {
-        public static IEnumerable<StageEvent> FilterByOpeningDay(this IEnumerable<StageEvent> list, EventDate openDay)
+        public static IEnumerable<StageEvent> FilterByOpeningDay(this IEnumerable<StageEvent> list, EventDateEnum openDay)
         {
-            // 実運用では Contains でも問題はないが，Mockデータで行う場合Object Equalのoverrideをしていないのでこうせざるを得ない
-            return list.Where(item => item.OpenDate.Any((day) => day.Id == openDay.Id));
+            return list.Where(item => item.OpenDate.HasFlag(openDay));
         }
 
         public static IEnumerable<StageEvent> FilterByFavoritedExhibition(this IEnumerable<StageEvent> list, bool favorited, IRepository<FavoritedPlanning> repository)

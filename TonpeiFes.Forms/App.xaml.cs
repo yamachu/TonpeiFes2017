@@ -48,7 +48,6 @@ namespace TonpeiFes.Forms
             Container.RegisterTypeForNavigation<PlanningDetailPage>();
 
 #if LOCAL
-            Container.RegisterType<IRepository<EventDate>, MockEventDateRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<Exhibition>, MockExhibitionRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<FavoritedPlanning>, MockFavoritedPlanningRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<StageEvent>, MockStageEventRepository>(new ContainerControlledLifetimeManager());
@@ -56,7 +55,6 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IDatabaseService, MockDatabaseService>(new ContainerControlledLifetimeManager());
 #elif DESIGN
 #else
-            Container.RegisterType<IRepository<EventDate>, EventDateRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<Exhibition>, ExhibitionRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<FavoritedPlanning>, FavoritedPlanningRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<StageEvent>, StageEventRepository>(new ContainerControlledLifetimeManager());

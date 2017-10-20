@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Realms;
+using TonpeiFes.Core.Extensions;
 using TonpeiFes.Core.Models.Consts;
-using TonpeiFes.Core.Models.DataObjects;
 
 namespace TonpeiFes.Core.Models.DataObjects
 {
@@ -16,30 +16,29 @@ namespace TonpeiFes.Core.Models.DataObjects
 
         public string Owner { get; set; }
 
+        private IList<ExhibitionDescription> Descriptions_ { get; }
+
         [Ignored]
         public IList<IDescription> Descriptions
         {
             get
             {
-                return InnerDescriptions.Select((description) => description as IDescription).ToList();
+                return Descriptions_.Select((description) => description as IDescription).ToList();
             }
         }
 
-        public IList<ExhibitionDescription> InnerDescriptions { get; }
-
-        // ToDo: Validate PlannningTypeNumber 1~3 or not
-        public int PlanningTypeNumber { get; set; } = (int)PlanningTypeEnum.EXHIBITION;
+        private int PlanningType_ { get; set; } = (int)PlanningTypeEnum.EXHIBITION;
 
         [Ignored]
         public PlanningTypeEnum PlanningType
         {
             get
             {
-                return (PlanningTypeEnum)Enum.ToObject(typeof(PlanningTypeEnum), PlanningTypeNumber);
+                return (PlanningTypeEnum)Enum.ToObject(typeof(PlanningTypeEnum), PlanningType_);
             }
             set
             {
-                PlanningTypeNumber = (int)value;
+                PlanningType_ = (int)value;
             }
         }
 
@@ -49,7 +48,20 @@ namespace TonpeiFes.Core.Models.DataObjects
 
         public bool IsAcademic { get; set; } = false;
 
-        public IList<EventDate> OpenDate { get; }
+        private int OpenDate_ { get; set; } = (int)(EventDateEnum.DAY1 | EventDateEnum.DAY2 | EventDateEnum.DAY3);
+
+        [Ignored]
+        public EventDateEnum OpenDate
+        {
+            get
+            {
+                return (EventDateEnum)Enum.ToObject(typeof(EventDateEnum), OpenDate_);
+            }
+            set
+            {
+                OpenDate_ = (int)value;
+            }
+        }
 
         // ToDo: Change class type string to ...
         public string MappedRegion { get; set; }
@@ -70,6 +82,19 @@ namespace TonpeiFes.Core.Models.DataObjects
             get
             {
                 return HeaderGroupedRegion;
+            }
+        }
+
+        public string OpenDateDetail_ { get; set; }
+
+        [Ignored]
+        public string OpenDateDetail
+        {
+            get
+            {
+                if (OpenDateDetail_.IsNullOrEmptyOrWhitespace() && OpenDate.IsAll()) return "";
+                if (OpenDateDetail_.IsNullOrEmptyOrWhitespace()) return OpenDate.GetFormattedString();
+                return OpenDateDetail_;
             }
         }
 
