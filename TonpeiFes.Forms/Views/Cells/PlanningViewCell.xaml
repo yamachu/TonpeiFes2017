@@ -3,7 +3,10 @@
     <ContentView>
         <ContentView.Resources>
             <ResourceDictionary>
-                <cv:ListEmptyCheckConverter x:Key="IsListEmpty" />
+                <cv:ChainConverter x:Key="IgnoreEmptyList">
+                    <cv:ListEmptyCheckConverter />
+                    <cv:BooleanInverseConverter />
+                </cv:ChainConverter>
                 <cv:KeywordListJoinConverter x:Key="KeywordJoin" />
                 <cv:T1BooleanConverter x:Key="T1" />
                 <cv:AcademicBooleanConverter x:Key="Academic" />
@@ -18,7 +21,7 @@
                     <StackLayout Orientation="Vertical">
                         <Label Text="{Binding Title}" FontSize="14" TextColor="Black" />
                         <Label Text="{Binding Owner}" FontSize="12" TextColor="{StaticResource PrimaryText}" />
-                        <Label Text="{Binding Keywords, Converter={StaticResource KeywordJoin}}" FontSize="14" TextColor="{StaticResource SecondaryText}" LineBreakMode="TailTruncation" IsVisible="{Binding Keywords, Converter={StaticResource IsListEmpty}}" />
+                        <Label Text="{Binding Keywords, Converter={StaticResource KeywordJoin}}" FontSize="14" TextColor="{StaticResource SecondaryText}" LineBreakMode="TailTruncation" IsVisible="{Binding Keywords, Converter={StaticResource IgnoreEmptyList}}" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" Spacing="{StaticResource HorizontalItemSpacing}">
                         <Label Text="{Binding LocationDetail}" FontSize="12" TextColor="{StaticResource SecondaryText}" />
