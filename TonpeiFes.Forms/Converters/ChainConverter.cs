@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using Xamarin.Forms;
 
 namespace TonpeiFes.Forms.Converters
 {
-    public class KeywordListJoinConverter : IValueConverter
+    // http://www.nicologies.tk/posts/ChainMultipleValueConverters
+    [ContentProperty("Converters")]
+    public class ChainConverter : IValueConverter
     {
+        public List<IValueConverter> Converters { get; } = new List<IValueConverter>();
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || !(value is IList<string>))
-            {
-                return default(string);
-            }
-            if (((IList<string>)value).Count == 0) return default(string);
-            return ((IList<string>)value)?.Aggregate((acc, next) => $"{acc}, {next}");
+            foreach (var converter in Converters) value = converter.Convert(value, targetType, parameter, culture);
+            return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
