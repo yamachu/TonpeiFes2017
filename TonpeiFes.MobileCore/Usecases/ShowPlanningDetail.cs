@@ -41,6 +41,8 @@ namespace TonpeiFes.MobileCore.Usecases
 
         public ISearchableListPlanning GetPlanning()
         {
+            _isFavorited.Value = _favoritedRepository.GetOne(_id) != null;
+
             switch(_planningType)
             {
                 case PlanningTypeEnum.EXHIBITION:
