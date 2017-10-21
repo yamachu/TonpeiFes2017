@@ -36,6 +36,8 @@
     <Folder Include="Helpers\" />
     <Folder Include="DesignViewModels\" Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' " />
     <Folder Include="DesignModels\" Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' " />
+    <Folder Include="Models\" />
+    <Folder Include="Models\EventArgs\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TonpeiFes.Core\TonpeiFes.Core.csproj" />

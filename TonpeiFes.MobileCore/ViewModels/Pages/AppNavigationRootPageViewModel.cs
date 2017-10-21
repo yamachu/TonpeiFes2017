@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Prism.Events;
 using Prism.Navigation;
 using Reactive.Bindings;
 using TonpeiFes.MobileCore.Extensions;
+using TonpeiFes.MobileCore.Models.EventArgs;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
     public class AppNavigationRootPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private readonly IEventAggregator _eventAggregator;
 
         // Use only Android MasterDetail Page
         public List<MasterPageListItem> MasterPageItems { get; }
@@ -23,9 +26,10 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
         public ReactiveProperty<int> ReactiveCurrentTabIndex { get; } = new ReactiveProperty<int>();
 
-        public AppNavigationRootPageViewModel(INavigationService navigationService)
+        public AppNavigationRootPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator)
         {
             _navigationService = navigationService;
+            _eventAggregator = eventAggregator;
 
             MasterPageItems = new List<MasterPageListItem>{
                 new MasterPageListItem{ Title = "ホーム", Icon = iOSIconHome, PageName = nameof(Pages.HomePageViewModel).GetViewNameFromRule() },
@@ -40,11 +44,13 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 await NavigationPageWrappedNavigation(item.PageName);
             });
 
-            /*
             ReactiveCurrentTabIndex.Subscribe((value) => {
-                // Handle Current Tab Index
+                // Mapが選択された時にデフォルトの場所に移動
+                if (value == 3)
+                {
+                    _eventAggregator.GetEvent<MapMoveEvent>().Publish(new MapMoveEventArgs(0, 0, true));
+                }
             });
-            */
         }
 
         private Task NavigationPageWrappedNavigation(string pageName)
