@@ -27,6 +27,8 @@ namespace TonpeiFes.iOS
             FFImageLoading.Forms.Touch.CachedImageRenderer.Init();
             FormsPlugin.Iconize.iOS.IconControls.Init();
 
+            Xamarin.FormsGoogleMaps.Init(Forms.Configurations.GoogleMapAPI.GOOGLE_MAPS_IOS_API_KEY);
+
             LoadApplication(new App(new iOSInitializer()));
 
             UITabBar.Appearance.SelectedImageTintColor = ((Color)App.Current.Resources["Primary"]).ToUIColor();

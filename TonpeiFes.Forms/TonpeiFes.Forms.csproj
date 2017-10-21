@@ -25,17 +25,58 @@
     <PackageReference Include="Unity" Version="4.0.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.2.20" />
     <PackageReference Include="Xamarin.Forms" Version="2.3.5.256-pre6" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="Converters\" />
     <Folder Include="Views\Cells\" />
+    <Folder Include="Configurations\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Configurations\GoogleMapAPI.tmpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="**\*.xaml.cs" DependentUpon="%(Filename)" />
     <EmbeddedResource Include="**\*.xaml" SubType="Designer" Generator="MSBuild:UpdateDesignTimeXaml" />
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Cells\PlanningViewCell.xaml.cs">
+      <DependentUpon>Views\Cells\PlanningViewCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Cells\SimpleListHeaderViewCell.xaml.cs">
+      <DependentUpon>Views\Cells\SimpleListHeaderViewCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Components\DetailWithHeadingView.xaml.cs">
+      <DependentUpon>Views\Components\DetailWithHeadingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Pages\AppNavigationRootPage.xaml.cs">
+      <DependentUpon>Views\Pages\AppNavigationRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Pages\FestaMapRootPage.xaml.cs">
+      <DependentUpon>Views\Pages\FestaMapRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Pages\HomePage.xaml.cs">
+      <DependentUpon>Views\Pages\HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Pages\PlanningDetailPage.xaml.cs">
+      <DependentUpon>Views\Pages\PlanningDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Pages\PlanningListRootPage.xaml.cs">
+      <DependentUpon>Views\Pages\PlanningListRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Pages\StageEventListRootPage.xaml.cs">
+      <DependentUpon>Views\Pages\StageEventListRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Pages\Android\AppNavigationRootPage.xaml.cs">
+      <DependentUpon>Views\Pages\Android\AppNavigationRootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Pages\iOS\AppNavigationRootPage.xaml.cs">
+      <DependentUpon>Views\Pages\iOS\AppNavigationRootPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <!--  If you add xaml to this project, must remove EmbeddedResource tag  -->
 

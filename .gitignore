@@ -41,3 +41,6 @@ Thumbs.db
 
 # Fody generated file
 Tools/*.Fody.dll
+
+# APIs
+TonpeiFes.Forms/Configurations/GoogleMapAPI.cs

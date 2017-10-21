@@ -32,6 +32,8 @@ namespace TonpeiFes.Droid
             FFImageLoading.Forms.Droid.CachedImageRenderer.Init();
             FormsPlugin.Iconize.Droid.IconControls.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
 
+            Xamarin.FormsGoogleMaps.Init(this, bundle);
+
             LoadApplication(new App(new AndroidInitializer()));
         }
     }

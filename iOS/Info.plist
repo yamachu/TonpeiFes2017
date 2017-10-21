@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>TonpeiFes</string>
 	<key>CFBundleIdentifier</key>
-	<string>jp.dip.yamachuco.TonpeiFes</string>
+	<string>jp.dip.yamachuco.tonpeifes2017</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -50,5 +50,7 @@
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>位置情報はマップ上に現在位置を表示するために利用されます</string>
 </dict>
 </plist>
