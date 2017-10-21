@@ -25,7 +25,7 @@ namespace TonpeiFes.MobileCore.Repositories
         public void Delete(FavoritedPlanning item)
         {
             var realm = Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration);
-            var _item = realm.All<FavoritedPlanning>().First(elem => elem.Id == item.Id && elem.PlanningType == item.PlanningType);
+            var _item = realm.All<FavoritedPlanning>().FirstOrDefault(elem => elem.Id == item.Id && elem.PlanningType == item.PlanningType);
             if (_item != null)
             {
                 using (var trans = realm.BeginWrite())

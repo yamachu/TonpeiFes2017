@@ -20,8 +20,11 @@ namespace TonpeiFes.MobileCore.Repositories.Debug
 
         public void Delete(FavoritedPlanning item)
         {
-            var _item = Source.First((elem) => elem.Id == item.Id && elem.PlanningType == item.PlanningType);
-            Source.Remove(_item);
+            var _item = Source.FirstOrDefault((elem) => elem.Id == item.Id && elem.PlanningType == item.PlanningType);
+            if (_item != null)
+            {
+                Source.Remove(_item);
+            }
         }
 
         public IEnumerable<FavoritedPlanning> GetAll()
@@ -36,7 +39,7 @@ namespace TonpeiFes.MobileCore.Repositories.Debug
 
         public FavoritedPlanning GetOne(string id)
         {
-            return Source.First((elem) => elem.Id == id);
+            return Source.FirstOrDefault((elem) => elem.Id == id);
         }
     }
 }

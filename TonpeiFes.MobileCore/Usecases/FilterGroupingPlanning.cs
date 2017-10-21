@@ -76,14 +76,14 @@ namespace TonpeiFes.MobileCore.Usecases
         {
             if (!favorited) return list;
             var favoritedList = repository.GetAll().Where((item) => item.PlanningType == Core.Models.Consts.PlanningTypeEnum.EXHIBITION);
-            return favoritedList.Select((fav) => list.First((item) => item.Id == fav.Id));
+            return favoritedList.Select((fav) => list.FirstOrDefault((item) => item.Id == fav.Id));
         }
 
         public static IEnumerable<Stall> FilterByFavoritedStall(this IEnumerable<Stall> list, bool favorited, IRepository<FavoritedPlanning> repository)
         {
             if (!favorited) return list;
             var favoritedList = repository.GetAll().Where((item) => item.PlanningType == Core.Models.Consts.PlanningTypeEnum.STALL);
-            return favoritedList.Select((fav) => list.First((item) => item.Id == fav.Id));
+            return favoritedList.Select((fav) => list.FirstOrDefault((item) => item.Id == fav.Id));
         }
     }
 }

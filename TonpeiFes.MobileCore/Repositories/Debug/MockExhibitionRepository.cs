@@ -35,7 +35,7 @@ namespace TonpeiFes.MobileCore.Repositories.Debug
 
         public Exhibition GetOne(string id)
         {
-            return Source.First((elem) => elem.Id == id);
+            return Source.FirstOrDefault((elem) => elem.Id == id);
         }
     }
 }

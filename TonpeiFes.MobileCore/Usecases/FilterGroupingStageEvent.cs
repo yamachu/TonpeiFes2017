@@ -58,7 +58,7 @@ namespace TonpeiFes.MobileCore.Usecases
         {
             if (!favorited) return list;
             var favoritedList = repository.GetAll().Where((item) => item.PlanningType == PlanningTypeEnum.STAGE);
-            return favoritedList.Select((fav) => list.First((item) => item.Id == fav.Id));
+            return favoritedList.Select((fav) => list.FirstOrDefault((item) => item.Id == fav.Id));
         }
     }
 }
