@@ -23,7 +23,7 @@ namespace TonpeiFes.Core.Models.DataObjects
         {
             get
             {
-                return Descriptions_.Select((description) => description as IDescription).ToList();
+                return Descriptions_?.Select((description) => description as IDescription).ToList() ?? new List<IDescription>();
             }
         }
 
