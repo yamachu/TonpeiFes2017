@@ -15,6 +15,7 @@ using TonpeiFes.MobileCore.DesignViewModels.Pages;
 #endif
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Prism.Events;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TonpeiFes.Forms
@@ -65,6 +66,8 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IFilterGroupingPlanning, FilterGroupingPlanning>();
             Container.RegisterType<IFilterGroupingStageEvent, FilterGroupingStageEvent>();
             Container.RegisterType<IShowPlanningDetail, ShowPlanningDetail>();
+
+            Container.RegisterType<IEventAggregator, EventAggregator>(new ContainerControlledLifetimeManager());
         }
 
         // https://github.com/amay077/XamarinFormsGachiSample2016Winter/blob/master/XamarinFormsGachiSample2016Winter/App.cs
