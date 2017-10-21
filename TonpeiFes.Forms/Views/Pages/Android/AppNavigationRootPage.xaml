@@ -5,6 +5,9 @@
     <MasterDetailPage.Master>
         <ContentPage Title="MasterMenuPage">
             <StackLayout>
+                <ContentView BackgroundColor="{StaticResource Primary}" Padding="16,128,16,16">
+                    <Label Text="東北大学祭2017" FontSize="20" TextColor="{StaticResource WhiteGray}"/>
+                </ContentView>
                 <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding MasterPageItems}">
                     <ListView.Behaviors>
                         <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectedItemCommand}" EventArgsParameterPath="Item" />
