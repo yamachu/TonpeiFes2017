@@ -64,22 +64,24 @@ namespace TonpeiFes.Core.Models.DataObjects
         }
 
         public DateTimeOffset StartAt { get; set; }
+        public string CustomStartAt { get; set; }
 
-        // ToDo: Change class type string to ...
-        public string MappedRegion { get; set; }
+        public MapRegion MappedRegion { get; set; }
 
         public string LocationDetail { get; set; }
 
         // Dummy
+        public MyGroupHeader HeaderGroupedRegion { get; set; }
         public string SearchableKeywords { get; }
         public List<string> Keywords { get; }
+        public MyGroupHeader IconedGroupHeader { get; set; }
 
         [Ignored]
         public string GroupHeader
         {
             get
             {
-                return StartAt.ToString("HH:mm");
+                return CustomStartAt.IsNullOrEmptyOrWhitespace() ? StartAt.ToString("HH:mm") : CustomStartAt;
             }
         }
 
@@ -98,7 +100,7 @@ namespace TonpeiFes.Core.Models.DataObjects
 
         public void UpdateLocationDetail()
         {
-            LocationDetail = MappedRegion;
+            LocationDetail = MappedRegion.Name;
         }
 
         public void UpdateSearchableKeywords()

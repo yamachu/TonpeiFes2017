@@ -14,5 +14,12 @@ namespace TonpeiFes.MobileCore.Extensions
                        .Select(g => new ObservableGroupCollection<string, ISearchableListPlanning>(g))
                        .OrderBy(g => g.Key);
         }
+
+        public static IEnumerable<ObservableGroupCollection<MyGroupHeader, ISearchableListPlanning>> IconedGroupingPlannings(this IEnumerable<ISearchableListPlanning> list)
+        {
+            return list.GroupBy(item => item.IconedGroupHeader)
+                       .Select(g => new ObservableGroupCollection<MyGroupHeader, ISearchableListPlanning>(g))
+                       .OrderBy(g => g.Key.Key);
+        }
     }
 }

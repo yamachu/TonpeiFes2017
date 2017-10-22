@@ -26,7 +26,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public ICommand FavButtonClickCommand { get; }
         private ReactiveProperty<bool> FavStateObservable = new ReactiveProperty<bool>(false);
 
-        public ReadOnlyReactiveCollection<ObservableGroupCollection<string, ISearchableListPlanning>> Plannings { get; }
+        public ReadOnlyReactiveCollection<ObservableGroupCollection<MyGroupHeader, ISearchableListPlanning>> Plannings { get; }
 
         public AsyncReactiveCommand<IPlanning> SelectedItemCommand { get; }
 

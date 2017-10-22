@@ -12,8 +12,8 @@ namespace TonpeiFes.MobileCore.Usecases
 {
     public class FilterGroupingPlanning : IFilterGroupingPlanning
     {
-        private readonly ObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>> _plannings = new ObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>>();
-        public ReadOnlyObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>> Plannings { get; }
+        private readonly ObservableCollection<ObservableGroupCollection<MyGroupHeader, ISearchableListPlanning>> _plannings = new ObservableCollection<ObservableGroupCollection<MyGroupHeader, ISearchableListPlanning>>();
+        public ReadOnlyObservableCollection<ObservableGroupCollection<MyGroupHeader, ISearchableListPlanning>> Plannings { get; }
 
         private IRepository<Exhibition> _exhibitionRepository;
         private IRepository<Stall> _stallRepository;
@@ -31,7 +31,7 @@ namespace TonpeiFes.MobileCore.Usecases
             _stallRepository = stallRep;
             _favoritedRepository = favoritedRep;
 
-            Plannings = new ReadOnlyObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>>(_plannings);
+            Plannings = new ReadOnlyObservableCollection<ObservableGroupCollection<MyGroupHeader, ISearchableListPlanning>>(_plannings);
         }
 
         public async Task UpdateFilterConditions(string query, int activeSegment, bool favorited)
@@ -43,13 +43,13 @@ namespace TonpeiFes.MobileCore.Usecases
             _plannings.Clear();
             switch(ActiveSegment){
                 case 0:
-                    foreach (var ex in _exhibitionRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).GroupingPlannings())
+                    foreach (var ex in _exhibitionRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).IconedGroupingPlannings())
                     {
                         _plannings.Add(ex);
                     }
                     break;
                 case 1:
-                    foreach (var ex in _stallRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedStall(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).GroupingPlannings())
+                    foreach (var ex in _stallRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedStall(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).IconedGroupingPlannings())
                     {
                         _plannings.Add(ex);
                     }

@@ -22,10 +22,8 @@ namespace TonpeiFes.Core.Models.DataObjects
         EventDateEnum OpenDate { get; }
         string OpenDateDetail { get; }
 
-        // Location => 大域(Google Mapに載せるやつ)
-        // Headerに載せるやつの中域
-        // 展示のみの部屋の詳細
-        // これらを連結したやつ
+        MapRegion MappedRegion { get; }
+        MyGroupHeader HeaderGroupedRegion { get; }
         string LocationDetail { get; }
 
         void UpdateLocationDetail();

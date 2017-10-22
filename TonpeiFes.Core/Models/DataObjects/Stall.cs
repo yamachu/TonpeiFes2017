@@ -63,11 +63,9 @@ namespace TonpeiFes.Core.Models.DataObjects
             }
         }
 
-        // ToDo: Change class type string to ...
-        public string MappedRegion { get; set; }
+        public MapRegion MappedRegion { get; set; }
 
-        // ToDo: Change class type string to ...
-        public string HeaderGroupedRegion { get; set; }
+        public MyGroupHeader HeaderGroupedRegion { get; set; }
 
         public string LocationDetail { get; set; }
 
@@ -78,6 +76,15 @@ namespace TonpeiFes.Core.Models.DataObjects
 
         [Ignored]
         public string GroupHeader
+        {
+            get
+            {
+                return HeaderGroupedRegion.Key;
+            }
+        }
+
+        [Ignored]
+        public MyGroupHeader IconedGroupHeader
         {
             get
             {
@@ -100,7 +107,7 @@ namespace TonpeiFes.Core.Models.DataObjects
 
         public void UpdateLocationDetail()
         {
-            LocationDetail = HeaderGroupedRegion;
+            LocationDetail = HeaderGroupedRegion.Key;
         }
 
         public void UpdateSearchableKeywords()

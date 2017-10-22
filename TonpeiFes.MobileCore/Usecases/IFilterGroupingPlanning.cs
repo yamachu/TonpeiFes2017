@@ -8,7 +8,7 @@ namespace TonpeiFes.MobileCore.Usecases
 {
     public interface IFilterGroupingPlanning
     {
-        ReadOnlyObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>> Plannings { get; }
+        ReadOnlyObservableCollection<ObservableGroupCollection<MyGroupHeader, ISearchableListPlanning>> Plannings { get; }
         Task UpdateFilterConditions(string query, int activeSegment, bool favorited);
     }
 }
