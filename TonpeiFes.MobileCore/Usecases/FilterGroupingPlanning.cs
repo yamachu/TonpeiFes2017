@@ -41,15 +41,16 @@ namespace TonpeiFes.MobileCore.Usecases
             IsFavorited = favorited;
 
             _plannings.Clear();
-            switch(ActiveSegment){
+            switch (ActiveSegment)
+            {
                 case 0:
-                    foreach (var ex in _exhibitionRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).IconedGroupingPlannings())
+                    foreach (var ex in _stallRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedStall(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).IconedGroupingPlannings())
                     {
                         _plannings.Add(ex);
                     }
                     break;
                 case 1:
-                    foreach (var ex in _stallRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedStall(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).IconedGroupingPlannings())
+                    foreach (var ex in _exhibitionRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).IconedGroupingPlannings())
                     {
                         _plannings.Add(ex);
                     }
