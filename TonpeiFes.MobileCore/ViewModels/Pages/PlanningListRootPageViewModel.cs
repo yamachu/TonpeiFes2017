@@ -29,6 +29,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public ReadOnlyReactiveCollection<ObservableGroupCollection<MyGroupHeader, ISearchableListPlanning>> Plannings { get; }
 
         public AsyncReactiveCommand<IPlanning> SelectedItemCommand { get; }
+        public AsyncReactiveCommand<string> OpenPlceDetailCommand { get; }
 
         private IFilterGroupingPlanning _planningUsecase;
 
@@ -66,6 +67,12 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 await navigationService.NavigateAsync(
                     nameof(PlanningDetailPageViewModel).GetViewNameFromRule(),
                     PlanningDetailPageViewModel.GetNavigationParameter(item.Id, item.PlanningType));
+            });
+
+            OpenPlceDetailCommand = new AsyncReactiveCommand<string>();
+            OpenPlceDetailCommand.Subscribe(async (placeName) =>
+            {
+                System.Diagnostics.Debug.WriteLine(placeName);
             });
         }
     }

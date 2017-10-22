@@ -3,11 +3,20 @@
     xmlns:segments="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions"
     xmlns:controls="clr-namespace:TonpeiFes.Forms.Views.Controls"
     xmlns:cells="clr-namespace:TonpeiFes.Forms.Views.Cells"
+    xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    xmlns:cv="clr-namespace:TonpeiFes.Forms.Converters;assembly=TonpeiFes.Forms"
     x:Name="root" Title="{Binding Title}" NavigationPage.HasNavigationBar="{StaticResource IsAndroid}" >
     <ContentPage.Resources>
         <ResourceDictionary>
             <OnPlatform x:Key="HeaderCellHeight" x:TypeArguments="x:Double" iOS="28" />
             <OnPlatform x:Key="SearchBarWidthRequest" x:TypeArguments="x:Double" iOS="1" Android="-1" />
+            <OnPlatform x:Key="HeaderPadding" x:TypeArguments="Thickness" iOS="16,0" Android="16,8" />
+            <OnPlatform x:Key="LabelFontSize" x:TypeArguments="x:Double" iOS="16" Android="18" />
+            <OnPlatform x:Key="LabelFontType" x:TypeArguments="FontAttributes" iOS="Bold" />
+            <cv:ChainConverter x:Key="IgnoreEmptyString">
+                <cv:IsNullOrEmptyOrWhitespaceConverter />
+                <cv:BooleanInverseConverter />
+            </cv:ChainConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
@@ -52,7 +61,16 @@
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell Height="{StaticResource HeaderCellHeight}">
-                        <cells:IconedListHeaderViewCell />
+                        <!--  ファイルをまたぐといい感じにバインド出来ないorz  -->
+                        <!--<cells:IconedListHeaderViewCell />-->
+                        <StackLayout VerticalOptions="Center" BackgroundColor="{StaticResource ListHeader}" Padding="{StaticResource HeaderPadding}" Orientation="Horizontal">
+                            <Label Text="{Binding Key.Key}" VerticalOptions="Center" VerticalTextAlignment="Center"
+                                FontSize="{StaticResource LabelFontSize}" FontAttributes="{StaticResource LabelFontType}" HorizontalOptions="StartAndExpand" />
+                            <iconize:IconButton Text="ion-ios-information-outline" WidthRequest="{StaticResource LabelFontSize}" HeightRequest="{StaticResource LabelFontSize}"
+                                HorizontalOptions="EndAndExpand" IsVisible="{Binding Key.Source, Converter={StaticResource IgnoreEmptyString}}"
+                                CommandParameter="{Binding Key.Key}"
+                                Command="{Binding Source={x:Reference root}, Path=BindingContext.OpenPlceDetailCommand}" />
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.GroupHeaderTemplate>
