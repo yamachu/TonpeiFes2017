@@ -66,10 +66,23 @@
                         <StackLayout VerticalOptions="Center" BackgroundColor="{StaticResource ListHeader}" Padding="{StaticResource HeaderPadding}" Orientation="Horizontal">
                             <Label Text="{Binding Key.Key}" VerticalOptions="Center" VerticalTextAlignment="Center"
                                 FontSize="{StaticResource LabelFontSize}" FontAttributes="{StaticResource LabelFontType}" HorizontalOptions="StartAndExpand" />
-                            <iconize:IconButton Text="ion-ios-information-outline" WidthRequest="{StaticResource LabelFontSize}" HeightRequest="{StaticResource LabelFontSize}"
-                                HorizontalOptions="EndAndExpand" IsVisible="{Binding Key.Source, Converter={StaticResource IgnoreEmptyString}}"
-                                CommandParameter="{Binding Key.Key}"
-                                Command="{Binding Source={x:Reference root}, Path=BindingContext.OpenPlceDetailCommand}" />
+                            <ContentView IsVisible="{StaticResource IsIOS}" HorizontalOptions="EndAndExpand">
+                                <iconize:IconButton Text="ion-ios-information-outline" WidthRequest="{StaticResource LabelFontSize}" HeightRequest="{StaticResource LabelFontSize}"
+                                    IsVisible="{Binding Key.Source, Converter={StaticResource IgnoreEmptyString}}"
+                                    FontSize="{StaticResource LabelFontSize}"
+                                    CommandParameter="{Binding Key.Key}"
+                                    Command="{Binding Source={x:Reference root}, Path=BindingContext.OpenPlceDetailCommand}" />
+                            </ContentView>
+                            <ContentView IsVisible="{StaticResource IsAndroid}" HorizontalOptions="EndAndExpand">
+                                <Label Text="詳細位置" TextColor="{StaticResource LightPrimary}" VerticalOptions="Center" VerticalTextAlignment="Center"
+                                    FontSize="14" IsVisible="{Binding Key.Source, Converter={StaticResource IgnoreEmptyString}}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            CommandParameter="{Binding Key.Key}"
+                                            Command="{Binding Source={x:Reference root}, Path=BindingContext.OpenPlceDetailCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </ContentView>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
