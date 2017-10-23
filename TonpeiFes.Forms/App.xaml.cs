@@ -48,6 +48,8 @@ namespace TonpeiFes.Forms
             Container.RegisterTypeForNavigation<FestaMapRootPage>();
             Container.RegisterTypeForNavigation<PlanningDetailPage>();
 
+            Container.RegisterTypeForNavigation<DetailFloorPage>();
+
 #if LOCAL
             Container.RegisterType<IRepository<Exhibition>, MockExhibitionRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<FavoritedPlanning>, MockFavoritedPlanningRepository>(new ContainerControlledLifetimeManager());
