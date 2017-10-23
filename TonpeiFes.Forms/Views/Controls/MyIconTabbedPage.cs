@@ -5,9 +5,6 @@ namespace TonpeiFes.Forms.Views.Controls
 {
     public class MyIconTabbedPage : OutlinedNonSelectedIconTabbedPage
     {
-        public event TabPageChangedHandler TabChanged;
-        public delegate void TabPageChangedHandler(TabInfoEventArgs e);
-
         public static readonly BindableProperty CurrentTabIndexProperty =
             BindableProperty.Create(nameof(CurrentTabIndex),
                                     typeof(int),
@@ -32,4 +29,3 @@ namespace TonpeiFes.Forms.Views.Controls
         }
     }
 }
-
