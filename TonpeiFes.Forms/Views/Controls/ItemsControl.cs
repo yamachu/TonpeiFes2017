@@ -19,8 +19,10 @@ namespace TonpeiFes.Forms.Views.Controls
         /// <summary>
         /// ItemsPanel BindableProperty
         /// </summary>
-        public static readonly BindableProperty ItemsPanelProperty = BindableProperty.Create<ItemsControl, Layout<View>>(
-            p => p.ItemsPanel,
+        public static readonly BindableProperty ItemsPanelProperty = BindableProperty.Create(
+            nameof(ItemsPanel),
+            typeof(Layout<View>),
+            typeof(ItemsControl),
             null,
             BindingMode.OneWay,
             null,
@@ -41,7 +43,7 @@ namespace TonpeiFes.Forms.Views.Controls
         /// <param name="bindable">BindableObject</param>
         /// <param name="oldValue">古い値</param>
         /// <param name="newValue">新しい値</param>
-        private static void OnItemsPanelChanged(BindableObject bindable, Layout<View> oldValue, Layout<View> newValue)
+        private static void OnItemsPanelChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = bindable as ItemsControl;
             if (control == null)
@@ -49,18 +51,18 @@ namespace TonpeiFes.Forms.Views.Controls
                 return;
             }
 
-            if (oldValue != null)
+            if ((oldValue as Layout<View>) != null)
             {
-                oldValue.Children.Clear();
+                (oldValue as Layout<View>).Children.Clear();
             }
 
-            if (newValue == null)
+            if ((newValue as Layout<View>) == null)
             {
                 return;
             }
 
             control.ItemsRender();
-            control.Content = newValue;
+            control.Content = newValue as Layout<View>;
             control.UpdateChildrenLayout();
             control.InvalidateLayout();
         }
@@ -72,8 +74,10 @@ namespace TonpeiFes.Forms.Views.Controls
         /// <summary>
         /// ItemsSource BindableProperty
         /// </summary>
-        public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create<ItemsControl, IEnumerable>(
-            p => p.ItemsSource,
+        public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
+            nameof(ItemsSource),
+            typeof(IEnumerable),
+            typeof(ItemsControl),
             new ObservableCollection<object>(),
             BindingMode.OneWay,
             null,
@@ -94,7 +98,7 @@ namespace TonpeiFes.Forms.Views.Controls
         /// <param name="bindable">BindableObject</param>
         /// <param name="oldValue">古い値</param>
         /// <param name="newValue">新しい値</param>
-        private static void OnItemsSourceChanged(BindableObject bindable, IEnumerable oldValue, IEnumerable newValue)
+        private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = bindable as ItemsControl;
             if (control == null)
@@ -132,8 +136,10 @@ namespace TonpeiFes.Forms.Views.Controls
         /// <summary>
         /// ItemTemplate BindableProperty
         /// </summary>
-        public static readonly BindableProperty ItemTemplateProperty = BindableProperty.Create<ItemsControl, DataTemplate>(
-            p => p.ItemTemplate,
+        public static readonly BindableProperty ItemTemplateProperty = BindableProperty.Create(
+            nameof(ItemTemplate),
+            typeof(DataTemplate),
+            typeof(ItemsControl),
             default(DataTemplate));
 
         /// <summary>
@@ -152,8 +158,10 @@ namespace TonpeiFes.Forms.Views.Controls
         /// <summary>
         /// ItemTemplate BindableProperty
         /// </summary>
-        public static readonly BindableProperty ItemTemplateSelectorProperty = BindableProperty.Create<ItemsControl, DataTemplateSelector>(
-            p => p.ItemTemplateSelector,
+        public static readonly BindableProperty ItemTemplateSelectorProperty = BindableProperty.Create(
+            nameof(ItemTemplateSelector),
+            typeof(DataTemplateSelector),
+            typeof(ItemsControl),
             default(DataTemplateSelector),
             BindingMode.OneWay,
             null,
@@ -174,7 +182,7 @@ namespace TonpeiFes.Forms.Views.Controls
         /// <param name="bindable">BindableObject</param>
         /// <param name="oldValue">古い値</param>
         /// <param name="newValue">新しい値</param>
-        private static void OnItemTemplateSelectorChanged(BindableObject bindable, DataTemplateSelector oldValue, DataTemplateSelector newValue)
+        private static void OnItemTemplateSelectorChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = bindable as ItemsControl;
             if (control == null)
@@ -222,7 +230,6 @@ namespace TonpeiFes.Forms.Views.Controls
                 {
                     view = (View)content;
                 }
-
                 view.BindingContext = item;
                 this.ItemsPanel.Children.Add(view);
                 index++;
