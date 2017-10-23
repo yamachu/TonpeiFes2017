@@ -19,11 +19,11 @@ namespace TonpeiFes.Core.Models.DataObjects
         private IList<StallDescription> Descriptions_ { get; }
 
         [Ignored]
-        public IList<IDescription> Descriptions
+        public IList<IDescriptionImpl> Descriptions
         {
             get
             {
-                return Descriptions_?.Select((description) => description as IDescription).ToList() ?? new List<IDescription>();
+                return Descriptions_?.Select((description) => new IDescriptionImpl { Title = description.Title, Detail = description.Detail }).ToList();
             }
         }
 

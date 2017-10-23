@@ -16,14 +16,14 @@ namespace TonpeiFes.Core.Models.DataObjects
 
         public string Owner { get; set; }
 
-        private IList<StageEventDescription> Descriptions_ { get; }
+        public IList<StageEventDescription> Descriptions_ { get; }
 
         [Ignored]
-        public IList<IDescription> Descriptions
+        public IList<IDescriptionImpl> Descriptions
         {
             get
             {
-                return Descriptions_?.Select((description) => description as IDescription).ToList() ?? new List<IDescription>();
+                return Descriptions_?.Select((description) => new IDescriptionImpl { Title = description.Title, Detail = description.Detail }).ToList();
             }
         }
 

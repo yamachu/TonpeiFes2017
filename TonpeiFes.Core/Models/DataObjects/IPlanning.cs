@@ -10,7 +10,7 @@ namespace TonpeiFes.Core.Models.DataObjects
 
         string Title { get; }
         string Owner { get; }
-        IList<IDescription> Descriptions { get; }
+        IList<IDescriptionImpl> Descriptions { get; }
         PlanningTypeEnum PlanningType { get; }
         // Icon
 
