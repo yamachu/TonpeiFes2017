@@ -3,7 +3,7 @@
     xmlns:ex="clr-namespace:TonpeiFes.Forms.Views.Extensions"
     Title="{Binding Title}">
     <StackLayout Spacing="0">
-        <Image Source="{ex:ImageResource Source=TonpeiFes.Forms.Resources.HomeInfo.jpg}" Aspect="AspectFill" />
+        <Image Source="{ex:ImageResource Source=TonpeiFes.Forms.Resources.HomeInfo.jpg}" Aspect="AspectFit" />
 
         <ContentView Padding="8" BackgroundColor="{StaticResource WhiteGray}" >
             <Label Text="お知らせ" FontAttributes="Bold" FontSize="16" />
