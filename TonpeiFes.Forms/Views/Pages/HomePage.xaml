@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.HomePage"
+    xmlns:ex="clr-namespace:TonpeiFes.Forms.Views.Extensions"
     Title="{Binding Title}">
-    <Label Text="Show Home"></Label>
+    <StackLayout Spacing="0">
+        <Image Source="{ex:ImageResource Source=TonpeiFes.Forms.Resources.HomeInfo.jpg}" Aspect="AspectFill" />
+
+        <ContentView Padding="8" BackgroundColor="{StaticResource WhiteGray}" >
+            <Label Text="お知らせ" FontAttributes="Bold" FontSize="16" />
+        </ContentView>
+
+        <ListView />
+    </StackLayout>
 </ContentPage>

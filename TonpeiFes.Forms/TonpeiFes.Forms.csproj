@@ -33,6 +33,8 @@
     <Folder Include="Converters\" />
     <Folder Include="Views\Cells\" />
     <Folder Include="Configurations\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Views\Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,11 +43,15 @@
   <ItemGroup>
     <Compile Update="**\*.xaml.cs" DependentUpon="%(Filename)" />
     <EmbeddedResource Include="**\*.xaml" SubType="Designer" Generator="MSBuild:UpdateDesignTimeXaml" />
+    <EmbeddedResource Include="Resources\HomeInfo.jpg" />
   </ItemGroup>
   <!--  If you add xaml to this project, must remove EmbeddedResource tag  -->
 
   <ItemGroup>
     <ProjectReference Include="..\TonpeiFes.MobileCore\TonpeiFes.MobileCore.csproj" />
     <ProjectReference Include="..\TonpeiFes.Core\TonpeiFes.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\HomeInfo.jpg" />
   </ItemGroup>
 </Project>

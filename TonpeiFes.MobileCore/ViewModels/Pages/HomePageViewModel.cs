@@ -8,7 +8,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
     public class HomePageViewModel : ViewModelBase
     {
-        public string Title => "東北大学祭'69";
+        public string Title => "東北大学祭 2017";
         public HomePageViewModel()
         {
 
