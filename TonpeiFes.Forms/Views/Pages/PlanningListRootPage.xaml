@@ -5,11 +5,10 @@
     xmlns:cells="clr-namespace:TonpeiFes.Forms.Views.Cells"
     xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
     xmlns:cv="clr-namespace:TonpeiFes.Forms.Converters;assembly=TonpeiFes.Forms"
-    x:Name="root" Title="{Binding Title}" NavigationPage.HasNavigationBar="{StaticResource IsAndroid}" >
+    x:Name="root" Title="{Binding Title}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <OnPlatform x:Key="HeaderCellHeight" x:TypeArguments="x:Double" iOS="28" />
-            <OnPlatform x:Key="SearchBarWidthRequest" x:TypeArguments="x:Double" iOS="1" Android="-1" />
             <OnPlatform x:Key="HeaderPadding" x:TypeArguments="Thickness" iOS="16,0" Android="16,8" />
             <OnPlatform x:Key="LabelFontSize" x:TypeArguments="x:Double" iOS="16" Android="18" />
             <OnPlatform x:Key="LabelFontType" x:TypeArguments="FontAttributes" iOS="Bold" />
@@ -24,26 +23,14 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="0">
-        <!--  iOSは横画面にすると20のパティングいらない  -->
-        <!--  ToDo: RotationHandlingしてPaddingを動的に変更してレンダリングし直す  -->
-        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}" Spacing="0" Padding="{StaticResource NonNavPagePadding}">
-            <ContentView Padding="16,0,0,0" IsVisible="{StaticResource IsIOS}">
-                <Image Source="{Binding IconSource.Value}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding FavButtonClickCommand}" />
-                    </Image.GestureRecognizers>
-                </Image>
-            </ContentView>
-            <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White" WidthRequest="{StaticResource SearchBarWidthRequest}">
-                <SearchBar.PlaceholderColor>
-                    <OnPlatform x:TypeArguments="Color" Android="#99FFFFFF" />
-                </SearchBar.PlaceholderColor>
-                <SearchBar.TextColor>
-                    <OnPlatform x:TypeArguments="Color" Android="White" />
-                </SearchBar.TextColor>
-            </SearchBar>
-            
-        </StackLayout>
+        <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White">
+            <SearchBar.PlaceholderColor>
+                <OnPlatform x:TypeArguments="Color" Android="#99FFFFFF" />
+            </SearchBar.PlaceholderColor>
+            <SearchBar.TextColor>
+                <OnPlatform x:TypeArguments="Color" Android="White" />
+            </SearchBar.TextColor>
+        </SearchBar>
         <StackLayout Padding="{StaticResource SegmentedControlPadding}">
             <segments:SegmentedControl SelectedSegment="{Binding SelectedSegment.Value, Mode=OneWayToSource}" TintColor="{StaticResource Primary}" SelectedTextColor="{StaticResource Text}">
                 <segments:SegmentedControl.Children>
