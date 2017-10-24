@@ -44,6 +44,16 @@
     <Compile Update="**\*.xaml.cs" DependentUpon="%(Filename)" />
     <EmbeddedResource Include="**\*.xaml" SubType="Designer" Generator="MSBuild:UpdateDesignTimeXaml" />
     <EmbeddedResource Include="Resources\HomeInfo.jpg" />
+    <EmbeddedResource Include="Resources\A1.jpg" />
+    <EmbeddedResource Include="Resources\A2.jpg" />
+    <EmbeddedResource Include="Resources\A3.jpg" />
+    <EmbeddedResource Include="Resources\A4.jpg" />
+    <EmbeddedResource Include="Resources\B1.jpg" />
+    <EmbeddedResource Include="Resources\B2.jpg" />
+    <EmbeddedResource Include="Resources\C1.jpg" />
+    <EmbeddedResource Include="Resources\C2.jpg" />
+    <EmbeddedResource Include="Resources\C3.jpg" />
+    <EmbeddedResource Include="Resources\C4.jpg" />
   </ItemGroup>
   <!--  If you add xaml to this project, must remove EmbeddedResource tag  -->
 
@@ -53,5 +63,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\HomeInfo.jpg" />
+    <None Remove="Resources\A1.jpg" />
+    <None Remove="Resources\A2.jpg" />
+    <None Remove="Resources\A3.jpg" />
+    <None Remove="Resources\A4.jpg" />
+    <None Remove="Resources\B1.jpg" />
+    <None Remove="Resources\B2.jpg" />
+    <None Remove="Resources\C1.jpg" />
+    <None Remove="Resources\C2.jpg" />
+    <None Remove="Resources\C3.jpg" />
+    <None Remove="Resources\C4.jpg" />
   </ItemGroup>
 </Project>
