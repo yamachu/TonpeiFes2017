@@ -48,7 +48,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 // Mapが選択された時にデフォルトの場所に移動
                 if (value == 3)
                 {
-                    _eventAggregator.GetEvent<MapMoveEvent>().Publish(new MapMoveEventArgs(0, 0, true));
+                    _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.FestaMapRootPageViewModel).GetViewNameFromRule()));
                 }
             });
         }
