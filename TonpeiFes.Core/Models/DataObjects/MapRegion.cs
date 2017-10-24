@@ -40,6 +40,9 @@ namespace TonpeiFes.Core.Models.DataObjects
             }
         }
 
+        // When this flag is false, Polygon Region only
         public bool ContainsPlannings { get; set; } = true;
+
+        public IList<MapRegion> ChildMapRegion { get; }
     }
 }

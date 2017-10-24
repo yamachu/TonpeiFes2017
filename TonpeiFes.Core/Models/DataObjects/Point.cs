@@ -6,6 +6,14 @@ namespace TonpeiFes.Core.Models.DataObjects
         public double Langitude { get; set; }
         public double Longitude { get; set; }
 
+        public Point() {}
+
+        public Point(double langitude, double longitude)
+        {
+            Langitude = langitude;
+            Longitude = longitude;
+        }
+
         public static Point operator +(Point a, Point b)
         {
             return new Point
