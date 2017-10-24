@@ -15,6 +15,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
     {
         private readonly static string NavigationKey = "NavigationKey";
 
+        public ReactiveProperty<string> Title { get; } = new ReactiveProperty<string>("会場全体図");
         public ReadOnlyObservableCollection<Pin> Pins { get; }
         public ReadOnlyObservableCollection<Polygon> Polygons { get; }
 
