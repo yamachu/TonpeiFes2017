@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.FestaMapRootPage"
-    xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps">
+    xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+    NavigationPage.HasNavigationBar="{StaticResource IsAndroid}">
     <maps:Map x:Name="map"
-        VerticalOptions="FillAndExpand" IsShowingUser="true"/>
+        VerticalOptions="FillAndExpand" IsShowingUser="{Binding IsShowingUser.Value}"
+        SelectedPin="{Binding SelectedPin.Value, Mode=TwoWay}">
+        <maps:Map.Behaviors>
+            <behaviors:EventToCommandBehavior EventName="InfoWindowClicked" Command="{Binding InfoWindowClickedCommand}" EventArgsParameterPath="Pin" />
+        </maps:Map.Behaviors>
+    </maps:Map>
 </ContentPage>
