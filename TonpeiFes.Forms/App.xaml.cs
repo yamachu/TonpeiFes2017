@@ -55,6 +55,7 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IRepository<FavoritedPlanning>, MockFavoritedPlanningRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<StageEvent>, MockStageEventRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<Stall>, MockStallRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IRepository<MyGroupHeader>, MockMyGroupHeaderRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDatabaseService, MockDatabaseService>(new ContainerControlledLifetimeManager());
 #elif DESIGN
 #else
@@ -62,6 +63,7 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IRepository<FavoritedPlanning>, FavoritedPlanningRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<StageEvent>, StageEventRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<Stall>, StallRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IRepository<MyGroupHeader>, MyGroupHeaderRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDatabaseService, RealmDatabaseService>(new ContainerControlledLifetimeManager());
 #endif
 
