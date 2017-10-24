@@ -78,6 +78,7 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IFilterGroupingPlanning, FilterGroupingPlanning>();
             Container.RegisterType<IFilterGroupingStageEvent, FilterGroupingStageEvent>();
             Container.RegisterType<IShowPlanningDetail, ShowPlanningDetail>();
+            Container.RegisterType<IShowFestaMap, ShowFestaMap>();
 
             Task.Run(async () =>
             {
