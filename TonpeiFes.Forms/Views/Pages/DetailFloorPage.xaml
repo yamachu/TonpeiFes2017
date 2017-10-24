@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.DetailFloorPage"
-    Title="{Binding Title}">
+    xmlns:ex="clr-namespace:TonpeiFes.Forms.Views.Extensions"
+    Title="{Binding Title.Value}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="ic_clear" Command="{Binding CloseButtonClickCommand}" Priority="1" />
     </ContentPage.ToolbarItems>
 
-    <!--  ここに場所の詳細の画像  -->
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Image Source="{ex:BindableImageResource Resource,Param=ImageSource.Value}" Aspect="AspectFit" />
+    </StackLayout>
 </ContentPage>

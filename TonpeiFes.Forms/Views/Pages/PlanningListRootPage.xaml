@@ -57,7 +57,7 @@
                                 <iconize:IconButton Text="ion-ios-information-outline" WidthRequest="{StaticResource LabelFontSize}" HeightRequest="{StaticResource LabelFontSize}"
                                     IsVisible="{Binding Key.Source, Converter={StaticResource IgnoreEmptyString}}"
                                     FontSize="{StaticResource LabelFontSize}"
-                                    CommandParameter="{Binding Key.Key}"
+                                    CommandParameter="{Binding Key.Id}"
                                     Command="{Binding Source={x:Reference root}, Path=BindingContext.OpenPlceDetailCommand}" />
                             </ContentView>
                             <ContentView IsVisible="{StaticResource IsAndroid}" HorizontalOptions="EndAndExpand">
@@ -65,7 +65,7 @@
                                     FontSize="14" IsVisible="{Binding Key.Source, Converter={StaticResource IgnoreEmptyString}}">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer
-                                            CommandParameter="{Binding Key.Key}"
+                                            CommandParameter="{Binding Key.Id}"
                                             Command="{Binding Source={x:Reference root}, Path=BindingContext.OpenPlceDetailCommand}" />
                                     </Label.GestureRecognizers>
                                 </Label>
