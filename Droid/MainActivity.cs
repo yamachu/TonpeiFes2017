@@ -11,6 +11,7 @@ using Prism.Unity;
 using Microsoft.Practices.Unity;
 using SegmentedControl.FormsPlugin.Android;
 using TonpeiFes.Forms;
+using Plugin.Permissions;
 
 namespace TonpeiFes.Droid
 {
@@ -35,6 +36,11 @@ namespace TonpeiFes.Droid
             Xamarin.FormsGoogleMaps.Init(this, bundle);
 
             LoadApplication(new App(new AndroidInitializer()));
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 

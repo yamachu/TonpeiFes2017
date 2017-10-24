@@ -235,6 +235,15 @@
     <Reference Include="Xamarin.Forms.GoogleMaps">
       <HintPath>..\packages\Xamarin.Forms.GoogleMaps.2.1.1\lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.CurrentActivity">
+      <HintPath>..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions.Abstractions">
+      <HintPath>..\packages\Plugin.Permissions.2.1.0\lib\MonoAndroid10\Plugin.Permissions.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\packages\Plugin.Permissions.2.1.0\lib\MonoAndroid10\Plugin.Permissions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TonpeiFes.Forms\TonpeiFes.Forms.csproj">

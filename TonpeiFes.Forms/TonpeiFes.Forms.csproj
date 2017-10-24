@@ -26,6 +26,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.2.20" />
     <PackageReference Include="Xamarin.Forms" Version="2.3.5.256-pre6" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="2.1.1" />
+    <PackageReference Include="Plugin.Permissions" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>

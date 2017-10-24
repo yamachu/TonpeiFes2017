@@ -16,6 +16,10 @@ using TonpeiFes.MobileCore.DesignViewModels.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Events;
+using System.Threading.Tasks;
+using TonpeiFes.MobileCore.Models.EventArgs;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TonpeiFes.Forms
@@ -50,6 +54,8 @@ namespace TonpeiFes.Forms
 
             Container.RegisterTypeForNavigation<DetailFloorPage>();
 
+            Container.RegisterType<IEventAggregator, EventAggregator>(new ContainerControlledLifetimeManager());
+
 #if LOCAL
             Container.RegisterType<IRepository<Exhibition>, MockExhibitionRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<FavoritedPlanning>, MockFavoritedPlanningRepository>(new ContainerControlledLifetimeManager());
@@ -71,7 +77,10 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IFilterGroupingStageEvent, FilterGroupingStageEvent>();
             Container.RegisterType<IShowPlanningDetail, ShowPlanningDetail>();
 
-            Container.RegisterType<IEventAggregator, EventAggregator>(new ContainerControlledLifetimeManager());
+            Task.Run(async () =>
+            {
+                await MyInitializeModules();
+            });
         }
 
         // https://github.com/amay077/XamarinFormsGachiSample2016Winter/blob/master/XamarinFormsGachiSample2016Winter/App.cs
@@ -83,6 +92,29 @@ namespace TonpeiFes.Forms
 #else
             ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver(MobileCore.DesignViewModelTypeResolver.Resolve);
 #endif
+        }
+
+        private async Task MyInitializeModules()
+        {
+            Container.Resolve<IEventAggregator>()
+                     .GetEvent<LocationPermissionRequestEvent>()
+                     .Subscribe(async (_) =>
+            {
+                var granted = await CheckLocationPermissionAsync();
+                Container.Resolve<IEventAggregator>()
+                         .GetEvent<LocationPermissionRequestResultEvent>()
+                         .Publish(new LocationPermissionRequestResultEventArgs(granted));
+            });
+        }
+
+        private async Task<bool> CheckLocationPermissionAsync()
+        {
+            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+            if (status != PermissionStatus.Granted)
+            {
+                status = (await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location))[Permission.Location];
+            }
+            return status == PermissionStatus.Granted;
         }
     }
 }
