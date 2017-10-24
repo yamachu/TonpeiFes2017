@@ -15,8 +15,7 @@ namespace TonpeiFes.Forms.Views.Extensions
         public object ProvideValue(IServiceProvider serviceProvider)
         {
             if (Source == null) return null;
-            var a = ImageSource.FromResource(Source);
-            return a;
+            return ImageSource.FromResource(Source);
         }
     }
 }
