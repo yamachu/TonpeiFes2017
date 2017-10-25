@@ -28,6 +28,8 @@
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="2.1.1" />
     <PackageReference Include="Plugin.Permissions" Version="2.1.0" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps.Bindings" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Crashes" Version="0.16.0" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Analytics" Version="0.16.0" />
   </ItemGroup>
 
   <ItemGroup>
