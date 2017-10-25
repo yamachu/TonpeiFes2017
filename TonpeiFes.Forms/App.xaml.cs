@@ -55,6 +55,7 @@ namespace TonpeiFes.Forms
             Container.RegisterTypeForNavigation<StageEventListRootPage>();
             Container.RegisterTypeForNavigation<FestaMapRootPage>();
             Container.RegisterTypeForNavigation<PlanningDetailPage>();
+            Container.RegisterTypeForNavigation<RegionSpecificPlanningListPage, MobileCore.ViewModels.Pages.PlanningListRootPageViewModel>();
 
             Container.RegisterTypeForNavigation<DetailFloorPage>();
 
