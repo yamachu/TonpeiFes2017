@@ -22,13 +22,25 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using TonpeiFes.Forms.Configurations;
 using TonpeiFes.Forms.Service;
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TonpeiFes.Forms
 {
     public partial class App : PrismApplication
     {
-        public App(IPlatformInitializer initializer = null) : base(initializer) { }
+        public App(IPlatformInitializer initializer = null) : base(initializer)
+        {
+#if DEBUG
+            MobileCenter.Start($"android={MobileCenterDebugAPI.MOBILE_CENTER_ANDROID_API_KEY};ios={MobileCenterDebugAPI.MOBILE_CENTER_IOS_API_KEY}",
+                   typeof(Analytics), typeof(Crashes));
+#else
+            MobileCenter.Start($"android={MobileCenterAPI.MOBILE_CENTER_ANDROID_API_KEY};ios={MobileCenterAPI.MOBILE_CENTER_IOS_API_KEY}",
+                   typeof(Analytics), typeof(Crashes));
+#endif
+        }
 
         // To enable XAML Preview, need parameterless constructor
         public App() => this.InitializeComponent();
@@ -93,6 +105,7 @@ namespace TonpeiFes.Forms
 
             Container.RegisterInstance<MobileCore.Configurations.IMapAssociated>(new MapAssociated());
             Container.RegisterInstance<IOpenWebPageService>(new OpenWebPageService());
+            Container.RegisterType<IAnalyticsService, AnalyticsService>();
 
             Task.Run(async () =>
             {
