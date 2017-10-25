@@ -1,23 +1,26 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Reactive.Disposables;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
 using Reactive.Bindings;
+using TonpeiFes.MobileCore.Configurations;
 using TonpeiFes.MobileCore.Models.EventArgs;
 using TonpeiFes.MobileCore.Usecases;
 using Xamarin.Forms.GoogleMaps;
+using Xamarin.Forms.GoogleMaps.Bindings;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
-    public class FestaMapRootPageViewModel : ViewModelBase
+    public class FestaMapRootPageViewModel : ViewModelBase, IDestructible
     {
         private readonly static string NavigationKey = "NavigationKey";
 
         public ReactiveProperty<string> Title { get; } = new ReactiveProperty<string>("会場全体図");
-        public ReadOnlyObservableCollection<Pin> Pins { get; }
-        public ReadOnlyObservableCollection<Polygon> Polygons { get; }
+        public ObservableCollection<Pin> Pins { get; set; }
+        public ObservableCollection<Polygon> Polygons { get; set; }
 
         public ICommand InfoWindowClickedCommand { get; }
         public ReactiveProperty<Pin> SelectedPin { get; } = new ReactiveProperty<Pin>();
@@ -26,17 +29,23 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         private IEventAggregator _eventAggregator;
         private INavigationService _navigationService;
         private IShowFestaMap showFestaUsecase;
+        private IMapAssociated _mapParams;
 
         private bool IsGlobalMap = true;
         private bool IsInitialized = false;
 
-        public FestaMapRootPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator, IShowFestaMap showFesta)
+        private CompositeDisposable Disposable { get; } = new CompositeDisposable();
+
+        public MoveToRegionRequest MoveToRegionRequest { get; } = new MoveToRegionRequest();
+
+        public FestaMapRootPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator, IShowFestaMap showFesta, IMapAssociated mapParam)
         {
             _eventAggregator = eventAggregator;
             _navigationService = navigationService;
             showFestaUsecase = showFesta;
+            _mapParams = mapParam;
 
-            InfoWindowClickedCommand = new DelegateCommand<Pin>((pin) =>
+            InfoWindowClickedCommand = new DelegateCommand<InfoWindowClickedEventArgs>((pin) =>
             {
                 if (IsGlobalMap)
                 {
@@ -47,10 +56,51 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             _eventAggregator.GetEvent<PolygonClickedEvent>().Subscribe((pin) =>
             {
                 SelectedPin.Value = pin.Tag as Pin;
+                MoveToRegionRequest.MoveToRegion(
+                        MapSpan.FromCenterAndRadius(SelectedPin.Value.Position, Distance.FromMeters(100)));
             });
 
-            Pins = showFesta.Pins.ToReadOnlyReactiveCollection();
-            Polygons = showFesta.Polygons.ToReadOnlyReactiveCollection();
+            var _pinDisposable = showFesta.Pins.ToCollectionChanged<Pin>()
+                     .Subscribe(change =>
+            {
+                switch (change.Action)
+                {
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                        Pins.Add(change.Value);
+                        break;
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+                        break;
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                        Pins.Remove(change.Value);
+                        break;
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
+                        break;
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
+                        Pins.Clear();
+                        break;
+                }
+            });
+
+            var _polyDisposable = showFesta.Polygons.ToCollectionChanged<Polygon>()
+                     .Subscribe(change =>
+            {
+                switch (change.Action)
+                {
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                        Polygons?.Add(change.Value);
+                        break;
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+                        break;
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                        Polygons?.Remove(change.Value);
+                        break;
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
+                        break;
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
+                        Polygons?.Clear();
+                        break;
+                }
+            });
 
             // For iOS
             _eventAggregator.GetEvent<TabbedPageOpendEvent>().Subscribe((ev) =>
@@ -60,7 +110,11 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 IsShowingUser.Value = true;
                 if (IsGlobalMap)
                 {
-                    _eventAggregator.GetEvent<MapMoveEvent>().Publish(new MapMoveEventArgs(0, 0, true));
+                    MoveToRegionRequest.MoveToRegion(
+                        MapSpan.FromCenterAndRadius(
+                            new Position(_mapParams.MapCenterLangitude, _mapParams.MapCenterLongitude),
+                            Distance.FromMeters(100)));
+
                     if (!IsInitialized)
                     {
                         showFestaUsecase.InitializeAllMapObjects();
@@ -75,6 +129,8 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 IsShowingUser.Value = ev.Granted;
             });
 
+            Disposable.Add(_pinDisposable);
+            Disposable.Add(_polyDisposable);
         }
 
         // iOS: called with parameter only
@@ -90,6 +146,15 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 showFestaUsecase.InitializeAllMapObjects();
                 _eventAggregator.GetEvent<LocationPermissionRequestEvent>().Publish(new LocationPermissionRequestEventArgs());
             }
+            else
+            {
+                
+            }
+        }
+
+        public void Destroy()
+        {
+            Disposable.Dispose();
         }
     }
 }
