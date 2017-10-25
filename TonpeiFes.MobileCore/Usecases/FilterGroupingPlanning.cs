@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using TonpeiFes.Core.Models.Consts;
 using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Helpers;
@@ -19,10 +20,6 @@ namespace TonpeiFes.MobileCore.Usecases
         private IRepository<Stall> _stallRepository;
         private IRepository<FavoritedPlanning> _favoritedRepository;
 
-        private string SearchQuery = "";
-        private int ActiveSegment = 0;
-        private bool IsFavorited = false;
-
         public FilterGroupingPlanning(IRepository<Exhibition> exhibitionRep,
                                       IRepository<Stall> stallRep,
                                       IRepository<FavoritedPlanning> favoritedRep)
@@ -34,23 +31,32 @@ namespace TonpeiFes.MobileCore.Usecases
             Plannings = new ReadOnlyObservableCollection<ObservableGroupCollection<MyGroupHeader, ISearchableListPlanning>>(_plannings);
         }
 
-        public async Task UpdateFilterConditions(string query, int activeSegment, bool favorited)
+        public async Task UpdateFilterConditions(string query, PlanningTypeEnum type, bool favorited, string placeId)
         {
-            SearchQuery = query;
-            ActiveSegment = activeSegment;
-            IsFavorited = favorited;
-
             _plannings.Clear();
-            switch (ActiveSegment)
+
+            switch (type)
             {
-                case 0:
-                    foreach (var ex in _stallRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedStall(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).IconedGroupingPlannings())
+                case PlanningTypeEnum.STALL:
+                    foreach (var ex in _stallRepository
+                             .GetAll()
+                             .FilterByKeyword(query)
+                             .FilterByPlace(placeId)
+                             .FilterByFavoritedStall(favorited, _favoritedRepository)
+                             .Select(item => (dynamic)item as ISearchableListPlanning)
+                             .IconedGroupingPlannings())
                     {
                         _plannings.Add(ex);
                     }
                     break;
-                case 1:
-                    foreach (var ex in _exhibitionRepository.GetAll().FilterByKeyword(SearchQuery).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).IconedGroupingPlannings())
+                case PlanningTypeEnum.EXHIBITION:
+                    foreach (var ex in _exhibitionRepository
+                             .GetAll()
+                             .FilterByKeyword(query)
+                             .FilterByPlace(placeId)
+                             .FilterByFavoritedExhibition(favorited, _favoritedRepository)
+                             .Select(item => (dynamic)item as ISearchableListPlanning)
+                             .IconedGroupingPlannings())
                     {
                         _plannings.Add(ex);
                     }
@@ -73,17 +79,29 @@ namespace TonpeiFes.MobileCore.Usecases
             return string.IsNullOrEmpty(query) ? list : list.Where((item) => item.SearchableKeywords.Contains(query));
         }
 
+        public static IEnumerable<Exhibition> FilterByPlace(this IEnumerable<Exhibition> list, string placeId)
+        {
+            if (placeId.IsNullOrEmptyOrWhitespace()) return list;
+            return list.Where(item => item.MappedRegion.Id == placeId);
+        }
+
+        public static IEnumerable<Stall> FilterByPlace(this IEnumerable<Stall> list, string placeId)
+        {
+            if (placeId.IsNullOrEmptyOrWhitespace()) return list;
+            return list.Where(item => item.MappedRegion.Id == placeId);
+        }
+
         public static IEnumerable<Exhibition> FilterByFavoritedExhibition(this IEnumerable<Exhibition> list, bool favorited, IRepository<FavoritedPlanning> repository)
         {
             if (!favorited) return list;
-            var favoritedList = repository.GetAll().Where((item) => item.PlanningType == Core.Models.Consts.PlanningTypeEnum.EXHIBITION);
+            var favoritedList = repository.GetAll().Where((item) => item.PlanningType == PlanningTypeEnum.EXHIBITION);
             return favoritedList.Select((fav) => list.FirstOrDefault((item) => item.Id == fav.Id));
         }
 
         public static IEnumerable<Stall> FilterByFavoritedStall(this IEnumerable<Stall> list, bool favorited, IRepository<FavoritedPlanning> repository)
         {
             if (!favorited) return list;
-            var favoritedList = repository.GetAll().Where((item) => item.PlanningType == Core.Models.Consts.PlanningTypeEnum.STALL);
+            var favoritedList = repository.GetAll().Where((item) => item.PlanningType == PlanningTypeEnum.STALL);
             return favoritedList.Select((fav) => list.FirstOrDefault((item) => item.Id == fav.Id));
         }
     }
