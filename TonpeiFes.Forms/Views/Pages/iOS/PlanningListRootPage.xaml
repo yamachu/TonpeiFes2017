@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="{Binding IconSource.Value}" Command="{Binding FavButtonClickCommand}" Priority="-1" />
+        <ToolbarItem Icon="{Binding IconSource.Value}" Command="{Binding FavButtonClickCommand}" Priority="1" />
     </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="0">
