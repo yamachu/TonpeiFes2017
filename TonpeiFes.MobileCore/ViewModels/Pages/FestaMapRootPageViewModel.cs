@@ -63,7 +63,10 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                     }
                     else
                     {
-                        //_navigationService.NavigateAsync();
+                        var type = region.MapObjectType.HasFlag(MapObjectEnum.EXHIBITION) ? PlanningTypeEnum.EXHIBITION : PlanningTypeEnum.STALL;
+                        await _navigationService.NavigateAsync(
+                            "RegionSpecificPlanningListPage",
+                            PlanningListRootPageViewModel.GetNavigationParameter(region.Id, region.Name, type));
                     }
                 }
             });
