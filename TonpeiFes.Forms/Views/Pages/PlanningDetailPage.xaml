@@ -82,25 +82,29 @@
                 <StackLayout>
                     <iconize:IconButton Text="ion-home" TextColor="{StaticResource Accent}" FontSize="28" HorizontalOptions="Center"
                         WidthRequest="{StaticResource SNSIconWidthRequest}" HeightRequest="{StaticResource SNSIconHeightRequest}"
-                        BackgroundColor="Transparent" IsEnabled="{Binding DetailModel.Value.SNS, Converter={StaticResource NestedObjIgnoreEmpty}, ConverterParameter=HomePage}" />
+                        BackgroundColor="Transparent" IsEnabled="{Binding DetailModel.Value.SNS, Converter={StaticResource NestedObjIgnoreEmpty}, ConverterParameter=HomePage}"
+                        Command="{Binding OpenUriCommand}" CommandParameter="{Binding DetailModel.Value.SNS.HomePage}" />
                     <Label Text="ホームページ" FontSize="8" HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGray}"/>
                 </StackLayout>
                 <StackLayout>
                     <iconize:IconButton Text="ion-social-twitter" TextColor="{StaticResource Color.Twitter}" FontSize="28" HorizontalOptions="Center"
                         WidthRequest="{StaticResource SNSIconWidthRequest}" HeightRequest="{StaticResource SNSIconHeightRequest}"
-                        BackgroundColor="Transparent" IsEnabled="{Binding DetailModel.Value.SNS, Converter={StaticResource NestedObjIgnoreEmpty}, ConverterParameter=Twitter}" />
+                        BackgroundColor="Transparent" IsEnabled="{Binding DetailModel.Value.SNS, Converter={StaticResource NestedObjIgnoreEmpty}, ConverterParameter=Twitter}"
+                        Command="{Binding OpenUriCommand}" CommandParameter="{Binding DetailModel.Value.SNS.Twitter}" />
                     <Label Text="Twitter" FontSize="8" HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGray}" />
                 </StackLayout>
                 <StackLayout>
                     <iconize:IconButton Text="ion-social-facebook" TextColor="{StaticResource Color.Facebook}" FontSize="28" HorizontalOptions="Center"
                         WidthRequest="{StaticResource SNSIconWidthRequest}" HeightRequest="{StaticResource SNSIconHeightRequest}"
-                        BackgroundColor="Transparent" IsEnabled="{Binding DetailModel.Value.SNS, Converter={StaticResource NestedObjIgnoreEmpty}, ConverterParameter=Facebook}" />
+                        BackgroundColor="Transparent" IsEnabled="{Binding DetailModel.Value.SNS, Converter={StaticResource NestedObjIgnoreEmpty}, ConverterParameter=Facebook}"
+                        Command="{Binding OpenUriCommand}" CommandParameter="{Binding DetailModel.Value.SNS.Facebook}" />
                     <Label Text="Facebook" FontSize="8" HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGray}" />
                 </StackLayout>
                 <StackLayout>
                     <iconize:IconButton Text="ion-social-youtube" TextColor="{StaticResource Color.Youtube}" FontSize="28" HorizontalOptions="Center"
                         WidthRequest="{StaticResource SNSIconWidthRequest}" HeightRequest="{StaticResource SNSIconHeightRequest}"
-                        BackgroundColor="Transparent" IsEnabled="{Binding DetailModel.Value.SNS, Converter={StaticResource NestedObjIgnoreEmpty}, ConverterParameter=YouTube}" />
+                        BackgroundColor="Transparent" IsEnabled="{Binding DetailModel.Value.SNS, Converter={StaticResource NestedObjIgnoreEmpty}, ConverterParameter=YouTube}"
+                        Command="{Binding OpenUriCommand}" CommandParameter="{Binding DetailModel.Value.SNS.YouTube}" />
                     <Label Text="Youtube" FontSize="8" HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGray}" />
                 </StackLayout>
             </StackLayout>

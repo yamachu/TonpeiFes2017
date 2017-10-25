@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Windows.Input;
+using Prism.Commands;
 using Prism.Navigation;
 using Reactive.Bindings;
 using TonpeiFes.Core.Models.Consts;
 using TonpeiFes.Core.Models.DataObjects;
+using TonpeiFes.MobileCore.Services;
 using TonpeiFes.MobileCore.Usecases;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
@@ -23,10 +26,14 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public AsyncReactiveCommand OpenMapCommand { get; }
         public ReadOnlyReactiveProperty<string> IconSource { get; }
 
-        public PlanningDetailPageViewModel(INavigationService navigationService, IShowPlanningDetail showDetail)
+        public ICommand OpenUriCommand { get; }
+        private IOpenWebPageService _webPageService;
+
+        public PlanningDetailPageViewModel(INavigationService navigationService, IShowPlanningDetail showDetail, IOpenWebPageService openWeb)
         {
             _showDetail = showDetail;
             _navigationService = navigationService;
+            _webPageService = openWeb;
 
             IsFavorited = showDetail.IsFavorited;
 
@@ -45,6 +52,11 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             {
                 await _navigationService.NavigateAsync("NavigationPage/FestaMapRootPage",
                                                        FestaMapRootPageViewModel.GetNavigationParameter(DetailModel.Value.Id, DetailModel.Value.PlanningType), true);
+            });
+
+            OpenUriCommand = new DelegateCommand<string>((uri) =>
+            {
+                _webPageService.OpenUri(uri);
             });
         }
 
