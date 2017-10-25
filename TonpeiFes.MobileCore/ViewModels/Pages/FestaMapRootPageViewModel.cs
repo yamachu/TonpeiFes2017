@@ -6,7 +6,9 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
 using Reactive.Bindings;
+using TonpeiFes.Core.Models.Consts;
 using TonpeiFes.MobileCore.Configurations;
+using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Models.EventArgs;
 using TonpeiFes.MobileCore.Usecases;
 using Xamarin.Forms.GoogleMaps;
@@ -16,7 +18,8 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
     public class FestaMapRootPageViewModel : ViewModelBase, IDestructible
     {
-        private readonly static string NavigationKey = "NavigationKey";
+        private static readonly string ParameterID = "ParameterID";
+        private static readonly string ParameterPlanningType = "ParameterPlanningType";
 
         public ReactiveProperty<string> Title { get; } = new ReactiveProperty<string>("会場全体図");
         public ObservableCollection<Pin> Pins { get; set; }
@@ -140,7 +143,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             base.OnNavigatingTo(parameters);
 
             // For Android
-            if (parameters == null || !parameters.ContainsKey(NavigationKey))
+            if (parameters == null || !parameters.ContainsKey(ParameterID))
             {
                 _eventAggregator.GetEvent<MapMoveEvent>().Publish(new MapMoveEventArgs(0, 0, true));
                 showFestaUsecase.InitializeAllMapObjects();
@@ -148,8 +151,23 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             }
             else
             {
-                
+                var planning = showFestaUsecase.GetSingleMapObject(parameters[ParameterID] as string,
+                                                                   (PlanningTypeEnum)parameters[ParameterPlanningType]);
+                Title.Value = $"{planning.Title}の場所";
+                SelectedPin.Value = Pins[0];
+                MoveToRegionRequest.MoveToRegion(
+                        MapSpan.FromCenterAndRadius(Pins[0].Position, Distance.FromMeters(100)));
+                _eventAggregator.GetEvent<SwitchToClosablePageEvent>().Publish(new SwitchToClosablePageEventArgs(nameof(FestaMapRootPageViewModel).GetViewNameFromRule()));
             }
+        }
+
+        public static NavigationParameters GetNavigationParameter(string id, PlanningTypeEnum planType)
+        {
+            return new NavigationParameters
+            {
+                { ParameterID, id },
+                { ParameterPlanningType, planType},
+            };
         }
 
         public void Destroy()

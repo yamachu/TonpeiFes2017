@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Prism.Events;
 using Reactive.Bindings;
+using TonpeiFes.Core.Models.Consts;
 using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Models.EventArgs;
 using TonpeiFes.MobileCore.Repositories;
@@ -19,29 +20,71 @@ namespace TonpeiFes.MobileCore.Usecases
         private readonly ObservableCollection<Polygon> _polygons = new ObservableCollection<Polygon>();
         public ReadOnlyObservableCollection<Polygon> Polygons { get; }
 
-        private ReactiveProperty<Pin> _specifiedPin = new ReactiveProperty<Pin>();
-        public ReadOnlyReactiveProperty<Pin> SpecifiedPin { get; }
-
-        private ReactiveProperty<Polygon> _specifiedPolygon = new ReactiveProperty<Polygon>();
-        public ReadOnlyReactiveProperty<Polygon> SpecifiedPolygon { get; }
-
         private IRepository<MapRegion> _mapRepository;
+        private IRepository<Exhibition> _exhiitionRepository;
+        private IRepository<StageEvent> _stageRepository;
+        private IRepository<Stall> _stallRepository;
         private IEventAggregator _eventAggregator;
 
-        public ShowFestaMap(IRepository<MapRegion> mapRep, IEventAggregator eventAggregator)
+        public ShowFestaMap(IRepository<MapRegion> mapRep,
+                            IRepository<Exhibition> exhibitionRep,
+                            IRepository<StageEvent> stageEventRep,
+                            IRepository<Stall> stallRep,
+                            IEventAggregator eventAggregator)
         {
             _mapRepository = mapRep;
+            _exhiitionRepository = exhibitionRep;
+            _stageRepository = stageEventRep;
+            _stallRepository = stallRep;
             _eventAggregator = eventAggregator;
 
             Pins = new ReadOnlyObservableCollection<Pin>(_pins);
             Polygons = new ReadOnlyObservableCollection<Polygon>(_polygons);
-            SpecifiedPin = _specifiedPin.ToReadOnlyReactiveProperty();
-            SpecifiedPolygon = _specifiedPolygon.ToReadOnlyReactiveProperty();
         }
 
-        public Task GetSingleMapObject(string id)
+        public IPlanning GetSingleMapObject(string id, PlanningTypeEnum type)
         {
-            throw new NotImplementedException();
+            IPlanning tmp = null;
+            switch (type)
+            {
+                case PlanningTypeEnum.EXHIBITION:
+                    tmp = (dynamic)_exhiitionRepository.GetOne(id);
+                    break;
+                case PlanningTypeEnum.STAGE:
+                    tmp = (dynamic)_stageRepository.GetOne(id);
+                    break;
+                case PlanningTypeEnum.STALL:
+                    tmp = (dynamic)_stallRepository.GetOne(id);
+                    break;
+            }
+
+            var region = _mapRepository.GetOne(tmp.MappedRegion.Id);
+            var pinPoint = region.PinPoint;
+            var pin = new Pin
+            {
+                Type = PinType.Generic,
+                Label = tmp.Title,
+                Address = tmp.LocationDetail,
+                Position = new Position(pinPoint.Langitude, pinPoint.Longitude)
+            };
+
+            _pins.Add(pin);
+            var polygon = GetPolygon(region);
+            if (polygon != null)
+            {
+                _polygons.Add(polygon);
+            }
+
+            foreach (var childRegion in region.ChildMapRegion)
+            {
+                var childPolygon = GetPolygon(childRegion);
+                if (childPolygon != null)
+                {
+                    _polygons.Add(childPolygon);
+                }
+            }
+
+            return tmp;
         }
 
         public async Task InitializeAllMapObjects()
@@ -63,14 +106,20 @@ namespace TonpeiFes.MobileCore.Usecases
                 _pins.Add(parentPin);
 
                 var parentPolygon = GetPolygon(region);
-                SetAssociationWithPin(parentPolygon, parentPin);
-                _polygons.Add(parentPolygon);
+                if (parentPolygon != null)
+                {
+                    SetAssociationWithPin(parentPolygon, parentPin);
+                    _polygons.Add(parentPolygon);
+                }
 
                 foreach (var childRegion in region.ChildMapRegion)
                 {
                     var childPolygon = GetPolygon(childRegion);
-                    SetAssociationWithPin(childPolygon, parentPin);
-                    _polygons.Add(childPolygon);
+                    if (childPolygon != null)
+                    {
+                        SetAssociationWithPin(childPolygon, parentPin);
+                        _polygons.Add(childPolygon);
+                    }
                 }
             }
         }
@@ -78,6 +127,7 @@ namespace TonpeiFes.MobileCore.Usecases
         private Polygon GetPolygon(MapRegion region)
         {
             var polygon = new Polygon();
+            if (region.Points.Count < 3) return null;
             foreach (var point in region.Points)
             {
                 polygon.Positions.Add(new Position(point.Langitude, point.Longitude));

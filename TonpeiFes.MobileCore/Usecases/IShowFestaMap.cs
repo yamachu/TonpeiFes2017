@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Reactive.Bindings;
+using TonpeiFes.Core.Models.Consts;
+using TonpeiFes.Core.Models.DataObjects;
 using Xamarin.Forms.GoogleMaps;
 
 namespace TonpeiFes.MobileCore.Usecases
@@ -10,10 +11,8 @@ namespace TonpeiFes.MobileCore.Usecases
     {
         ReadOnlyObservableCollection<Pin> Pins { get; }
         ReadOnlyObservableCollection<Polygon> Polygons { get; }
-        ReadOnlyReactiveProperty<Pin> SpecifiedPin { get; }
-        ReadOnlyReactiveProperty<Polygon> SpecifiedPolygon { get; }
 
         Task InitializeAllMapObjects();
-        Task GetSingleMapObject(string id);
+        IPlanning GetSingleMapObject(string id, PlanningTypeEnum type);
     }
 }
