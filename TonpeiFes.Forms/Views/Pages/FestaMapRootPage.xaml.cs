@@ -13,9 +13,28 @@ namespace TonpeiFes.Forms.Views.Pages
 {
     public partial class FestaMapRootPage : ContentPage
     {
+        private IEventAggregator _eventAggregator;
+
         public FestaMapRootPage()
         {
             InitializeComponent();
+
+            var container = (Application.Current as App).Container;
+
+            _eventAggregator = container.Resolve<IEventAggregator>();
+
+            _eventAggregator.GetEvent<SwitchToClosablePageEvent>().Subscribe((args) =>
+            {
+                if (args.Name != nameof(FestaMapRootPage)) return;
+                var item = new ToolbarItem
+                {
+                    Priority = -1,
+                    Icon = "ic_clear",
+                    Command = new Command(async () => { await Navigation.PopModalAsync(); })
+                };
+
+                ToolbarItems.Add(item);
+            });
         }
     }
 }
