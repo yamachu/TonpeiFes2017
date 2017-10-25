@@ -19,9 +19,6 @@ namespace TonpeiFes.MobileCore.Usecases
         private IRepository<StageEvent> _stageEventRepository;
         private IRepository<FavoritedPlanning> _favoritedRepository;
 
-        private int ActiveSegment = 0;
-        private bool IsFavorited = false;
-
         public FilterGroupingStageEvent(IRepository<StageEvent> stageRep,
                                         IRepository<FavoritedPlanning> favoritedRep)
         {
@@ -31,16 +28,19 @@ namespace TonpeiFes.MobileCore.Usecases
             Plannings = new ReadOnlyObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>>(_plannings);
         }
 
-        public async Task UpdateFilterConditions(int activeSegment, bool favorited)
+        public async Task UpdateFilterConditions(int activeSegment, bool favorited, string placeId)
         {
-            ActiveSegment = activeSegment;
-            IsFavorited = favorited;
-
             _plannings.Clear();
 
             var openDay = (EventDateEnum)Enum.ToObject(typeof(EventDateEnum), (1 << activeSegment));
 
-            foreach (var ex in _stageEventRepository.GetAll().FilterByOpeningDay(openDay).FilterByFavoritedExhibition(IsFavorited, _favoritedRepository).Select(item => (dynamic)item as ISearchableListPlanning).GroupingPlannings())
+            foreach (var ex in _stageEventRepository
+                     .GetAll()
+                     .FilterByOpeningDay(openDay)
+                     .FilterByPlace(placeId)
+                     .FilterByFavoritedExhibition(favorited, _favoritedRepository)
+                     .Select(item => (dynamic)item as ISearchableListPlanning)
+                     .GroupingPlannings())
             {
                 _plannings.Add(ex);
             }
@@ -52,6 +52,12 @@ namespace TonpeiFes.MobileCore.Usecases
         public static IEnumerable<StageEvent> FilterByOpeningDay(this IEnumerable<StageEvent> list, EventDateEnum openDay)
         {
             return list.Where(item => item.OpenDate.HasFlag(openDay));
+        }
+
+        public static IEnumerable<StageEvent> FilterByPlace(this IEnumerable<StageEvent> list, string placeId)
+        {
+            if (placeId.IsNullOrEmptyOrWhitespace()) return list;
+            return list.Where(item => item.MappedRegion.Id == placeId);
         }
 
         public static IEnumerable<StageEvent> FilterByFavoritedExhibition(this IEnumerable<StageEvent> list, bool favorited, IRepository<FavoritedPlanning> repository)

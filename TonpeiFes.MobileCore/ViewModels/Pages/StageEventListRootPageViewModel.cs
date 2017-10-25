@@ -14,10 +14,14 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
     public class StageEventListRootPageViewModel : ViewModelBase
     {
-        public string Title => "ステージイベント";
+        private readonly static string ParameterPlaceId = "ParameterPlaceId";
+        private readonly static string ParameterPlaceName = "ParameterPlaceName";
+
+        public ReactiveProperty<string> Title { get; } = new ReactiveProperty<string>("ステージイベント");
         public string Day1Segment => "11/3";
         public string Day2Segment => "11/4";
         public string Day3Segment => "11/5";
+        private string PlaceId = null;
 
         public ReactiveProperty<int> SelectedSegment { get; } = new ReactiveProperty<int>(0);
         public ReadOnlyReactiveProperty<string> IconSource { get; }
@@ -35,13 +39,13 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
             SelectedSegment.Subscribe(selectedSegment =>
             {
-                _eventUsecase.UpdateFilterConditions(SelectedSegment.Value, FavStateObservable.Value);
+                _eventUsecase.UpdateFilterConditions(SelectedSegment.Value, FavStateObservable.Value, PlaceId);
             });
 
             FavButtonClickCommand = new DelegateCommand(() =>
             {
-                FavStateObservable.Value = !FavStateObservable.Value;
-                _eventUsecase.UpdateFilterConditions(SelectedSegment.Value, FavStateObservable.Value);
+            FavStateObservable.Value = !FavStateObservable.Value;
+            _eventUsecase.UpdateFilterConditions(SelectedSegment.Value, FavStateObservable.Value, PlaceId);
             });
 
             IconSource = FavStateObservable.Select((isFavActive) =>
@@ -58,6 +62,27 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                     nameof(PlanningDetailPageViewModel).GetViewNameFromRule(),
                     PlanningDetailPageViewModel.GetNavigationParameter(item.Id, item.PlanningType));
             });
+        }
+
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+            base.OnNavigatingTo(parameters);
+
+            if (parameters == null || !parameters.ContainsKey(ParameterPlaceId)) return;
+
+            Title.Value = $"{parameters[ParameterPlaceName]}のイベント";
+            PlaceId = parameters[ParameterPlaceId] as string;
+
+            _eventUsecase.UpdateFilterConditions(SelectedSegment.Value, FavStateObservable.Value, PlaceId);
+        }
+
+        public static NavigationParameters GetNavigationParameter(string id, string name)
+        {
+            return new NavigationParameters
+            {
+                { ParameterPlaceId, id },
+                { ParameterPlaceName, name }
+            };
         }
     }
 }

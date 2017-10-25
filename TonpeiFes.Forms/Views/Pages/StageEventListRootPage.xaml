@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.StageEventListRootPage"
-    xmlns:segments="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions" Title="{Binding Title}" x:Name="root"
+    xmlns:segments="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions" Title="{Binding Title.Value}" x:Name="root"
     xmlns:controls="clr-namespace:TonpeiFes.Forms.Views.Controls"
     xmlns:cells="clr-namespace:TonpeiFes.Forms.Views.Cells">
     <ContentPage.Resources>

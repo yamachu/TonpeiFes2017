@@ -9,6 +9,6 @@ namespace TonpeiFes.MobileCore.Usecases
     public interface IFilterGroupingStageEvent
     {
         ReadOnlyObservableCollection<ObservableGroupCollection<string, ISearchableListPlanning>> Plannings { get; }
-        Task UpdateFilterConditions(int activeSegment, bool favorited);
+        Task UpdateFilterConditions(int activeSegment, bool favorited, string placeId);
     }
 }
