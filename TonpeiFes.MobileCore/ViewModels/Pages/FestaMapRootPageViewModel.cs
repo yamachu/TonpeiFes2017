@@ -170,13 +170,15 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             else
             {
                 IsGlobalMap = false;
+                _eventAggregator.GetEvent<SwitchToClosablePageEvent>().Publish(new SwitchToClosablePageEventArgs(nameof(FestaMapRootPageViewModel).GetViewNameFromRule()));
                 var planning = showFestaUsecase.GetSingleMapObject(parameters[ParameterID] as string,
                                                                    (PlanningTypeEnum)parameters[ParameterPlanningType]);
+                if (planning == null) return;
                 Title.Value = $"{planning.Title}の場所";
+                if (Pins.Count == 0) return;
                 SelectedPin.Value = Pins[0];
                 MoveToRegionRequest.MoveToRegion(
                         MapSpan.FromCenterAndRadius(Pins[0].Position, Distance.FromMeters(100)));
-                _eventAggregator.GetEvent<SwitchToClosablePageEvent>().Publish(new SwitchToClosablePageEventArgs(nameof(FestaMapRootPageViewModel).GetViewNameFromRule()));
             }
         }
 

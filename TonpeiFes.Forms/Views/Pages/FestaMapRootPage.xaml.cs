@@ -25,6 +25,7 @@ namespace TonpeiFes.Forms.Views.Pages
 
             _eventAggregator.GetEvent<SwitchToClosablePageEvent>().Subscribe((args) =>
             {
+                if ((BindingContext as FestaMapRootPageViewModel) == null) return;
                 if (args.Name != nameof(FestaMapRootPage) || (BindingContext as FestaMapRootPageViewModel).IsGlobalMap) return;
                 var item = new ToolbarItem
                 {

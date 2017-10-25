@@ -57,8 +57,11 @@ namespace TonpeiFes.MobileCore.Usecases
                     tmp = (dynamic)_stallRepository.GetOne(id);
                     break;
             }
+            if (tmp == null || tmp.MappedRegion == null) return null;
 
             var region = _mapRepository.GetOne(tmp.MappedRegion.Id);
+            if (region == null) return null;
+
             var pinPoint = region.PinPoint;
             var pin = new Pin
             {
