@@ -38,6 +38,7 @@
     <Folder Include="DesignModels\" Condition=" '$(Configuration)|$(Platform)' == 'DebugDesign|AnyCPU' " />
     <Folder Include="Models\" />
     <Folder Include="Models\EventArgs\" />
+    <Folder Include="Configurations\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TonpeiFes.Core\TonpeiFes.Core.csproj" />

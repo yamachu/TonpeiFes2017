@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using TonpeiFes.MobileCore.Models.EventArgs;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using TonpeiFes.Forms.Configurations;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TonpeiFes.Forms
@@ -82,6 +83,8 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IFilterGroupingStageEvent, FilterGroupingStageEvent>();
             Container.RegisterType<IShowPlanningDetail, ShowPlanningDetail>();
             Container.RegisterType<IShowFestaMap, ShowFestaMap>();
+
+            Container.RegisterInstance<MobileCore.Configurations.IMapAssociated>(new MapAssociated());
 
             Task.Run(async () =>
             {
