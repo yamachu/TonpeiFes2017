@@ -145,7 +145,10 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             // For Android
             if (parameters == null || !parameters.ContainsKey(ParameterID))
             {
-                _eventAggregator.GetEvent<MapMoveEvent>().Publish(new MapMoveEventArgs(0, 0, true));
+                MoveToRegionRequest.MoveToRegion(
+                        MapSpan.FromCenterAndRadius(
+                            new Position(_mapParams.MapCenterLangitude, _mapParams.MapCenterLongitude),
+                            Distance.FromMeters(100)));
                 showFestaUsecase.InitializeAllMapObjects();
                 _eventAggregator.GetEvent<LocationPermissionRequestEvent>().Publish(new LocationPermissionRequestEventArgs());
             }
