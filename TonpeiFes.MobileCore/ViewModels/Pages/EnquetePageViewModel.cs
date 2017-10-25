@@ -138,7 +138,6 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
             SubmitCommand.Subscribe(async () =>
             {
-                System.Diagnostics.Debug.WriteLine(AGE[AgeSelected.Value]);
                 await _analyticsService.SendUserAttributes(
                     AGE[AgeSelected.Value],
                     MEMBER[MemberSelected.Value],
