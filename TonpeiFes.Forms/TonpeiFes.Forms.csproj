@@ -37,6 +37,7 @@
     <Folder Include="Configurations\" />
     <Folder Include="Resources\" />
     <Folder Include="Views\Extensions\" />
+    <Folder Include="Service\" />
   </ItemGroup>
 
   <ItemGroup>

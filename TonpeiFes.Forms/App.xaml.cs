@@ -21,6 +21,7 @@ using TonpeiFes.MobileCore.Models.EventArgs;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using TonpeiFes.Forms.Configurations;
+using TonpeiFes.Forms.Service;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TonpeiFes.Forms
@@ -86,6 +87,7 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IShowFestaMap, ShowFestaMap>();
 
             Container.RegisterInstance<MobileCore.Configurations.IMapAssociated>(new MapAssociated());
+            Container.RegisterInstance<IOpenWebPageService>(new OpenWebPageService());
 
             Task.Run(async () =>
             {
