@@ -69,6 +69,7 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IRepository<Stall>, MockStallRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<MyGroupHeader>, MockMyGroupHeaderRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<MapRegion>, MockMapRegionRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IRepository<Announcement>, MockAnnouncementRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDatabaseService, MockDatabaseService>(new ContainerControlledLifetimeManager());
 #elif DESIGN
 #else
@@ -78,6 +79,7 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IRepository<Stall>, StallRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<MyGroupHeader>, MyGroupHeaderRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<MapRegion>, MapRegionRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IRepository<Announcement>, AnnouncementRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDatabaseService, RealmDatabaseService>(new ContainerControlledLifetimeManager());
 #endif
 
@@ -85,6 +87,7 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IFilterGroupingStageEvent, FilterGroupingStageEvent>();
             Container.RegisterType<IShowPlanningDetail, ShowPlanningDetail>();
             Container.RegisterType<IShowFestaMap, ShowFestaMap>();
+            Container.RegisterType<IShowAnnouncement, ShowAnnouncement>();
 
             Container.RegisterInstance<MobileCore.Configurations.IMapAssociated>(new MapAssociated());
             Container.RegisterInstance<IOpenWebPageService>(new OpenWebPageService());
