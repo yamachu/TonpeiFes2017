@@ -25,12 +25,16 @@ namespace TonpeiFes.Forms.Views.Pages
 
             _eventAggregator.GetEvent<SwitchToClosablePageEvent>().Subscribe((args) =>
             {
-                if (args.Name != nameof(FestaMapRootPage)) return;
+                if (args.Name != nameof(FestaMapRootPage) || (BindingContext as FestaMapRootPageViewModel).IsGlobalMap) return;
                 var item = new ToolbarItem
                 {
-                    Priority = -1,
+                    Priority = 1,
                     Icon = "ic_clear",
-                    Command = new Command(async () => { await Navigation.PopModalAsync(); })
+                    Command = new Command(async () =>
+                    {
+                        ToolbarItems.Clear();
+                        await Navigation.PopModalAsync();
+                    })
                 };
 
                 ToolbarItems.Add(item);

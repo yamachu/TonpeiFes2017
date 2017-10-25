@@ -7,6 +7,7 @@ using Prism.Events;
 using Prism.Navigation;
 using Reactive.Bindings;
 using TonpeiFes.Core.Models.Consts;
+using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Configurations;
 using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Models.EventArgs;
@@ -34,7 +35,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         private IShowFestaMap showFestaUsecase;
         private IMapAssociated _mapParams;
 
-        private bool IsGlobalMap = true;
+        public bool IsGlobalMap { get; private set; } = true;
         private bool IsInitialized = false;
 
         private CompositeDisposable Disposable { get; } = new CompositeDisposable();
@@ -48,11 +49,22 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             showFestaUsecase = showFesta;
             _mapParams = mapParam;
 
-            InfoWindowClickedCommand = new DelegateCommand<InfoWindowClickedEventArgs>((pin) =>
+            InfoWindowClickedCommand = new DelegateCommand<InfoWindowClickedEventArgs>(async (pin) =>
             {
+                var region = pin.Pin.Tag as MapRegion;
+                if (region == null) return;
                 if (IsGlobalMap)
                 {
-                    //_navigationService.NavigateAsync();
+                    if (region.MapObjectType.HasFlag(MapObjectEnum.STAGE))
+                    {
+                       await _navigationService.NavigateAsync(
+                            nameof(StageEventListRootPageViewModel).GetViewNameFromRule(),
+                            StageEventListRootPageViewModel.GetNavigationParameter(region.Id, region.Name));
+                    }
+                    else
+                    {
+                        //_navigationService.NavigateAsync();
+                    }
                 }
             });
 
@@ -69,17 +81,17 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 switch (change.Action)
                 {
                     case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-                        Pins.Add(change.Value);
+                        Pins?.Add(change.Value);
                         break;
                     case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
                         break;
                     case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-                        Pins.Remove(change.Value);
+                        Pins?.Remove(change.Value);
                         break;
                     case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
                         break;
                     case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
-                        Pins.Clear();
+                        Pins?.Clear();
                         break;
                 }
             });
@@ -154,6 +166,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             }
             else
             {
+                IsGlobalMap = false;
                 var planning = showFestaUsecase.GetSingleMapObject(parameters[ParameterID] as string,
                                                                    (PlanningTypeEnum)parameters[ParameterPlanningType]);
                 Title.Value = $"{planning.Title}の場所";
