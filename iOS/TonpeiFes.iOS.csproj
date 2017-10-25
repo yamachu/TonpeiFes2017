@@ -334,6 +334,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\OutlinedNonSelectedIconTabbedPageRenderer.cs" />
     <Compile Include="Renderers\SideBySideButtonItemContentPageRenderer.cs" />
+    <Compile Include="Renderers\SearchBarNavigationPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ion_ios_heart_outline%402x.png" />
