@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.EnquetePage" xmlns:controls="clr-namespace:TonpeiFes.Forms.Views.Controls">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Thickness x:Key="PickerPadding">8</Thickness>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="回答しない" Command="{Binding SkipCommand}" Priority="-1" />
+        <ToolbarItem Text="送信" Command="{Binding SubmitCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Spacing="0">
+        <ContentView Padding="4">
+            <StackLayout Spacing="0">
+                <Label FontSize="14">
+                    <Label.Text>
+はじめに簡単なアンケートにご協力ください。
+また、利用規約に同意の上ご利用をお願いいたします。
+                    </Label.Text>
+                </Label>
+                <Button HorizontalOptions="Center" Text="利用規約を開く" TextColor="{StaticResource Primary}" FontSize="14"
+                    BackgroundColor="Transparent" BorderColor="Transparent" BorderRadius="0" BorderWidth="0"
+                    Command="{Binding TermsOfUseCommand}" />
+            </StackLayout>
+        </ContentView>
+        
+        <controls:SeparatorControl />
+        
+        <TableView Intent="Form" HasUnevenRows="True">
+            <TableRoot>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Padding="0" Spacing="0">
+                            <StackLayout Orientation="Horizontal" Padding="{StaticResource PickerPadding}">
+                                <ContentView Padding="8,0,0,0" VerticalOptions="Center">
+                                    <Label Text="年齢" FontSize="14" WidthRequest="75" VerticalOptions="Center" />
+                                </ContentView>
+                                <Picker ItemsSource="{Binding Ages}"
+                                        SelectedItem="{Binding AgeSelected.Value, Mode=TwoWay}"
+                                        Title="選択してください" HorizontalOptions="FillAndExpand" />
+                            </StackLayout>
+                            
+                            <controls:SeparatorControl />
+                            
+                            <StackLayout Orientation="Horizontal" Padding="{StaticResource PickerPadding}">
+                                <ContentView Padding="8,0,0,0" VerticalOptions="Center">
+                                    <Label Text="所属" FontSize="14" WidthRequest="75" VerticalOptions="Center" />
+                                </ContentView>
+                                <Picker ItemsSource="{Binding Members}"
+                                    SelectedItem="{Binding MemberSelected.Value, Mode=TwoWay}"
+                                    Title="選択してください" HorizontalOptions="FillAndExpand" />
+                            </StackLayout>
+                            
+                            <controls:SeparatorControl />
+                            
+                            <StackLayout Orientation="Horizontal" Padding="{StaticResource PickerPadding}">
+                                <ContentView Padding="8,0,0,0" VerticalOptions="Center">
+                                    <Label Text="居住地" FontSize="14" WidthRequest="75" VerticalOptions="Center" />
+                                </ContentView>
+                                <Picker ItemsSource="{Binding Residences}"
+                                    SelectedItem="{Binding ResidenceSelected.Value, Mode=TwoWay}"
+                                    Title="選択してください" HorizontalOptions="FillAndExpand" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection Title="東北大学祭をどこで知りましたか？">
+                    <ViewCell>
+                        <ContentView Padding="{StaticResource PickerPadding}">
+                            <Picker ItemsSource="{Binding Wheres}"
+                                    SelectedItem="{Binding WhereSelected.Value, Mode=TwoWay}"
+                                    Title="選択してください" HorizontalOptions="FillAndExpand" />
+                        </ContentView>
+                    </ViewCell>
+                </TableSection>
+                <TableSection Title="東北大学祭にどのように来ましたか？">
+                    <ViewCell>
+                        <ContentView Padding="{StaticResource PickerPadding}">
+                            <Picker ItemsSource="{Binding Accesses}"
+                                    SelectedItem="{Binding AccessSelected.Value, Mode=TwoWay}"
+                                    Title="選択してください" HorizontalOptions="FillAndExpand" />
+                        </ContentView>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </StackLayout>
+</ContentPage>
