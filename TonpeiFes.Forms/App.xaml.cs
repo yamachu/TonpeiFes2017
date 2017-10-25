@@ -59,6 +59,7 @@ namespace TonpeiFes.Forms
             Container.RegisterTypeForNavigation<RegionSpecificPlanningListPage, MobileCore.ViewModels.Pages.PlanningListRootPageViewModel>();
 
             Container.RegisterTypeForNavigation<DetailFloorPage>();
+            Container.RegisterTypeForNavigation<ClosableInternalWebViewPage>();
 
             Container.RegisterType<IEventAggregator, EventAggregator>(new ContainerControlledLifetimeManager());
 
