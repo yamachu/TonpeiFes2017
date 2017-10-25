@@ -292,6 +292,9 @@
     <Reference Include="Plugin.Permissions">
       <HintPath>..\packages\Plugin.Permissions.2.1.0\lib\Xamarin.iOS10\Plugin.Permissions.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Forms.GoogleMaps.Bindings">
+      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.Bindings.2.1.0\lib\netstandard1.0\Xamarin.Forms.GoogleMaps.Bindings.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TonpeiFes.Forms\TonpeiFes.Forms.csproj">

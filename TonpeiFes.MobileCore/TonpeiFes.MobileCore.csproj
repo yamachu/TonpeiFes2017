@@ -24,6 +24,7 @@
     <PackageReference Include="ReactiveProperty" Version="3.6.0" />
     <PackageReference Include="Realm" Version="1.6.0" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="2.1.1" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps.Bindings" Version="2.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
