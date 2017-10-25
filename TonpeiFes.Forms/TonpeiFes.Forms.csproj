@@ -42,6 +42,7 @@
 
   <ItemGroup>
     <Compile Remove="Configurations\GoogleMapAPI.tmpl.cs" />
+    <Compile Remove="Configurations\MobileCenterAPI.tmpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="**\*.xaml.cs" DependentUpon="%(Filename)" />
