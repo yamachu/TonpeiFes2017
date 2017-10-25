@@ -72,7 +72,6 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             OpenPlceDetailCommand = new AsyncReactiveCommand<string>();
             OpenPlceDetailCommand.Subscribe(async (placeName) =>
             {
-                System.Diagnostics.Debug.WriteLine(placeName);
                 await navigationService.NavigateAsync("NavigationPage/DetailFloorPage", DetailFloorPageViewModel.GetNavigationParameter(placeName), true);
             });
         }
