@@ -29,7 +29,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="ic_map" Command="{Binding OpenMapCommand}" CommandParameter="{Binding DetailModel.Value.MappedRegion}" Priority="1" />
+        <ToolbarItem Icon="ic_map" Command="{Binding OpenMapCommand}" Priority="1" />
         <ToolbarItem Icon="{Binding IconSource.Value}" Command="{Binding ToggleFavorited}" Priority="2" />
     </ContentPage.ToolbarItems>
     

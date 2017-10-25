@@ -18,12 +18,15 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public AsyncReactiveCommand ToggleFavorited { get; }
         public ReactiveProperty<IPlanning> DetailModel { get; } = new ReactiveProperty<IPlanning>();
         private IShowPlanningDetail _showDetail;
-        public AsyncReactiveCommand<string> OpenMapCommand { get; }
+        private INavigationService _navigationService;
+
+        public AsyncReactiveCommand OpenMapCommand { get; }
         public ReadOnlyReactiveProperty<string> IconSource { get; }
 
-        public PlanningDetailPageViewModel(IShowPlanningDetail showDetail)
+        public PlanningDetailPageViewModel(INavigationService navigationService, IShowPlanningDetail showDetail)
         {
             _showDetail = showDetail;
+            _navigationService = navigationService;
 
             IsFavorited = showDetail.IsFavorited;
 
@@ -37,10 +40,11 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 .Select((isFav) => $@"ion_ios_heart{(isFav ? "" : "_outline")}")
                 .ToReadOnlyReactiveProperty($@"ion_ios_heart{(IsFavorited.Value ? "" : "_outline")}");
 
-            OpenMapCommand = new AsyncReactiveCommand<string>();
-            OpenMapCommand.Subscribe(async (locationId) =>
+            OpenMapCommand = new AsyncReactiveCommand();
+            OpenMapCommand.Subscribe(async (_) =>
             {
-                System.Diagnostics.Debug.WriteLine(locationId);
+                await _navigationService.NavigateAsync("NavigationPage/FestaMapRootPage",
+                                                       FestaMapRootPageViewModel.GetNavigationParameter(DetailModel.Value.Id, DetailModel.Value.PlanningType), true);
             });
         }
 
