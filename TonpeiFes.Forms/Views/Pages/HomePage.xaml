@@ -24,9 +24,16 @@
             <Label Text="お知らせはありません" FontSize="14" />
         </ContentView>
         <ListView ItemsSource="{Binding Announcements}" IsVisible="{Binding Announcements.Count, Converter={StaticResource NumberNotEq}, ConverterParameter=0}" >
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectedItemCommand}" EventArgsParameterPath="Item" />
+            </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Title}" />
+                    <TextCell Text="{Binding Title}">
+                        <TextCell.TextColor>
+                            <OnPlatform x:TypeArguments="Color" Android="{StaticResource PrimaryText}" />
+                        </TextCell.TextColor>
+                    </TextCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
