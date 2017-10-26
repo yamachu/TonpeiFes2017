@@ -147,6 +147,7 @@ namespace TonpeiFes.Forms
                          .GetEvent<LocationPermissionRequestResultEvent>()
                          .Publish(new LocationPermissionRequestResultEventArgs(granted));
             });
+            await Container.Resolve<IDatabaseService>().InitializeDatabaseConnection();
         }
 
         private async Task<bool> CheckLocationPermissionAsync()
