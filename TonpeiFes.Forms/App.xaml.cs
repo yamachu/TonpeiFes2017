@@ -108,6 +108,7 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IOpenWebPageService, OpenWebPageService>();
             Container.RegisterType<IAnalyticsService, AnalyticsService>();
             Container.RegisterType<MobileCore.Configurations.IConstUrls, ConstUrls>();
+            Container.RegisterType<ILocalConfigService, LocalConfigService>(new ContainerControlledLifetimeManager());
 
             Task.Run(async () =>
             {
