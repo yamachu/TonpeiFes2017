@@ -23,7 +23,7 @@
         </StackLayout>
         <controls:SeparatorControl Color="{StaticResource Separator}" />
 
-        <ListView HasUnevenRows="true" IsGroupingEnabled="true" ItemsSource="{Binding Plannings}" GroupDisplayBinding="{Binding Key}">
+        <ListView HasUnevenRows="true" IsGroupingEnabled="true" ItemsSource="{Binding Plannings}" GroupDisplayBinding="{Binding Key}" CachingStrategy="RecycleElement" >
             <ListView.Behaviors>
                 <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectedItemCommand}" EventArgsParameterPath="Item" />
             </ListView.Behaviors>
