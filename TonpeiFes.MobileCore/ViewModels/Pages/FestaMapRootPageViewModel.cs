@@ -130,7 +130,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                     MoveToRegionRequest.MoveToRegion(
                         MapSpan.FromCenterAndRadius(
                             new Position(_mapParams.MapCenterLangitude, _mapParams.MapCenterLongitude),
-                            Distance.FromMeters(100)));
+                            Distance.FromMeters(185)));
 
                     if (!IsInitialized)
                     {
@@ -163,7 +163,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 MoveToRegionRequest.MoveToRegion(
                         MapSpan.FromCenterAndRadius(
                             new Position(_mapParams.MapCenterLangitude, _mapParams.MapCenterLongitude),
-                            Distance.FromMeters(100)));
+                            Distance.FromMeters(185)));
                 showFestaUsecase.InitializeAllMapObjects();
                 _eventAggregator.GetEvent<LocationPermissionRequestEvent>().Publish(new LocationPermissionRequestEventArgs());
             }
