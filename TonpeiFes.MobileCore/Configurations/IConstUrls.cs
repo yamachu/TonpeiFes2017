@@ -7,5 +7,9 @@ namespace TonpeiFes.MobileCore.Configurations
         string MrContestVoteUrl { get; }
         string MsContestVoteUrl { get; }
         string T1VoteUrl { get; }
+
+        // Others
+        string TermsOfUseUrl { get; }
+        string LicenseUrl { get; }
     }
 }

@@ -10,5 +10,9 @@ namespace TonpeiFes.Forms.Configurations
         public string MsContestVoteUrl { get; }
 
         public string T1VoteUrl { get; }
+
+        public string TermsOfUseUrl { get; }
+
+        public string LicenseUrl { get; }
     }
 }
