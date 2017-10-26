@@ -82,6 +82,7 @@ namespace TonpeiFes.Forms
 
             Container.RegisterTypeForNavigation<DetailFloorPage>();
             Container.RegisterTypeForNavigation<ClosableInternalWebViewPage>();
+            Container.RegisterTypeForNavigation<OtherInformationsPage>();
 
             Container.RegisterType<IEventAggregator, EventAggregator>(new ContainerControlledLifetimeManager());
 
