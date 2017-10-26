@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Prism.Events;
 using Prism.Navigation;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Models.EventArgs;
 
@@ -42,15 +43,18 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             SelectedItemCommand.Subscribe(async (item) =>
             {
                 await NavigationPageWrappedNavigation(item.PageName);
-            });
+            }).AddTo(this.Disposable);
 
-            ReactiveCurrentTabIndex.Subscribe((value) => {
+            ReactiveCurrentTabIndex.Subscribe((value) =>
+            {
                 // Mapが選択された時にデフォルトの場所に移動
                 if (value == 3)
                 {
                     _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.FestaMapRootPageViewModel).GetViewNameFromRule()));
                 }
-            });
+            }).AddTo(this.Disposable);
+
+            ReactiveCurrentTabIndex.AddTo(this.Disposable);
         }
 
         private Task NavigationPageWrappedNavigation(string pageName)

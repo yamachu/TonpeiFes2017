@@ -4,11 +4,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Prism.Navigation;
+using System.Reactive.Disposables;
 
 namespace TonpeiFes.MobileCore.ViewModels
 {
-    public class ViewModelBase : BindableBase, INavigationAware
+    public abstract class ViewModelBase : BindableBase, INavigationAware, IDisposable
     {
+        protected CompositeDisposable Disposable { get; private set; }
+
+        public ViewModelBase()
+        {
+            this.Disposable = new CompositeDisposable();
+        }
+
+        void IDisposable.Dispose()
+        {
+            this.Disposable.Dispose();
+        }
+
         public virtual void OnNavigatedFrom(NavigationParameters parameters)
         {
 

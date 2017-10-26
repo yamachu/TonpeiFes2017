@@ -6,6 +6,7 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using TonpeiFes.Core.Models.Consts;
 using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Configurations;
@@ -17,7 +18,7 @@ using Xamarin.Forms.GoogleMaps.Bindings;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
-    public class FestaMapRootPageViewModel : ViewModelBase, IDestructible
+    public class FestaMapRootPageViewModel : ViewModelBase
     {
         private static readonly string ParameterID = "ParameterID";
         private static readonly string ParameterPlanningType = "ParameterPlanningType";
@@ -37,8 +38,6 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
         public bool IsGlobalMap { get; private set; } = true;
         private bool IsInitialized = false;
-
-        private CompositeDisposable Disposable { get; } = new CompositeDisposable();
 
         public MoveToRegionRequest MoveToRegionRequest { get; } = new MoveToRegionRequest();
 
@@ -76,9 +75,9 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 SelectedPin.Value = pin.Tag as Pin;
                 MoveToRegionRequest.MoveToRegion(
                         MapSpan.FromCenterAndRadius(SelectedPin.Value.Position, Distance.FromMeters(100)));
-            });
+            }).AddTo(this.Disposable);
 
-            var _pinDisposable = showFesta.Pins.ToCollectionChanged<Pin>()
+            showFesta.Pins.ToCollectionChanged<Pin>()
                      .Subscribe(change =>
             {
                 switch (change.Action)
@@ -97,9 +96,9 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                         Pins?.Clear();
                         break;
                 }
-            });
+            }).AddTo(this.Disposable);
 
-            var _polyDisposable = showFesta.Polygons.ToCollectionChanged<Polygon>()
+            showFesta.Polygons.ToCollectionChanged<Polygon>()
                      .Subscribe(change =>
             {
                 switch (change.Action)
@@ -118,7 +117,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                         Polygons?.Clear();
                         break;
                 }
-            });
+            }).AddTo(this.Disposable);
 
             // For iOS
             _eventAggregator.GetEvent<TabbedPageOpendEvent>().Subscribe((ev) =>
@@ -139,7 +138,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                         IsInitialized = true;
                     }
                 }
-            });
+            }).AddTo(this.Disposable);
 
             _eventAggregator.GetEvent<LocationPermissionRequestResultEvent>()
                             .Subscribe((ev) =>
@@ -147,8 +146,9 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 IsShowingUser.Value = ev.Granted;
             });
 
-            Disposable.Add(_pinDisposable);
-            Disposable.Add(_polyDisposable);
+            Title.AddTo(this.Disposable);
+            SelectedPin.AddTo(this.Disposable);
+            IsShowingUser.AddTo(this.Disposable);
         }
 
         // iOS: called with parameter only
@@ -189,11 +189,6 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 { ParameterID, id },
                 { ParameterPlanningType, planType},
             };
-        }
-
-        public void Destroy()
-        {
-            Disposable.Dispose();
         }
     }
 }

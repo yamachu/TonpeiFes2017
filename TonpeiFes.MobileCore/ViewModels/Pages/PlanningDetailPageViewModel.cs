@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using TonpeiFes.Core.Models.Consts;
 using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Services;
@@ -41,23 +42,26 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             ToggleFavorited.Subscribe(async(_) =>
             {
                 await _showDetail.TogglePlanningFavoritedState(!IsFavorited.Value);
-            });
+            }).AddTo(this.Disposable);
 
             IconSource = IsFavorited
                 .Select((isFav) => $@"ion_ios_heart{(isFav ? "" : "_outline")}")
-                .ToReadOnlyReactiveProperty($@"ion_ios_heart{(IsFavorited.Value ? "" : "_outline")}");
+                .ToReadOnlyReactiveProperty($@"ion_ios_heart{(IsFavorited.Value ? "" : "_outline")}")
+                .AddTo(this.Disposable);
 
             OpenMapCommand = new AsyncReactiveCommand();
             OpenMapCommand.Subscribe(async (_) =>
             {
                 await _navigationService.NavigateAsync("NavigationPage/FestaMapRootPage",
                                                        FestaMapRootPageViewModel.GetNavigationParameter(DetailModel.Value.Id, DetailModel.Value.PlanningType), true);
-            });
+            }).AddTo(this.Disposable);
 
             OpenUriCommand = new DelegateCommand<string>((uri) =>
             {
                 _webPageService.OpenUri(uri);
             });
+
+            DetailModel.AddTo(this.Disposable);
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)

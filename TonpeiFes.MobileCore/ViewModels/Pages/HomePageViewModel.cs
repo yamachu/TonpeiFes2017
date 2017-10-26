@@ -10,6 +10,7 @@ using Prism.Navigation;
 using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Services;
 using System.Windows.Input;
+using Reactive.Bindings.Extensions;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
@@ -30,7 +31,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             _navigationService = navigationService;
             _webService = webService;
 
-            Announcements = _showAnnouce.Announcements.ToReadOnlyReactiveCollection();
+            Announcements = _showAnnouce.Announcements.ToReadOnlyReactiveCollection().AddTo(this.Disposable);
 
             SelectedItemCommand = new DelegateCommand<Announcement>(async (item) =>
             {

@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Helpers;
@@ -37,10 +38,14 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         {
             _eventUsecase = eventUsecase;
 
+            Title.AddTo(this.Disposable);
+            SelectedSegment.AddTo(this.Disposable);
+            FavStateObservable.AddTo(this.Disposable);
+
             SelectedSegment.Subscribe(selectedSegment =>
             {
                 _eventUsecase.UpdateFilterConditions(SelectedSegment.Value, FavStateObservable.Value, PlaceId);
-            });
+            }).AddTo(this.Disposable);
 
             FavButtonClickCommand = new DelegateCommand(() =>
             {
@@ -51,9 +56,9 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             IconSource = FavStateObservable.Select((isFavActive) =>
             {
                 return $@"ion_ios_heart{(isFavActive ? "" : "_outline")}";
-            }).ToReadOnlyReactiveProperty("ion_ios_heart");
+            }).ToReadOnlyReactiveProperty("ion_ios_heart").AddTo(this.Disposable);
 
-            Plannings = _eventUsecase.Plannings.ToReadOnlyReactiveCollection();
+            Plannings = _eventUsecase.Plannings.ToReadOnlyReactiveCollection().AddTo(this.Disposable);
 
             SelectedItemCommand = new AsyncReactiveCommand<IPlanning>();
             SelectedItemCommand.Subscribe(async (item) =>
@@ -61,7 +66,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 await navigationService.NavigateAsync(
                     nameof(PlanningDetailPageViewModel).GetViewNameFromRule(),
                     PlanningDetailPageViewModel.GetNavigationParameter(item.Id, item.PlanningType));
-            });
+            }).AddTo(this.Disposable);
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)

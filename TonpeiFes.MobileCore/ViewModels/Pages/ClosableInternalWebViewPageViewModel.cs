@@ -7,6 +7,7 @@ using Reactive.Bindings;
 using Prism.Navigation;
 using TonpeiFes.MobileCore.Repositories;
 using TonpeiFes.Core.Models.DataObjects;
+using Reactive.Bindings.Extensions;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
@@ -29,7 +30,10 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             CloseButtonClickCommand.Subscribe(async () =>
             {
                 await _navigationService.GoBackAsync(null, true);
-            });
+            }).AddTo(this.Disposable);
+
+            Title.AddTo(this.Disposable);
+            Content.AddTo(this.Disposable);
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)

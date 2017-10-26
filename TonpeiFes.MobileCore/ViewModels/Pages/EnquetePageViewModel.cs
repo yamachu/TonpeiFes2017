@@ -119,11 +119,17 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             Wheres = WHERE.Keys.ToList();
             Accesses = ACCESS.Keys.ToList();
 
-            AgeValidation = AgeSelected.SetValidateNotifyError((val) => string.IsNullOrEmpty(val) ? "年齢が選択されていません" : null);
-            MemberValidation = MemberSelected.SetValidateNotifyError((val) => string.IsNullOrEmpty(val) ? "所属が選択されていません" : null);
-            ResidenceValidation = ResidenceSelected.SetValidateNotifyError((val) => string.IsNullOrEmpty(val) ? "居住地が選択されていません" : null);
-            WhereValidation = WhereSelected.SetValidateNotifyError((val) => string.IsNullOrEmpty(val) ? "どこで知ったのかが選択されていません" : null);
-            AccessValidation = AccessSelected.SetValidateNotifyError((val) => string.IsNullOrEmpty(val) ? "どのように来たのかが選択されていません" : null);
+            AgeValidation = AgeSelected.SetValidateNotifyError((val) => string.IsNullOrEmpty(val) ? "年齢が選択されていません" : null).AddTo(this.Disposable);
+            MemberValidation = MemberSelected.SetValidateNotifyError((val) => string.IsNullOrEmpty(val) ? "所属が選択されていません" : null).AddTo(this.Disposable);
+            ResidenceValidation = ResidenceSelected.SetValidateNotifyError((val) => string.IsNullOrEmpty(val) ? "居住地が選択されていません" : null).AddTo(this.Disposable);
+            WhereValidation = WhereSelected.SetValidateNotifyError((val) => string.IsNullOrEmpty(val) ? "どこで知ったのかが選択されていません" : null).AddTo(this.Disposable);
+            AccessValidation = AccessSelected.SetValidateNotifyError((val) => string.IsNullOrEmpty(val) ? "どのように来たのかが選択されていません" : null).AddTo(this.Disposable);
+
+            AgeSelected.AddTo(this.Disposable);
+            MemberSelected.AddTo(this.Disposable);
+            ResidenceSelected.AddTo(this.Disposable);
+            WhereSelected.AddTo(this.Disposable);
+            AccessSelected.AddTo(this.Disposable);
 
             SubmitCommand = new[]
             {
@@ -134,7 +140,8 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 AccessValidation.ObserveHasErrors,
             }
                 .CombineLatestValuesAreAllFalse()
-                .ToReactiveCommand(); 
+                .ToReactiveCommand()
+                .AddTo(this.Disposable);
 
             SubmitCommand.Subscribe(async () =>
             {
@@ -145,7 +152,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                     WHERE[WhereSelected.Value],
                     ACCESS[AccessSelected.Value]);
                 await _navigationService.NavigateAsync("/AppNavigationRootPage/NavigationPage/HomePage");
-            });
+            }).AddTo(this.Disposable);
 
             SkipCommand = new DelegateCommand(async () =>
             {
