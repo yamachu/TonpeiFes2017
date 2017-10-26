@@ -9,6 +9,7 @@ using System.Windows.Input;
 using TonpeiFes.MobileCore.Services;
 using Prism.Navigation;
 using System.Threading.Tasks;
+using TonpeiFes.MobileCore.Configurations;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
@@ -109,7 +110,11 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         private IAnalyticsService _analyticsService;
         private ILocalConfigService _configService;
 
-        public EnquetePageViewModel(INavigationService navigationService, IOpenWebPageService webService, IAnalyticsService analyticsService, ILocalConfigService configService)
+        public EnquetePageViewModel(INavigationService navigationService,
+                                    IOpenWebPageService webService,
+                                    IAnalyticsService analyticsService,
+                                    ILocalConfigService configService,
+                                    IConstUrls constUrls)
         {
             _navigationService = navigationService;
             _webService = webService;
@@ -163,7 +168,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
             TermsOfUseCommand = new DelegateCommand(async () =>
             {
-                await _webService.OpenUri("change url");
+                await _webService.OpenUri(constUrls.TermsOfUseUrl);
             });
         }
 
