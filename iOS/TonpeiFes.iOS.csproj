@@ -370,6 +370,7 @@
     <BundleResource Include="Resources\ic_map%402x.png" />
     <BundleResource Include="Resources\ic_clear%402x.png" />
     <BundleResource Include="Resources\splash_logo.png" />
+    <BundleResource Include="Resources\ic_info%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
