@@ -60,7 +60,6 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
             SearchQuery.Throttle(TimeSpan.FromMilliseconds(400)).Subscribe(query =>
             {
-                System.Diagnostics.Debug.WriteLine($"Query Update: {query}");
                 _planningUsecase.UpdateFilterConditions(SearchQuery.Value, PlanningType.Value, FavStateObservable.Value, PlaceId);
             }).AddTo(this.Disposable);
 
