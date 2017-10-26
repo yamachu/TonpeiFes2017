@@ -12,7 +12,9 @@
             </cv:ChainConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_info" Command="{Binding OpenInfoPageCommand}" Priority="1" />
+    </ContentPage.ToolbarItems>
     <StackLayout Spacing="0">
         <Image Source="{ex:ImageResource Source=TonpeiFes.Forms.Resources.HomeInfo.jpg}" Aspect="AspectFit" />
 

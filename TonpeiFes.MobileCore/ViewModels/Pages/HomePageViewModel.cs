@@ -20,6 +20,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
         public ReadOnlyReactiveCollection<Announcement> Announcements { get; }
         public ICommand SelectedItemCommand { get; }
+        public ICommand OpenInfoPageCommand { get; }
 
         private IShowAnnouncement _showAnnouce;
         private INavigationService _navigationService;
@@ -45,6 +46,11 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 {
                     await _webService.OpenUri(item.Uri);
                 }
+            });
+
+            OpenInfoPageCommand = new DelegateCommand(async () =>
+            {
+                await _navigationService.NavigateAsync("NavigationPage/OtherInformationsPage", null, true);
             });
 
             _showAnnouce.InitializeAnnouncements();
