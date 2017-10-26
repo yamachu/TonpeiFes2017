@@ -6,8 +6,10 @@ using Prism.Events;
 using Reactive.Bindings;
 using TonpeiFes.Core.Models.Consts;
 using TonpeiFes.Core.Models.DataObjects;
+using TonpeiFes.MobileCore.Configurations;
 using TonpeiFes.MobileCore.Models.EventArgs;
 using TonpeiFes.MobileCore.Repositories;
+using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 
 namespace TonpeiFes.MobileCore.Usecases
@@ -25,18 +27,21 @@ namespace TonpeiFes.MobileCore.Usecases
         private IRepository<StageEvent> _stageRepository;
         private IRepository<Stall> _stallRepository;
         private IEventAggregator _eventAggregator;
+        private IMapAssociated _mapAssociated;
 
         public ShowFestaMap(IRepository<MapRegion> mapRep,
                             IRepository<Exhibition> exhibitionRep,
                             IRepository<StageEvent> stageEventRep,
                             IRepository<Stall> stallRep,
-                            IEventAggregator eventAggregator)
+                            IEventAggregator eventAggregator,
+                            IMapAssociated mapAssociated)
         {
             _mapRepository = mapRep;
             _exhiitionRepository = exhibitionRep;
             _stageRepository = stageEventRep;
             _stallRepository = stallRep;
             _eventAggregator = eventAggregator;
+            _mapAssociated = mapAssociated;
 
             Pins = new ReadOnlyObservableCollection<Pin>(_pins);
             Polygons = new ReadOnlyObservableCollection<Polygon>(_polygons);
@@ -136,6 +141,11 @@ namespace TonpeiFes.MobileCore.Usecases
                 polygon.Positions.Add(new Position(point.Langitude, point.Longitude));
             }
 
+            var color = GetPolygonColorFromType(region.MapObjectType);
+            polygon.StrokeColor = Color.LightGray;
+            polygon.StrokeWidth = 0.5f;
+            polygon.FillColor = Color.FromRgba(color.R, color.G, color.B, 0.5);
+
             return polygon;
         }
         private void SetAssociationWithPin(Polygon polygon, Pin pin)
@@ -147,6 +157,15 @@ namespace TonpeiFes.MobileCore.Usecases
                 _eventAggregator.GetEvent<PolygonClickedEvent>()
                                 .Publish(new PolygonClickedEventArgs((sender as Polygon).Tag));
             };
+        }
+
+        private Color GetPolygonColorFromType(MapObjectEnum type)
+        {
+            if (type.HasFlag(MapObjectEnum.EXHIBITION)) return Color.FromHex(_mapAssociated.HexColorExhibition);
+            if (type.HasFlag(MapObjectEnum.STAGE)) return Color.FromHex(_mapAssociated.HexColorStageEvent);
+            if (type.HasFlag(MapObjectEnum.STALL)) return Color.FromHex(_mapAssociated.HexColorStall);
+
+            return Color.LightBlue;
         }
     }
 }

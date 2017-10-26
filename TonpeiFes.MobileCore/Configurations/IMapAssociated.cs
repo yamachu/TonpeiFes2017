@@ -5,5 +5,9 @@ namespace TonpeiFes.MobileCore.Configurations
     {
         double MapCenterLangitude { get; }
         double MapCenterLongitude { get; }
+
+        string HexColorExhibition { get; }
+        string HexColorStageEvent { get; }
+        string HexColorStall { get; }
     }
 }
