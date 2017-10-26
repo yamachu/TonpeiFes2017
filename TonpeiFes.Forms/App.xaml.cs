@@ -103,9 +103,10 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IShowFestaMap, ShowFestaMap>();
             Container.RegisterType<IShowAnnouncement, ShowAnnouncement>();
 
-            Container.RegisterInstance<MobileCore.Configurations.IMapAssociated>(new MapAssociated());
-            Container.RegisterInstance<IOpenWebPageService>(new OpenWebPageService());
+            Container.RegisterType<MobileCore.Configurations.IMapAssociated, MapAssociated>();
+            Container.RegisterType<IOpenWebPageService, OpenWebPageService>();
             Container.RegisterType<IAnalyticsService, AnalyticsService>();
+            Container.RegisterType<MobileCore.Configurations.IConstUrls, ConstUrls>();
 
             Task.Run(async () =>
             {
