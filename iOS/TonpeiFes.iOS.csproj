@@ -371,6 +371,9 @@
     <BundleResource Include="Resources\ic_clear%402x.png" />
     <BundleResource Include="Resources\splash_logo.png" />
     <BundleResource Include="Resources\ic_info%402x.png" />
+    <BundleResource Include="..\TonpeiFes.Forms\Resources\loading.png">
+      <Link>Resources\loading.png</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

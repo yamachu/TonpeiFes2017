@@ -307,6 +307,9 @@
     <AndroidResource Include="Resources\drawable\ic_map.png" />
     <AndroidResource Include="Resources\drawable\ic_clear.png" />
     <AndroidResource Include="Resources\drawable\ic_info.png" />
+    <AndroidResource Include="..\TonpeiFes.Forms\Resources\loading.png">
+      <Link>Resources\drawable\loading.png</Link>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />

@@ -81,5 +81,6 @@
     <None Remove="Resources\C2.jpg" />
     <None Remove="Resources\C3.jpg" />
     <None Remove="Resources\C4.jpg" />
+    <None Include="Resources\loading.png" />
   </ItemGroup>
 </Project>
