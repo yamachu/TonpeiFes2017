@@ -285,6 +285,7 @@
     <Compile Include="Renderers\OutlinedNonSelectedIconTabbedPageRenderer.cs" />
     <Compile Include="MyApp.cs" />
     <Compile Include="Renderers\ContentInjectionWebViewRenderer.cs" />
+    <Compile Include="Renderers\CustomTableViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
