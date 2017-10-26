@@ -8,6 +8,7 @@ using Reactive.Bindings.Extensions;
 using System.Windows.Input;
 using TonpeiFes.MobileCore.Services;
 using Prism.Navigation;
+using System.Threading.Tasks;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
@@ -106,12 +107,14 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         private INavigationService _navigationService;
         private IOpenWebPageService _webService;
         private IAnalyticsService _analyticsService;
+        private ILocalConfigService _configService;
 
-        public EnquetePageViewModel(INavigationService navigationService, IOpenWebPageService webService, IAnalyticsService analyticsService)
+        public EnquetePageViewModel(INavigationService navigationService, IOpenWebPageService webService, IAnalyticsService analyticsService, ILocalConfigService configService)
         {
             _navigationService = navigationService;
             _webService = webService;
             _analyticsService = analyticsService;
+            _configService = configService;
 
             Ages = AGE.Keys.ToList();
             Members = MEMBER.Keys.ToList();
@@ -145,24 +148,16 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
             SubmitCommand.Subscribe(async () =>
             {
-                await _analyticsService.SendUserAttributes(
-                    AGE[AgeSelected.Value],
-                    MEMBER[MemberSelected.Value],
-                    RESIDENCE[ResidenceSelected.Value],
-                    WHERE[WhereSelected.Value],
-                    ACCESS[AccessSelected.Value]);
+                await Submit();
+                await SaveUserProfile();
                 await _navigationService.NavigateAsync("/AppNavigationRootPage/NavigationPage/HomePage");
             }).AddTo(this.Disposable);
 
             SkipCommand = new DelegateCommand(async () =>
             {
                 SetValueSecret();
-                await _analyticsService.SendUserAttributes(
-                    AGE[AgeSelected.Value],
-                    MEMBER[MemberSelected.Value],
-                    RESIDENCE[ResidenceSelected.Value],
-                    WHERE[WhereSelected.Value],
-                    ACCESS[AccessSelected.Value]);
+                await Submit();
+                await SaveUserProfile();
                 await _navigationService.NavigateAsync("/AppNavigationRootPage/NavigationPage/HomePage");
             });
 
@@ -179,6 +174,30 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             ResidenceSelected.Value = SECRET_STR;
             WhereSelected.Value = SECRET_STR;
             AccessSelected.Value = SECRET_STR;
+        }
+
+        private async Task Submit()
+        {
+            await _analyticsService.SendUserAttributes(
+                    AGE[AgeSelected.Value],
+                    MEMBER[MemberSelected.Value],
+                    RESIDENCE[ResidenceSelected.Value],
+                    WHERE[WhereSelected.Value],
+                    ACCESS[AccessSelected.Value]);
+            await _configService.SetEnqueteSentAsync(true);
+        }
+
+        private async Task SaveUserProfile()
+        {
+            try
+            {
+                var guid = await _analyticsService.GetUserId();
+                await _configService.SetUserIdAsync(guid);
+            }
+            catch(Exception e)
+            {
+                
+            }
         }
     }
 }

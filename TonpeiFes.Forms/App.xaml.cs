@@ -49,7 +49,15 @@ namespace TonpeiFes.Forms
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("/AppNavigationRootPage/NavigationPage/HomePage");
+            var sent = await Container.Resolve<ILocalConfigService>().GetEnqueteSentAsync();
+            if (sent)
+            {
+                await NavigationService.NavigateAsync("/AppNavigationRootPage/NavigationPage/HomePage");
+            }
+            else
+            {
+                await NavigationService.NavigateAsync("/NavigationPage/EnquetePage");
+            }
         }
 
         protected override void RegisterTypes()
