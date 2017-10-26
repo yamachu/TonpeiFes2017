@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="TonpeiFes.Forms.Views.Pages.VoteAnnouncePage"
+    xmlns:local="clr-namespace:TonpeiFes.Forms.Views.Controls"
+    Title="{Binding Title}">
+    <StackLayout>
+        <ContentView Padding="8">
+            <Label FontSize="14">
+                <Label.Text>
+あなたの一票で結果が変わる！？
+投票で東北大学祭を盛り上げよう！
+                </Label.Text>
+            </Label>
+        </ContentView>
+
+        <local:SeparatorControl />
+
+        <StackLayout>
+            <ContentView Padding="8" BackgroundColor="{StaticResource WhiteGray}" >
+               <Label Text="第9回Mr.Ms東北大コンテスト" FontAttributes="Bold" FontSize="16" />
+            </ContentView>
+
+            <StackLayout Spacing="4" Padding="8">
+                <Label Text="Mr.東北大への投票はこちら" FontSize="14" />
+                <Button HorizontalOptions="Center" Text="投票ページを開く" TextColor="{StaticResource Primary}" FontSize="14"
+                    BackgroundColor="Transparent" BorderColor="Transparent" BorderRadius="0" BorderWidth="0"
+                    Command="{Binding GoMrVoteCommand}" />
+
+                <local:SeparatorControl />
+
+                <Label Text="Ms.東北大への投票はこちら" FontSize="14" />
+                <Button HorizontalOptions="Center" Text="投票ページを開く" TextColor="{StaticResource Primary}" FontSize="14"
+                    BackgroundColor="Transparent" BorderColor="Transparent" BorderRadius="0" BorderWidth="0"
+                    Command="{Binding GoMsVoteCommand}" />
+
+                <Label FontSize="10" TextColor="Red" Text="{Binding MrMsErrorText.Value}"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout>
+            <ContentView Padding="8" BackgroundColor="{StaticResource WhiteGray}" >
+               <Label Text="T-1グランプリ" FontAttributes="Bold" FontSize="16" />
+            </ContentView>
+
+            <StackLayout Spacing="4" Padding="8">
+                <Label Text="T-1グランプリの投票はこちら" FontSize="14" />
+                <Button HorizontalOptions="Center" Text="投票ページを開く" TextColor="{StaticResource Primary}" FontSize="14"
+                    BackgroundColor="Transparent" BorderColor="Transparent" BorderRadius="0" BorderWidth="0"
+                    Command="{Binding GoT1VoteCommand}" />
+
+                <Label FontSize="10" TextColor="Red" Text="{Binding T1ErrorText.Value}" />
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -28,5 +28,10 @@
             <local:FestaMapRootPage />
         </x:Arguments>
     </NavigationPage>
+    <NavigationPage Title="投票" Icon="{Binding iOSIconVote}" x:Name="Vote">
+        <x:Arguments>
+            <local:VoteAnnouncePage />
+        </x:Arguments>
+    </NavigationPage>
     </mycomponent:MyIconTabbedPage.Children>
 </mycomponent:MyIconTabbedPage>

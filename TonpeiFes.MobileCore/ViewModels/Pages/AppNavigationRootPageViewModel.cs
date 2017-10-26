@@ -24,6 +24,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public string iOSIconList => "ion-ios-list";
         public string iOSIconStage => "ion-ios-calendar";
         public string iOSIconMap => "ion-ios-location";
+        public string iOSIconVote => "ion-ios-compose";
 
         public ReactiveProperty<int> ReactiveCurrentTabIndex { get; } = new ReactiveProperty<int>();
 
@@ -37,6 +38,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 new MasterPageListItem{ Title = "模擬店／展示", Icon = iOSIconList, PageName = nameof(Pages.PlanningListRootPageViewModel).GetViewNameFromRule() },
                 new MasterPageListItem{ Title = "ステージイベント", Icon = iOSIconStage, PageName = nameof(Pages.StageEventListRootPageViewModel).GetViewNameFromRule() },
                 new MasterPageListItem{ Title = "マップ", Icon = iOSIconMap, PageName = nameof(Pages.FestaMapRootPageViewModel).GetViewNameFromRule() },
+                new MasterPageListItem{ Title = "投票", Icon = iOSIconVote, PageName = nameof(Pages.VoteAnnouncePageViewModel).GetViewNameFromRule() },
             };
 
             SelectedItemCommand = new AsyncReactiveCommand<MasterPageListItem>();
@@ -51,6 +53,10 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 if (value == 3)
                 {
                     _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.FestaMapRootPageViewModel).GetViewNameFromRule()));
+                }
+                if (value == 4)
+                {
+                    _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.VoteAnnouncePageViewModel).GetViewNameFromRule()));
                 }
             }).AddTo(this.Disposable);
 

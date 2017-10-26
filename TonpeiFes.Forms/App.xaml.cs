@@ -70,6 +70,7 @@ namespace TonpeiFes.Forms
             Container.RegisterTypeForNavigation<PlanningDetailPage>();
             Container.RegisterTypeForNavigation<RegionSpecificPlanningListPage, MobileCore.ViewModels.Pages.PlanningListRootPageViewModel>();
             Container.RegisterTypeForNavigation<EnquetePage>();
+            Container.RegisterTypeForNavigation<VoteAnnouncePage>();
 
             Container.RegisterTypeForNavigation<DetailFloorPage>();
             Container.RegisterTypeForNavigation<ClosableInternalWebViewPage>();
