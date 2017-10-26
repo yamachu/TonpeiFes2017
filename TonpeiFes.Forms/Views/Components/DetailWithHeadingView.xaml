@@ -5,7 +5,7 @@
         <StackLayout Padding="12">
             <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold" />
             <controls:SeparatorControl Color="{StaticResource Separator}" />
-            <Image Source="{Binding ImageUrl}" />
+            <controls:MyCachedImage Source="{Binding ImageUrl}" />
             <Label Text="{Binding Detail}" FontSize="12" />
         </StackLayout>
     </ContentView.Content>
