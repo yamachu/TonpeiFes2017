@@ -6,5 +6,7 @@ namespace TonpeiFes.Core.Models.DataObjects
         public string Title { get; set; }
 
         public string Detail { get; set; }
+
+        public FileObject AttachFile { get; set; }
     }
 }

@@ -5,6 +5,6 @@ namespace TonpeiFes.Core.Models.DataObjects
     {
         string Title { get; }
         string Detail { get; }
-        // Image File
+        FileObject AttachFile { get; }
     }
 }

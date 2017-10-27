@@ -105,6 +105,16 @@ namespace TonpeiFes.Core.Models.DataObjects
             }
         }
 
+        public FileObject AttachFile { get; set; }
+
+        public string ImageUrl
+        {
+            get
+            {
+                return AttachFile?.IconOptimizedFileUrl ?? "";
+            }
+        }
+
         public void UpdateLocationDetail()
         {
             LocationDetail = HeaderGroupedRegion.Key;

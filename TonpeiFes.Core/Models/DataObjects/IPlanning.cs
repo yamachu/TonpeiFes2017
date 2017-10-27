@@ -12,7 +12,8 @@ namespace TonpeiFes.Core.Models.DataObjects
         string Owner { get; }
         IList<IDescriptionImpl> Descriptions { get; }
         PlanningTypeEnum PlanningType { get; }
-        // Icon
+        FileObject AttachFile { get; }
+        string ImageUrl { get; }
 
         SNSInformations SNS { get; }
 
