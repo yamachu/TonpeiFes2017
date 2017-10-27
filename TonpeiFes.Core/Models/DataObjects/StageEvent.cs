@@ -104,7 +104,7 @@ namespace TonpeiFes.Core.Models.DataObjects
         {
             get
             {
-                return AttachFile?.IconOptimizedFileUrl ?? "loading.png";
+                return AttachFile?.IconOptimizedFileUrl ?? "noimage.png";
             }
         }
 
