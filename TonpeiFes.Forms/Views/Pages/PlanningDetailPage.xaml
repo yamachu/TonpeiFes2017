@@ -40,7 +40,7 @@
                 <!--  Planning main-info  -->
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="0,0,0,4">
                     <!--  Icon  -->
-                    <c:MyCachedImage WidthRequest="50" HeightRequest="50" />
+                    <c:MyCachedImage WidthRequest="50" HeightRequest="50" DownsampleToViewSize="true" Source="{Binding DetailModel.Value.ImageUrl}" />
                     <StackLayout>
                         <Label Text="{Binding DetailModel.Value.Title}" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource WhiteGray}" />
                         <Label Text="{Binding DetailModel.Value.Owner}" FontAttributes="Bold" FontSize="14" TextColor="{StaticResource WhiteGray}" />

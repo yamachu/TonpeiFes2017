@@ -17,7 +17,7 @@
         </ContentView.Resources>
         <ContentView.Content>
             <StackLayout Orientation="Horizontal" Padding="4">
-                <controls:MyCachedImage WidthRequest="70" HeightRequest="70" DownsampleToViewSize="true" />
+                <controls:MyCachedImage WidthRequest="70" HeightRequest="70" DownsampleToViewSize="true" Source="{Binding ImageUrl}" />
                 <StackLayout Orientation="Vertical" Spacing="{StaticResource VerticalItemSpacing}" VerticalOptions="Center">
                     <StackLayout Orientation="Vertical">
                         <Label Text="{Binding Title}" FontSize="14" TextColor="Black" />

@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TonpeiFes.Forms.Views.Components.DetailWithHeadingView"
-    xmlns:controls="clr-namespace:TonpeiFes.Forms.Views.Controls">
+    xmlns:controls="clr-namespace:TonpeiFes.Forms.Views.Controls"
+    xmlns:cv="clr-namespace:TonpeiFes.Forms.Converters;assembly=TonpeiFes.Forms">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cv:ChainConverter x:Key="IgnoreEmptyString">
+                <cv:IsNullOrEmptyOrWhitespaceConverter />
+                <cv:BooleanInverseConverter />
+            </cv:ChainConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentView.Content>
         <StackLayout Padding="12">
             <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold" />
             <controls:SeparatorControl Color="{StaticResource Separator}" />
-            <controls:MyCachedImage Source="{Binding ImageUrl}" />
+            <controls:MyCachedImage Source="{Binding ImageUrl}" IsEnabled="{Binding ImageUrl, Converter={StaticResource IgnoreEmptyString}}" IsVisible="{Binding ImageUrl, Converter={StaticResource IgnoreEmptyString}}" />
             <Label Text="{Binding Detail}" FontSize="12" />
         </StackLayout>
     </ContentView.Content>
