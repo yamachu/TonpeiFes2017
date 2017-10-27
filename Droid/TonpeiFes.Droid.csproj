@@ -311,6 +311,9 @@
     <AndroidResource Include="..\TonpeiFes.Forms\Resources\loading.png">
       <Link>Resources\drawable\loading.png</Link>
     </AndroidResource>
+    <AndroidResource Include="..\TonpeiFes.Forms\Resources\noimage.png">
+      <Link>Resources\drawable\noimage.png</Link>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />

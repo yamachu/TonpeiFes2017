@@ -374,6 +374,9 @@
     <BundleResource Include="..\TonpeiFes.Forms\Resources\loading.png">
       <Link>Resources\loading.png</Link>
     </BundleResource>
+    <BundleResource Include="..\TonpeiFes.Forms\Resources\noimage.png">
+      <Link>Resources\noimage.png</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
