@@ -46,3 +46,4 @@ Tools/*.Fody.dll
 TonpeiFes.Forms/Configurations/GoogleMapAPI.cs
 TonpeiFes.Forms/Configurations/MobileCenterAPI.cs
 TonpeiFes.Forms/Configurations/ConstUrls.cs
+TonpeiFes.Forms/Configurations/RealmConsts.cs
