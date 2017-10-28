@@ -9,8 +9,9 @@ namespace TonpeiFes.MobileCore.Repositories
     {
         private RealmDatabaseService dbService;
 
-        public AnnouncementRepository()
+        public AnnouncementRepository(IDatabaseService databaseService)
         {
+            dbService = databaseService as RealmDatabaseService;
         }
 
         public void Add(Announcement item)
