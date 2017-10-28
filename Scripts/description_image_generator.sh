@@ -11,6 +11,9 @@ fi
 INPUTDIR=$1
 OUTPUTDIR=$2
 
+_WIDTH=512
+_HEIGHT=384
+
 # Kill normal-whitespace, Replace it to underscore
 python3 -c "
 import os
@@ -22,9 +25,14 @@ for f in glob.glob('*/*'):
 
 for f in `ls ${INPUTDIR}/*`
 do
-    convert $f -alpha remove -thumbnail 120x120 -background white -gravity center -extent 120x120 -quiet tmp.png
-    newname=`openssl sha1 tmp.png | cut -f2 -d' '`
-    mv tmp.png ${OUTPUTDIR}/$newname
+    if [ `identify ${f} |cut -f3 -d' '|cut -f1 -d'x'` -lt ${_WIDTH} ] && [ `identify ${f} |cut -f3 -d' '|cut -f2 -d'x'` -lt ${_HEIGHT} ]; then
+        convert -alpha remove ${f} -quiet tmp.jpg
+    else
+        convert -alpha remove -thumbnail ${_WIDTH}x${_HEIGHT} $f -quiet tmp.jpg
+    fi
+
+    newname=`openssl sha1 tmp.jpg | cut -f2 -d' '`
+    mv tmp.jpg ${OUTPUTDIR}/$newname
 
     echo ${f##*/},${newname}
 done
