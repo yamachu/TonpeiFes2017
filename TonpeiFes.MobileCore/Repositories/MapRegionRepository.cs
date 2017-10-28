@@ -26,7 +26,10 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public IEnumerable<MapRegion> GetAll()
         {
-            return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<MapRegion>();
+            if (dbService.InitializeDatabaseConnection().Result)
+                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<MapRegion>();
+            else
+                return new List<MapRegion>();
         }
 
         public MapRegion GetOne(int id)
@@ -36,7 +39,10 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public MapRegion GetOne(string id)
         {
-            return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<MapRegion>(id);
+            if (dbService.InitializeDatabaseConnection().Result)
+                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<MapRegion>(id);
+            else
+                return null;
         }
     }
 }

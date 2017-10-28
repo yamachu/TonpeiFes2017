@@ -16,6 +16,7 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public void Add(FavoritedPlanning item)
         {
+            if (!dbService.InitializeDatabaseConnection().Result) return;
             var realm = Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration);
             realm.Write(() => {
                 realm.Add(item);
@@ -24,6 +25,7 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public void Delete(FavoritedPlanning item)
         {
+            if (!dbService.InitializeDatabaseConnection().Result) return;
             var realm = Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration);
             var _item = realm.All<FavoritedPlanning>().FirstOrDefault(elem => elem.Id == item.Id && elem.PlanningType == item.PlanningType);
             if (_item != null)
@@ -38,7 +40,10 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public IEnumerable<FavoritedPlanning> GetAll()
         {
-            return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<FavoritedPlanning>();
+            if (dbService.InitializeDatabaseConnection().Result)
+                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<FavoritedPlanning>();
+            else
+                return new List<FavoritedPlanning>();
         }
 
         public FavoritedPlanning GetOne(int id)
@@ -48,7 +53,10 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public FavoritedPlanning GetOne(string id)
         {
-            return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<FavoritedPlanning>(id);
+            if (dbService.InitializeDatabaseConnection().Result)
+                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<FavoritedPlanning>(id);
+            else
+                return null;
         }
     }
 }

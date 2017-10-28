@@ -25,7 +25,10 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public IEnumerable<StageEvent> GetAll()
         {
-            return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<StageEvent>();
+            if (dbService.InitializeDatabaseConnection().Result)
+                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<StageEvent>();
+            else
+                return new List<StageEvent>();
         }
 
         public StageEvent GetOne(int id)
@@ -35,7 +38,10 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public StageEvent GetOne(string id)
         {
-            return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<StageEvent>(id);
+            if (dbService.InitializeDatabaseConnection().Result)
+                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<StageEvent>(id);
+            else
+                return null;
         }
     }
 }

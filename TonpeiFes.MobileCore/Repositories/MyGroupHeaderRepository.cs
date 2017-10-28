@@ -26,7 +26,10 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public IEnumerable<MyGroupHeader> GetAll()
         {
-            return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<MyGroupHeader>();
+            if (dbService.InitializeDatabaseConnection().Result)
+                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<MyGroupHeader>();
+            else
+                return new List<MyGroupHeader>();
         }
 
         public MyGroupHeader GetOne(int id)
@@ -36,7 +39,10 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public MyGroupHeader GetOne(string id)
         {
-            return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<MyGroupHeader>(id);
+            if (dbService.InitializeDatabaseConnection().Result)
+                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<MyGroupHeader>(id);
+            else
+                return null;
         }
     }
 }

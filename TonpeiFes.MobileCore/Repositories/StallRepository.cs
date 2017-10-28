@@ -25,7 +25,10 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public IEnumerable<Stall> GetAll()
         {
-            return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<Stall>();
+            if (dbService.InitializeDatabaseConnection().Result)
+                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<Stall>();
+            else
+                return new List<Stall>();
         }
 
         public Stall GetOne(int id)
@@ -35,7 +38,10 @@ namespace TonpeiFes.MobileCore.Repositories
 
         public Stall GetOne(string id)
         {
-            return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<Stall>(id);
+            if (dbService.InitializeDatabaseConnection().Result)
+                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<Stall>(id);
+            else
+                return null;
         }
     }
 }
