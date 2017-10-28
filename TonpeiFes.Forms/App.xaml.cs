@@ -25,6 +25,7 @@ using TonpeiFes.Forms.Service;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
+using TonpeiFes.MobileCore.Configurations;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TonpeiFes.Forms
@@ -104,6 +105,7 @@ namespace TonpeiFes.Forms
             Container.RegisterType<IRepository<MyGroupHeader>, MyGroupHeaderRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<MapRegion>, MapRegionRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IRepository<Announcement>, AnnouncementRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IRealmConsts, RealmConsts>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDatabaseService, RealmDatabaseService>(new ContainerControlledLifetimeManager());
 #endif
 
