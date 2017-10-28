@@ -23,6 +23,9 @@ namespace TonpeiFes.MobileCore.Services
         {
             if (IsInitialized) return true;
 
+            LocalDataConnectionConfiguration = new RealmConfiguration();
+            LocalDataConnectionConfiguration.ObjectClasses = new[] { typeof(Core.Models.DataObjects.FavoritedPlanning) };
+
             User user = null;
             try
             {
@@ -42,8 +45,6 @@ namespace TonpeiFes.MobileCore.Services
                 }
                 MasterDataConnectionConfiguration = new SyncConfiguration(user, new Uri(_consts.DbUri));
                 await Realm.GetInstanceAsync(MasterDataConnectionConfiguration);
-                LocalDataConnectionConfiguration = new RealmConfiguration();
-                LocalDataConnectionConfiguration.ObjectClasses = new[] { typeof(Core.Models.DataObjects.FavoritedPlanning) };
             }
             catch (Exception e)
             {
