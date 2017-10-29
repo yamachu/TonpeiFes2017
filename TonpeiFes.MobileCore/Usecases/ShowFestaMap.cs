@@ -98,6 +98,7 @@ namespace TonpeiFes.MobileCore.Usecases
         public async Task InitializeAllMapObjects()
         {
             var plannedRegion = _mapRepository.GetAll().Where(item => item.ContainsPlannings);
+            _pins.Clear();
 
             foreach (var region in plannedRegion)
             {
