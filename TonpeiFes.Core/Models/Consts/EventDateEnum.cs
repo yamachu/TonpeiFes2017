@@ -15,8 +15,8 @@ namespace TonpeiFes.Core.Models.Consts
         {
             var formattedText = "";
             if (days.HasFlag(EventDateEnum.DAY1)) formattedText += "11/3";
-            if (days.HasFlag(EventDateEnum.DAY2)) formattedText += (string.IsNullOrEmpty(formattedText) ? ", " : "") + "11/4";
-            if (days.HasFlag(EventDateEnum.DAY3)) formattedText += (string.IsNullOrEmpty(formattedText) ? ", " : "") + "11/5";
+            if (days.HasFlag(EventDateEnum.DAY2)) formattedText += (!string.IsNullOrEmpty(formattedText) ? ", " : "") + "11/4";
+            if (days.HasFlag(EventDateEnum.DAY3)) formattedText += (!string.IsNullOrEmpty(formattedText) ? ", " : "") + "11/5";
 
             return formattedText;
         }
