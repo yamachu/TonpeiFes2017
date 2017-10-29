@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Reactive.Disposables;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Events;
@@ -37,7 +36,6 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         private IMapAssociated _mapParams;
 
         public bool IsGlobalMap { get; private set; } = true;
-        private bool IsInitialized = false;
 
         public MoveToRegionRequest MoveToRegionRequest { get; } = new MoveToRegionRequest();
 
@@ -125,18 +123,13 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 if (ev.Name != this.GetType().Name.Replace("ViewModel", "")) return;
 
                 IsShowingUser.Value = true;
+                showFestaUsecase.InitializeAllMapObjects();
                 if (IsGlobalMap)
                 {
                     MoveToRegionRequest.MoveToRegion(
                         MapSpan.FromCenterAndRadius(
                             new Position(_mapParams.MapCenterLangitude, _mapParams.MapCenterLongitude),
                             Distance.FromMeters(185)));
-
-                    if (!IsInitialized)
-                    {
-                        showFestaUsecase.InitializeAllMapObjects();
-                        IsInitialized = true;
-                    }
                 }
             }).AddTo(this.Disposable);
 
