@@ -6,6 +6,7 @@ namespace TonpeiFes.Core.Models.DataObjects
 {
     public class FavoritedPlanning : Realms.RealmObject, IFavoritedPlanning
     {
+        [PrimaryKey]
         public string Id { get; set; }
 
         private int PlanningTypeNumber { get; set; }
