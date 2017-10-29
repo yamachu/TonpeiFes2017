@@ -44,7 +44,6 @@ namespace TonpeiFes.MobileCore.Services
                     user = await User.LoginAsync(credentials, new Uri(_consts.AuthUrl));
                 }
                 MasterDataConnectionConfiguration = new SyncConfiguration(user, new Uri(_consts.DbUri));
-                await Realm.GetInstanceAsync(MasterDataConnectionConfiguration);
             }
             catch (Exception e)
             {
