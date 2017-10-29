@@ -11,7 +11,9 @@ namespace TonpeiFes.Forms.Service
         {
             try
             {
-                var _uri = uri.StartsWith("'@") ? new Uri($"https://twitter.com/{(uri.Substring(2))}") : new Uri(uri);
+                var _uri = uri.StartsWith("'@") ? new Uri($"https://twitter.com/{(uri.Substring(2))}")
+                              : (uri.StartsWith("@") ? new Uri($"https://twitter.com/{(uri.Substring(1))}")
+                                 :new Uri(uri));
                 Device.OpenUri(_uri);
             }
             catch(System.UriFormatException ex)
