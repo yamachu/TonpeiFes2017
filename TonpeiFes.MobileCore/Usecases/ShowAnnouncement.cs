@@ -23,6 +23,7 @@ namespace TonpeiFes.MobileCore.Usecases
 
         public async Task InitializeAnnouncements()
         {
+            _announcements.Clear();
             foreach (var item in _announcementRepository.GetAll().OrderBy(item => item.Index))
             {
                 _announcements.Add(item);

@@ -11,6 +11,8 @@ using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Services;
 using System.Windows.Input;
 using Reactive.Bindings.Extensions;
+using TonpeiFes.MobileCore.Models.EventArgs;
+using Prism.Events;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
 {
@@ -26,7 +28,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         private INavigationService _navigationService;
         private IOpenWebPageService _webService;
 
-        public HomePageViewModel(INavigationService navigationService, IOpenWebPageService webService, IShowAnnouncement showAnnounce)
+        public HomePageViewModel(INavigationService navigationService, IOpenWebPageService webService, IShowAnnouncement showAnnounce, IEventAggregator _eventAggregator)
         {
             _showAnnouce = showAnnounce;
             _navigationService = navigationService;
@@ -52,6 +54,13 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             {
                 await _navigationService.NavigateAsync("NavigationPage/OtherInformationsPage", null, true);
             });
+
+            _eventAggregator.GetEvent<TabbedPageOpendEvent>().Subscribe((ev) =>
+            {
+                if (ev.Name != this.GetType().Name.Replace("ViewModel", "")) return;
+
+                _showAnnouce.InitializeAnnouncements();
+            }).AddTo(this.Disposable);
 
             _showAnnouce.InitializeAnnouncements();
         }

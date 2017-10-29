@@ -49,7 +49,10 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
             ReactiveCurrentTabIndex.Subscribe((value) =>
             {
-                // Mapが選択された時にデフォルトの場所に移動
+                if (value == 0)
+                {
+                    _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.HomePageViewModel).GetViewNameFromRule()));
+                }
                 if (value == 3)
                 {
                     _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.FestaMapRootPageViewModel).GetViewNameFromRule()));
