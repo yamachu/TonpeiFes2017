@@ -58,10 +58,14 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 _planningUsecase.UpdateFilterConditions(SearchQuery.Value, PlanningType.Value, FavStateObservable.Value, PlaceId);
             }).AddTo(this.Disposable);
 
+
+            // Threadの問題でクラッシュするようになったので一旦機能を削る
+#if false
             SearchQuery.Throttle(TimeSpan.FromMilliseconds(400)).Subscribe(query =>
             {
                 _planningUsecase.UpdateFilterConditions(SearchQuery.Value, PlanningType.Value, FavStateObservable.Value, PlaceId);
             }).AddTo(this.Disposable);
+#endif
 
             FavButtonClickCommand = new DelegateCommand(() =>
             {

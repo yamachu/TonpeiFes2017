@@ -15,7 +15,8 @@
     </NavigationPage>
     <NavigationPage Title="模擬店/企画" Icon="{Binding iOSIconList}" x:Name="List">
         <x:Arguments>
-            <ios:PlanningListRootPage />
+            <!--<ios:PlanningListRootPage />-->
+            <local:PlanningListRootPage />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="ステージ" Icon="{Binding iOSIconStage}" x:Name="Stage">
