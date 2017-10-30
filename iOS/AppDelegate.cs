@@ -16,6 +16,7 @@ namespace TonpeiFes.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
+        private App _application;
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
@@ -29,7 +30,8 @@ namespace TonpeiFes.iOS
 
             Xamarin.FormsGoogleMaps.Init(Forms.Configurations.GoogleMapAPI.GOOGLE_MAPS_IOS_API_KEY);
 
-            LoadApplication(new App(new iOSInitializer()));
+            _application = new App(new iOSInitializer());
+            LoadApplication(_application);
 
             UITabBar.Appearance.SelectedImageTintColor = ((Color)App.Current.Resources["Primary"]).ToUIColor();
 
@@ -38,6 +40,12 @@ namespace TonpeiFes.iOS
             UINavigationBar.Appearance.ShadowImage = new UIImage();
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override void WillEnterForeground(UIApplication app)
+        {
+            base.WillEnterForeground(app);
+            _application.iOSOnResume();
         }
     }
 

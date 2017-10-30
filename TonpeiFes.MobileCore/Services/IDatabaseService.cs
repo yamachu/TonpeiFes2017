@@ -5,6 +5,6 @@ namespace TonpeiFes.MobileCore.Services
 {
     public interface IDatabaseService
     {
-        Task<bool> InitializeDatabaseConnection();
+        Task<bool> InitializeDatabaseConnection(bool force);
     }
 }

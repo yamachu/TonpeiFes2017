@@ -138,6 +138,18 @@ namespace TonpeiFes.Forms
 #endif
         }
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            Task.Run(async () => 
+            {
+                await Container.Resolve<IDatabaseService>().InitializeDatabaseConnection(true);
+            });
+        }
+
+        public void iOSOnResume() => OnResume();
+
         private async Task MyInitializeModules()
         {
             Container.Resolve<IEventAggregator>()
@@ -149,7 +161,7 @@ namespace TonpeiFes.Forms
                          .GetEvent<LocationPermissionRequestResultEvent>()
                          .Publish(new LocationPermissionRequestResultEventArgs(granted));
             });
-            await Container.Resolve<IDatabaseService>().InitializeDatabaseConnection();
+            await Container.Resolve<IDatabaseService>().InitializeDatabaseConnection(false);
         }
 
         private async Task<bool> CheckLocationPermissionAsync()
