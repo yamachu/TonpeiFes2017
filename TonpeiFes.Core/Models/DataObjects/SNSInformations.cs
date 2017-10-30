@@ -6,7 +6,7 @@ namespace TonpeiFes.Core.Models.DataObjects
     public class SNSInformations : RealmObject
     {
         [PrimaryKey]
-        public string Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
         public string HomePage { get; set; }
         public string Twitter { get; set; }
