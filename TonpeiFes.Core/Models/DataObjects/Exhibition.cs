@@ -126,7 +126,7 @@ namespace TonpeiFes.Core.Models.DataObjects
                 + " $$$ " + Owner
                 + " $$$ " + (Descriptions?.Select(description => $"{description.Title} $$$ {description.Detail}").Aggregate((acc, next) => $"{acc} $$$ {next}") ?? "")
                 + " $$$ " + LocationDetail
-                + " $$$ " + string.Join(" $$$ ", Keywords ?? new List<string>())
+                //+ " $$$ " + string.Join(" $$$ ", Keywords ?? new List<string>())
                 + " $$$ " + $@"{(IsT1 ? "T1 $$$ T-1" : "")}"
                 + " $$$ " + $@"{(IsAcademic ? "学術" : "")}";
         }
