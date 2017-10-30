@@ -53,9 +53,9 @@ namespace TonpeiFes.MobileCore.Services
                 }
                 if (user != null && force)
                 {
-                    user.LogOut();
-                    var credentials = Credentials.UsernamePassword(_consts.UserId, _consts.Password, createUser: false);
-                    user = await User.LoginAsync(credentials, new Uri(_consts.AuthUrl));
+                    //user.LogOut();
+                    //var credentials = Credentials.UsernamePassword(_consts.UserId, _consts.Password, createUser: false);
+                    //user = await User.LoginAsync(credentials, new Uri(_consts.AuthUrl));
                 }
             }
             catch (Exception e)
