@@ -23,7 +23,7 @@ namespace TonpeiFes.Core.Models.DataObjects
         {
             get
             {
-                return Descriptions_?.Select((description) => new IDescriptionImpl { Title = description.Title, Detail = description.Detail }).ToList();
+                return Descriptions_?.Select((description) => new IDescriptionImpl { Title = description.Title, Detail = description.Detail, AttachFile = description.AttachFile }).ToList();
             }
         }
 
