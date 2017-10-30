@@ -17,17 +17,18 @@ namespace TonpeiFes.MobileCore.Repositories
         public void Add(FavoritedPlanning item)
         {
             if (!dbService.InitializeDatabaseConnection().Result) return;
-            var realm = Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration);
+            var realm = Realms.Realm.GetInstance(dbService.LocalDataConnectionConfiguration);
             realm.Write(() => {
                 realm.Add(item);
             });
+            realm.Refresh();
         }
 
         public void Delete(FavoritedPlanning item)
         {
             if (!dbService.InitializeDatabaseConnection().Result) return;
-            var realm = Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration);
-            var _item = realm.All<FavoritedPlanning>().FirstOrDefault(elem => elem.Id == item.Id && elem.PlanningType == item.PlanningType);
+            var realm = Realms.Realm.GetInstance(dbService.LocalDataConnectionConfiguration);
+            var _item = realm.All<FavoritedPlanning>().FirstOrDefault(elem => elem.Id == item.Id);
             if (_item != null)
             {
                 using (var trans = realm.BeginWrite())
@@ -36,12 +37,13 @@ namespace TonpeiFes.MobileCore.Repositories
                     trans.Commit();
                 }
             }
+            realm.Refresh();
         }
 
         public IEnumerable<FavoritedPlanning> GetAll()
         {
             if (dbService.InitializeDatabaseConnection().Result)
-                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).All<FavoritedPlanning>();
+                return Realms.Realm.GetInstance(dbService.LocalDataConnectionConfiguration).All<FavoritedPlanning>();
             else
                 return new List<FavoritedPlanning>();
         }
@@ -54,7 +56,7 @@ namespace TonpeiFes.MobileCore.Repositories
         public FavoritedPlanning GetOne(string id)
         {
             if (dbService.InitializeDatabaseConnection().Result)
-                return Realms.Realm.GetInstance(dbService.MasterDataConnectionConfiguration).Find<FavoritedPlanning>(id);
+                return Realms.Realm.GetInstance(dbService.LocalDataConnectionConfiguration).Find<FavoritedPlanning>(id);
             else
                 return null;
         }
