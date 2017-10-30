@@ -14,15 +14,6 @@ OUTPUTDIR=$2
 _WIDTH=512
 _HEIGHT=384
 
-# Kill normal-whitespace, Replace it to underscore
-python3 -c "
-import os
-import glob
-
-for f in glob.glob('*/*'):
-    os.rename(f, f.replace(' ', ''))
-"
-
 for f in `ls ${INPUTDIR}/*`
 do
     if [ `identify ${f} |cut -f3 -d' '|cut -f1 -d'x'` -lt ${_WIDTH} ] && [ `identify ${f} |cut -f3 -d' '|cut -f2 -d'x'` -lt ${_HEIGHT} ]; then
@@ -34,5 +25,5 @@ do
     newname=`openssl sha1 tmp.jpg | cut -f2 -d' '`
     mv tmp.jpg ${OUTPUTDIR}/$newname
 
-    echo ${f##*/},${newname}
+    echo ${f##*/},,${newname}
 done

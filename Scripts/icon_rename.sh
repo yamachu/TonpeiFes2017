@@ -1,14 +1,15 @@
 #!/bin/bash -e
 
-if [ $# -ne 2 ]; then
+if [ $# -lt 2 ]; then
     echo 'Usage'
-    echo $0 inputDir outputDir
+    echo $0 inputDir outputDir [prefix]
     echo 'Bye'
     exit 1
 fi
 
 INPUTDIR=$1
 OUTPUTDIR=$2
+PREFIX=$3
 
 # Kill normal-whitespace, Replace it to underscore
 python3 -c "
@@ -20,5 +21,5 @@ for f in glob.glob('${INPUTDIR}' + '/*'):
     os.rename(f, newfile)
     fileName = os.path.basename(newfile)
     pathName = os.path.dirname(newfile)
-    os.rename(newfile, '${OUTPUTDIR}' + '/icon_' + fileName)
+    os.rename(newfile, '${OUTPUTDIR}' + '/' + '${PREFIX}' + fileName)
 "
