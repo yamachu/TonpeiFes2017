@@ -350,8 +350,19 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' " >
+    <PreBuildEvent>cp -f ..\..\..\Info.base.plist ..\..\..\Info.plist</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' " >
+    <PreBuildEvent>cp -f ..\..\..\Info.release.plist ..\..\..\Info.plist</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Remove="Info.base.plist" />
+    <None Remove="Info.release.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
     <None Include="FodyWeavers.xml" />
