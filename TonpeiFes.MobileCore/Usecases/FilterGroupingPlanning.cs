@@ -95,14 +95,14 @@ namespace TonpeiFes.MobileCore.Usecases
         {
             if (!favorited) return list;
             var favoritedList = repository.GetAll().Where((item) => item.PlanningType == PlanningTypeEnum.EXHIBITION);
-            return favoritedList.Select((fav) => list.FirstOrDefault((item) => item.Id == fav.Id));
+            return list.Where((item) => favoritedList.Count((fav) => fav.Id == item.Id) > 0);
         }
 
         public static IEnumerable<Stall> FilterByFavoritedStall(this IEnumerable<Stall> list, bool favorited, IRepository<FavoritedPlanning> repository)
         {
             if (!favorited) return list;
             var favoritedList = repository.GetAll().Where((item) => item.PlanningType == PlanningTypeEnum.STALL);
-            return favoritedList.Select((fav) => list.FirstOrDefault((item) => item.Id == fav.Id));
+            return list.Where((item) => favoritedList.Count((fav) => fav.Id == item.Id) > 0);
         }
     }
 }
