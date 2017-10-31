@@ -342,6 +342,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Notification.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Notification%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon40x40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ios_appstore.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
