@@ -4452,26 +4452,26 @@ namespace TonpeiFes.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f02012d
-			public const int avd_hide_password_1 = 2130837805;
-			
-			// aapt resource value: 0x7f02012e
-			public const int avd_hide_password_2 = 2130837806;
-			
 			// aapt resource value: 0x7f02012f
-			public const int avd_hide_password_3 = 2130837807;
+			public const int avd_hide_password_1 = 2130837807;
+			
+			// aapt resource value: 0x7f020130
+			public const int avd_hide_password_2 = 2130837808;
+			
+			// aapt resource value: 0x7f020131
+			public const int avd_hide_password_3 = 2130837809;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f020130
-			public const int avd_show_password_1 = 2130837808;
-			
-			// aapt resource value: 0x7f020131
-			public const int avd_show_password_2 = 2130837809;
-			
 			// aapt resource value: 0x7f020132
-			public const int avd_show_password_3 = 2130837810;
+			public const int avd_show_password_1 = 2130837810;
+			
+			// aapt resource value: 0x7f020133
+			public const int avd_show_password_2 = 2130837811;
+			
+			// aapt resource value: 0x7f020134
+			public const int avd_show_password_3 = 2130837812;
 			
 			// aapt resource value: 0x7f020055
 			public const int common_full_open_on_phone = 2130837589;
@@ -5100,11 +5100,11 @@ namespace TonpeiFes.Droid
 			// aapt resource value: 0x7f020125
 			public const int notification_icon_background = 2130837797;
 			
-			// aapt resource value: 0x7f02012b
-			public const int notification_template_icon_bg = 2130837803;
+			// aapt resource value: 0x7f02012d
+			public const int notification_template_icon_bg = 2130837805;
 			
-			// aapt resource value: 0x7f02012c
-			public const int notification_template_icon_low_bg = 2130837804;
+			// aapt resource value: 0x7f02012e
+			public const int notification_template_icon_low_bg = 2130837806;
 			
 			// aapt resource value: 0x7f020126
 			public const int notification_tile_bg = 2130837798;
@@ -5120,6 +5120,12 @@ namespace TonpeiFes.Droid
 			
 			// aapt resource value: 0x7f02012a
 			public const int segmented_control_last_background = 2130837802;
+			
+			// aapt resource value: 0x7f02012b
+			public const int splash_logo = 2130837803;
+			
+			// aapt resource value: 0x7f02012c
+			public const int splash_screen = 2130837804;
 			
 			static Drawable()
 			{
@@ -6294,8 +6300,8 @@ namespace TonpeiFes.Droid
 			// aapt resource value: 0x7f0c0170
 			public const int Animation_Design_BottomSheetDialog = 2131493232;
 			
-			// aapt resource value: 0x7f0c018b
-			public const int AppCompatDialogStyle = 2131493259;
+			// aapt resource value: 0x7f0c018c
+			public const int AppCompatDialogStyle = 2131493260;
 			
 			// aapt resource value: 0x7f0c00b2
 			public const int Base_AlertDialog_AppCompat = 2131493042;
@@ -6771,11 +6777,14 @@ namespace TonpeiFes.Droid
 			// aapt resource value: 0x7f0c000e
 			public const int CardView_Light = 2131492878;
 			
-			// aapt resource value: 0x7f0c0189
-			public const int MyTheme = 2131493257;
-			
 			// aapt resource value: 0x7f0c018a
-			public const int MyTheme_Base = 2131493258;
+			public const int MyTheme = 2131493258;
+			
+			// aapt resource value: 0x7f0c018b
+			public const int MyTheme_Base = 2131493259;
+			
+			// aapt resource value: 0x7f0c0189
+			public const int MyTheme_Splashscreen = 2131493257;
 			
 			// aapt resource value: 0x7f0c002d
 			public const int Platform_AppCompat = 2131492909;

@@ -315,6 +315,8 @@
     <AndroidResource Include="..\TonpeiFes.Forms\Resources\noimage.png">
       <Link>Resources\drawable\noimage.png</Link>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\splash_logo.png" />
+    <AndroidResource Include="Resources\drawable\splash_screen.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />
