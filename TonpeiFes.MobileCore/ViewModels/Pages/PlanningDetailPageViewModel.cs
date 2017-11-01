@@ -30,7 +30,7 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public ICommand OpenUriCommand { get; }
         private IOpenWebPageService _webPageService;
 
-        public PlanningDetailPageViewModel(INavigationService navigationService, IShowPlanningDetail showDetail, IOpenWebPageService openWeb)
+        public PlanningDetailPageViewModel(INavigationService navigationService, IShowPlanningDetail showDetail, IOpenWebPageService openWeb, IAnalyticsService analyticsService)
         {
             _showDetail = showDetail;
             _navigationService = navigationService;
@@ -41,7 +41,22 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             ToggleFavorited = new AsyncReactiveCommand();
             ToggleFavorited.Subscribe(async(_) =>
             {
+                var next = !IsFavorited.Value;
                 await _showDetail.TogglePlanningFavoritedState(!IsFavorited.Value);
+                if (next) {
+                    switch(DetailModel.Value.PlanningType)
+                    {
+                        case PlanningTypeEnum.EXHIBITION:
+                            await analyticsService.SendFavoritedExhibition(DetailModel.Value.Id, DetailModel.Value.Title);
+                            break;
+                        case PlanningTypeEnum.STAGE:
+                            await analyticsService.SendFavoritedStage(DetailModel.Value.Id, DetailModel.Value.Title);
+                            break;
+                        case PlanningTypeEnum.STALL:
+                            await analyticsService.SendFavoritedStall(DetailModel.Value.Id, DetailModel.Value.Title);
+                            break;
+                    }
+                }
             }).AddTo(this.Disposable);
 
             IconSource = IsFavorited
