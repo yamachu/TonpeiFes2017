@@ -6300,8 +6300,8 @@ namespace TonpeiFes.Droid
 			// aapt resource value: 0x7f0c0170
 			public const int Animation_Design_BottomSheetDialog = 2131493232;
 			
-			// aapt resource value: 0x7f0c018c
-			public const int AppCompatDialogStyle = 2131493260;
+			// aapt resource value: 0x7f0c018d
+			public const int AppCompatDialogStyle = 2131493261;
 			
 			// aapt resource value: 0x7f0c00b2
 			public const int Base_AlertDialog_AppCompat = 2131493042;
@@ -6785,6 +6785,9 @@ namespace TonpeiFes.Droid
 			
 			// aapt resource value: 0x7f0c0189
 			public const int MyTheme_Splashscreen = 2131493257;
+			
+			// aapt resource value: 0x7f0c018c
+			public const int NoShadowButton = 2131493260;
 			
 			// aapt resource value: 0x7f0c002d
 			public const int Platform_AppCompat = 2131492909;
