@@ -23,7 +23,12 @@
         </ContentView>
 
         <ContentView Padding="8" IsVisible="{Binding Announcements.Count, Converter={StaticResource NumberEq}, ConverterParameter=0}" >
-            <Label Text="お知らせはありません" FontSize="14" />
+            <Label FontSize="14" >
+                <Label.Text>
+データベースの初回ダウンロードのため、eduroamに接続している場合は切断しアプリを再起動してください。
+ダウンロード後はeduroamに接続していても使用することが出来ます。
+                </Label.Text>
+            </Label>
         </ContentView>
         <ListView ItemsSource="{Binding Announcements}" IsVisible="{Binding Announcements.Count, Converter={StaticResource NumberNotEq}, ConverterParameter=0}" >
             <ListView.Behaviors>
