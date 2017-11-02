@@ -49,17 +49,22 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
             ReactiveCurrentTabIndex.Subscribe((value) =>
             {
-                if (value == 0)
+                switch(value)
                 {
-                    _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.HomePageViewModel).GetViewNameFromRule()));
-                }
-                if (value == 3)
-                {
-                    _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.FestaMapRootPageViewModel).GetViewNameFromRule()));
-                }
-                if (value == 4)
-                {
-                    _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.VoteAnnouncePageViewModel).GetViewNameFromRule()));
+                    case 0:
+                        _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.HomePageViewModel).GetViewNameFromRule()));
+                        break;
+                    case 1:
+                        _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.PlanningListRootPageViewModel).GetViewNameFromRule()));
+                        break;
+                    case 3:
+                        _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.FestaMapRootPageViewModel).GetViewNameFromRule()));
+                        break;
+                    case 4:
+                        _eventAggregator.GetEvent<TabbedPageOpendEvent>().Publish(new TabbedPageOpendEventArgs(nameof(Pages.VoteAnnouncePageViewModel).GetViewNameFromRule()));
+                        break;
+                    default:
+                        break;
                 }
             }).AddTo(this.Disposable);
 

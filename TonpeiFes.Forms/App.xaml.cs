@@ -73,8 +73,8 @@ namespace TonpeiFes.Forms
             Container.RegisterTypeForNavigationOnPlatform<PlanningListRootPage, MobileCore.ViewModels.Pages.PlanningListRootPageViewModel>(
                 name: "PlanningListRootPage",
                 androidView: typeof(PlanningListRootPage),
-                iOSView: typeof(PlanningListRootPage));
-                //iOSView: typeof(Views.Pages.iOS.PlanningListRootPage));
+                //iOSView: typeof(PlanningListRootPage));
+                iOSView: typeof(Views.Pages.iOS.PlanningListRootPage));
             Container.RegisterTypeForNavigation<StageEventListRootPage>();
             Container.RegisterTypeForNavigation<FestaMapRootPage>();
             Container.RegisterTypeForNavigation<PlanningDetailPage>();

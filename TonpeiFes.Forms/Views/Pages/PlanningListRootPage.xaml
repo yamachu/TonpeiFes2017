@@ -23,8 +23,8 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="0">
-        <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White" IsVisible="false">
-        <!--<SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White" IsVisible="{StaticResource IsAndroid}">-->
+<!--        <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White" IsVisible="false">-->
+        <SearchBar Text="{Binding SearchQuery.Value, Mode=TwoWay}" Placeholder="キーワード検索" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}" CancelButtonColor="White" IsVisible="{StaticResource IsAndroid}">
             <SearchBar.PlaceholderColor>
                 <OnPlatform x:TypeArguments="Color" Android="#99FFFFFF" />
             </SearchBar.PlaceholderColor>

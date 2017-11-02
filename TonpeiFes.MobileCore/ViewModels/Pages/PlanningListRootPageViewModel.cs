@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Input;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Navigation;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -10,6 +11,7 @@ using TonpeiFes.Core.Models.Consts;
 using TonpeiFes.Core.Models.DataObjects;
 using TonpeiFes.MobileCore.Extensions;
 using TonpeiFes.MobileCore.Helpers;
+using TonpeiFes.MobileCore.Models.EventArgs;
 using TonpeiFes.MobileCore.Usecases;
 
 namespace TonpeiFes.MobileCore.ViewModels.Pages
@@ -39,8 +41,9 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
         public AsyncReactiveCommand<string> OpenPlceDetailCommand { get; }
 
         private IFilterGroupingPlanning _planningUsecase;
+        private bool IsDirty = false;
 
-        public PlanningListRootPageViewModel(INavigationService navigationService, IFilterGroupingPlanning planningUsecase)
+        public PlanningListRootPageViewModel(INavigationService navigationService, IFilterGroupingPlanning planningUsecase, IEventAggregator eventAggregator)
         {
             _planningUsecase = planningUsecase;
 
@@ -55,17 +58,15 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
             SelectedSegment.Subscribe(selectedSegment => 
             {
-                _planningUsecase.UpdateFilterConditions(SearchQuery.Value, PlanningType.Value, FavStateObservable.Value, PlaceId);
+                if (IsDirty)
+                    _planningUsecase.UpdateFilterConditions(SearchQuery.Value, PlanningType.Value, FavStateObservable.Value, PlaceId);
             }).AddTo(this.Disposable);
 
-
-            // Threadの問題でクラッシュするようになったので一旦機能を削る
-#if false
-            SearchQuery.Throttle(TimeSpan.FromMilliseconds(400)).Subscribe(query =>
+            SearchQuery.Throttle(TimeSpan.FromMilliseconds(400)).ObserveOnUIDispatcher().Subscribe(query =>
             {
-                _planningUsecase.UpdateFilterConditions(SearchQuery.Value, PlanningType.Value, FavStateObservable.Value, PlaceId);
+                if (IsDirty)
+                    _planningUsecase.UpdateFilterConditions(SearchQuery.Value, PlanningType.Value, FavStateObservable.Value, PlaceId);
             }).AddTo(this.Disposable);
-#endif
 
             FavButtonClickCommand = new DelegateCommand(() =>
             {
@@ -93,13 +94,28 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
             {
                 await navigationService.NavigateAsync("NavigationPage/DetailFloorPage", DetailFloorPageViewModel.GetNavigationParameter(placeName), true);
             }).AddTo(this.Disposable);
+
+            eventAggregator.GetEvent<TabbedPageOpendEvent>().Subscribe((ev) =>
+            {
+                if (ev.Name != this.GetType().Name.Replace("ViewModel", "")) return;
+                if (!IsDirty)
+                {
+                    IsDirty = true;
+                    _planningUsecase.UpdateFilterConditions(SearchQuery.Value, PlanningType.Value, FavStateObservable.Value, PlaceId);
+                }
+            }).AddTo(this.Disposable);
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
             base.OnNavigatingTo(parameters);
 
-            if (parameters == null || !parameters.ContainsKey(ParameterPlaceId)) return;
+            if (parameters == null || !parameters.ContainsKey(ParameterPlaceId) && !IsDirty)
+            {
+                IsDirty = true;
+                _planningUsecase.UpdateFilterConditions(SearchQuery.Value, PlanningType.Value, FavStateObservable.Value, PlaceId);
+                return;
+            }
 
             Title.Value = $@"{parameters[ParameterPlaceName]}の{((PlanningTypeEnum)parameters[ParameterType] == PlanningTypeEnum.EXHIBITION ? "屋内" : "屋外")}企画";
             PlaceId = parameters[ParameterPlaceId] as string;
