@@ -25,8 +25,8 @@
         <ContentView Padding="8" IsVisible="{Binding Announcements.Count, Converter={StaticResource NumberEq}, ConverterParameter=0}" >
             <Label FontSize="14" >
                 <Label.Text>
-データベースの初回ダウンロードのため、eduroamに接続している場合は切断しアプリを再起動してください。
-ダウンロード後はeduroamに接続していても使用することが出来ます。
+データベースの同期にしばらく時間がかかります。
+同期は自動的に行われます。
                 </Label.Text>
             </Label>
         </ContentView>
