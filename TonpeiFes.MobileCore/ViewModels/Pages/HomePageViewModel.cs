@@ -61,7 +61,13 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
 
                 _showAnnouce.InitializeAnnouncements();
             }).AddTo(this.Disposable);
+        }
 
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            // iOSでEventAggregatorとこっちも呼ばれるけどめんどくさいので放置
             _showAnnouce.InitializeAnnouncements();
         }
     }
