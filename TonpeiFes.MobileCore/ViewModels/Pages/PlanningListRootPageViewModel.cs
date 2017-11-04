@@ -117,6 +117,8 @@ namespace TonpeiFes.MobileCore.ViewModels.Pages
                 return;
             }
 
+            if (IsDirty) return;
+
             Title.Value = $@"{parameters[ParameterPlaceName]}の{((PlanningTypeEnum)parameters[ParameterType] == PlanningTypeEnum.EXHIBITION ? "屋内" : "屋外")}企画";
             PlaceId = parameters[ParameterPlaceId] as string;
             PlanningType.Value = (PlanningTypeEnum)parameters[ParameterType];
