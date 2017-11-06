@@ -24,13 +24,13 @@
     <PackageReference Include="SegmentedControl.FormsPlugin" Version="1.3.4" />
     <PackageReference Include="Unity" Version="4.0.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.2.20" />
-    <PackageReference Include="Xamarin.Forms" Version="2.3.5.256-pre6" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="2.1.1" />
     <PackageReference Include="Plugin.Permissions" Version="2.1.0" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps.Bindings" Version="2.1.0" />
     <PackageReference Include="Microsoft.Azure.Mobile.Crashes" Version="0.16.0" />
     <PackageReference Include="Microsoft.Azure.Mobile.Analytics" Version="0.16.0" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.Forms" Version="2.4.0.56808" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,8 +50,6 @@
     <Compile Remove="Configurations\RealmConsts.tmpl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="**\*.xaml.cs" DependentUpon="%(Filename)" />
-    <EmbeddedResource Include="**\*.xaml" SubType="Designer" Generator="MSBuild:UpdateDesignTimeXaml" />
     <EmbeddedResource Include="Resources\HomeInfo.jpg" />
     <EmbeddedResource Include="Resources\A1.jpg" />
     <EmbeddedResource Include="Resources\A2.jpg" />
