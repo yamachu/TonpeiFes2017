@@ -22,9 +22,9 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using TonpeiFes.Forms.Configurations;
 using TonpeiFes.Forms.Service;
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using TonpeiFes.MobileCore.Configurations;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -35,10 +35,10 @@ namespace TonpeiFes.Forms
         public App(IPlatformInitializer initializer = null) : base(initializer)
         {
 #if DEBUG
-            MobileCenter.Start($"android={MobileCenterDebugAPI.MOBILE_CENTER_ANDROID_API_KEY};ios={MobileCenterDebugAPI.MOBILE_CENTER_IOS_API_KEY}",
+            AppCenter.Start($"android={MobileCenterDebugAPI.MOBILE_CENTER_ANDROID_API_KEY};ios={MobileCenterDebugAPI.MOBILE_CENTER_IOS_API_KEY}",
                    typeof(Analytics), typeof(Crashes));
 #else
-            MobileCenter.Start($"android={MobileCenterAPI.MOBILE_CENTER_ANDROID_API_KEY};ios={MobileCenterAPI.MOBILE_CENTER_IOS_API_KEY}",
+            AppCenter.Start($"android={MobileCenterAPI.MOBILE_CENTER_ANDROID_API_KEY};ios={MobileCenterAPI.MOBILE_CENTER_IOS_API_KEY}",
                    typeof(Analytics), typeof(Crashes));
 #endif
         }

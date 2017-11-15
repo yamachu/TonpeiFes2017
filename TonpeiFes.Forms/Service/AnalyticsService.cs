@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
 using TonpeiFes.MobileCore.Services;
 
 namespace TonpeiFes.Forms.Service
@@ -11,7 +11,7 @@ namespace TonpeiFes.Forms.Service
     {
         public async Task<string> GetUserId()
         {
-            var guid = await MobileCenter.GetInstallIdAsync();
+            var guid = await AppCenter.GetInstallIdAsync();
             return guid?.ToString() ?? "DUMMY";
         }
 
